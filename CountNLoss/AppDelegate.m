@@ -26,7 +26,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self copyDatabaseIfNeeded];
-    //Add Comment to master.
+    //Add Comment to master1.
     self.foodArray = [NSDictionary dictionaryWithDictionary:[CalorieList getAllFoodData:[self getDBPath]]];
     self.historyArray = [NSArray arrayWithArray:[CalorieHistory getFoodHistory:[self getDBPath]]];
     //NSLog(@"%@",self.foodArray);
