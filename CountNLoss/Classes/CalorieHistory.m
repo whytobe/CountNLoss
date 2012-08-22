@@ -21,7 +21,9 @@ static sqlite3_stmt *addStmt = nil;
 @synthesize historyID,historyDate,historyFoodID;
 
 -(void)dealloc{
-    [CalorieHistory unre
+    [self setHistoryID:nil];
+    [self setHistoryDate:nil];
+    [self setHistoryFoodID:nil];
 }
 +(void)drinkAWater{
     /*NSMutableArray *tmpHistoryID = [[NSMutableArray alloc]initWithArray:historyID];

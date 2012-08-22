@@ -18,6 +18,15 @@ static sqlite3_stmt *addStmt = nil;
 
 @synthesize foodId,foodName,foodType,foodStore,foodCalorie,isDirty;
 
+-(void)dealloc{
+    [self setFoodId:nil];
+    [self setFoodName:nil];
+    [self setFoodType:nil];
+    [self setFoodStore:nil];
+    [self setFoodCalorie:nil];
+    [self setIsDirty:nil];
+    
+}
 + (NSDictionary*) getAllFoodData:(NSString *)dbPath {
 	
 	//CountAndLossAppDelegate *appDelegate = (CountAndLossAppDelegate *)[[UIApplication sharedApplication] delegate];
