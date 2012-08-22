@@ -47,10 +47,10 @@
 
 -(float)getBMR{
     if (self.myGender){
-        // Male
+        // Male.
         self.myBMR = 66 + (6.3*self.myWeight/2.2) + (12.9*self.myHeight/2.54) - (6.8*self.myAge);
     } else {
-        // Female
+        // Female.
         self.myBMR = 665 + (4.3*self.myWeight/2.2) + (4.7*self.myHeight/2.54) - (4.7*self.myAge);
     }
     return self.myBMR;
