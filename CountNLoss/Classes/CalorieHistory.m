@@ -131,6 +131,35 @@ static sqlite3_stmt *addStmt = nil;
     //CountAndLossAppDelegate *appDelegate = (CountAndLossAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableArray *tempFood = [[NSMutableArray alloc]init];
     if (sqlite3_open([dbPath UTF8String], &database) == SQLITE_OK) {
+		const char *sql = "select calorie_id,calorie_date,calorie_food_id from history where calorie_food_id != 0";
+		sqlite3_stmt *selectstmt;
+		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
+			
+			while(sqlite3_step(selectstmt) == SQLITE_ROW) {
+				
+				//NSNumber *primaryKey = [NSNumber numberWithInt: sqlite3_column_int(selectstmt, 0)];
+				CalorieHistory *history = [[CalorieHistory alloc] init];
+				history.historyID = [NSNumber numberWithInt: sqlite3_column_int(selectstmt, 0)];//[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)];
+				history.historyDate = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)];
+                history.historyFoodID = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 2)];
+                //calorie.foodCalorie = [NSNumber numberWithFloat:sqlite3_column_double(selectstmt, 4)];
+				//calorie.isDirty = NO;
+				//NSLog(@"Id :%@, %@ %@",calorie.foodId,calorie.foodName,calorie.foodCalorie);
+                
+				[tempFood addObject:history];
+            }
+		}
+    }
+	else{
+		sqlite3_close(database); //Even though the open call failed, close the database connection to release all the memory.
+    }
+    return tempFood;
+}
+
++(NSArray*)getFoodHistoryTodayWithDB:(NSString *)dbPath{
+    //CountAndLossAppDelegate *appDelegate = (CountAndLossAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableArray *tempFood = [[NSMutableArray alloc]init];
+    if (sqlite3_open([dbPath UTF8String], &database) == SQLITE_OK) {
 		const char *sql = "select calorie_id,calorie_date,calorie_food_id from history where calorie_food_id != 0 and calorie_date between strftime('%Y-%m-%d 00:00:00') and strftime('%Y-%m-%d 23:59:59')";
 		sqlite3_stmt *selectstmt;
 		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
@@ -154,6 +183,7 @@ static sqlite3_stmt *addStmt = nil;
 		sqlite3_close(database); //Even though the open call failed, close the database connection to release all the memory.
     }
     return tempFood;
+
 }
 
 +(NSArray*)getFoodHistoryByDate:(NSDate *)targetDate withDB:(NSString *)dbPath{

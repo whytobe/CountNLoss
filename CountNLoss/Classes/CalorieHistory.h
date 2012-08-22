@@ -22,6 +22,8 @@
 
 +(NSArray*) getFoodHistoryByDate:(NSDate*)targetDate withDB:(NSString *)dbPath;
 +(NSArray*) getFoodHistory:(NSString *)dbPath;
++(NSArray*)getFoodHistoryTodayWithDB:(NSString *)dbPath;
+
 +(void) insertCalorie:(int)withFoodId;
 +(void) deleteCalorie:(int)HistoryID;
 +(void) drinkAWater;
