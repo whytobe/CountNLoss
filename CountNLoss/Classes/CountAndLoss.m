@@ -11,13 +11,6 @@
 @implementation CountAndLoss
 @synthesize myAge,myBMI,myActivity,myBMR,myGender,myHeight,myWeight;
 -(void) dealloc{
-    [self setMyAge:nil];
-    [self setMyBMI:nil];
-    [self setMyBMR:nil];
-    [self setMyGender:nil];
-    [self setMyHeight:nil];
-    [self setMyWeight:nil];
-    [self setActivity:nil];
     
 }
 -(void)setActivity:(float)activity{

@@ -16,7 +16,7 @@ static sqlite3_stmt *addStmt = nil;
 
 @implementation CalorieList
 
-@synthesize foodId,foodName,foodType,foodStore,foodCalorie,isDirty;
+@synthesize foodId,foodName,foodType,foodStore,foodCalorie;
 
 -(void)dealloc{
     [self setFoodId:nil];
@@ -24,7 +24,6 @@ static sqlite3_stmt *addStmt = nil;
     [self setFoodType:nil];
     [self setFoodStore:nil];
     [self setFoodCalorie:nil];
-    [self setIsDirty:nil];
     
 }
 + (NSDictionary*) getAllFoodData:(NSString *)dbPath {

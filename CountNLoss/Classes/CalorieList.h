@@ -15,8 +15,6 @@
     NSString    *foodType;
     NSString    *foodStore;
     NSNumber   *foodCalorie;
-    
-    BOOL isDirty;
 }
 
 @property (nonatomic, copy) NSNumber *foodId;
@@ -24,8 +22,6 @@
 @property (nonatomic, copy) NSString *foodType;
 @property (nonatomic, copy) NSString *foodStore;
 @property (nonatomic, copy) NSNumber *foodCalorie;
-
-@property (nonatomic, readwrite) BOOL isDirty;
 
 
 +(NSDictionary*) getAllFoodData:(NSString *)dbPath;

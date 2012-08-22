@@ -16,7 +16,6 @@
 
 @implementation FoodCategoryViewController
 @synthesize labels = _labels;
-@synthesize mainViewController = _mainViewController;
 @synthesize categoryButton = _categoryButton;
 @synthesize allSearchTextField;
 @synthesize iconArray,nameArray,lockArray,categoryArray;
