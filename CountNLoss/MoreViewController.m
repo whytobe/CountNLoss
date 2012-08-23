@@ -58,44 +58,55 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.section) {
-        case 0:
+        case 0:{
             NSLog(@"Profile tapped");
             
             break;
+        }
         case 1:
             switch (indexPath.row) {
-                case 0:
+                case 0:{
                     NSLog(@"Upgrade to PRO tapped");
                     
                     break;
-                case 1:
+                }
+                case 1:{
                     NSLog(@"Notice tapped");
                     
                     break;
+                }
             }
-            break;
+        break;
         case 2:
             switch (indexPath.row) {
-                case 0:
+                case 0: {
                     NSLog(@"Notifications tapped");
                     
                     break;
-                case 1:
+                }
+                case 1:{
                     NSLog(@"Tell a friend tapped");
                     
                     break;
-                case 2:
+                }
+                case 2: {
                     NSLog(@"Help tapped");
-                    
+                    UIViewController *helpPage = [[AboutCountAndLossViewController alloc] initWithNibName:@"HelpViewController" bundle:nil];
+                    [helpPage setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+                    [self presentModalViewController:helpPage animated:YES];
+                    helpPage = nil;
                     break;
-                case 3:
+                }
+                case 3: {
                     NSLog(@"About Count & Loss tapped");
                     UIViewController *aboutPage = [[AboutCountAndLossViewController alloc] initWithNibName:@"AboutCountAndLossViewController" bundle:nil];
                     [aboutPage setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
                     [self presentModalViewController:aboutPage animated:YES];
+                    aboutPage = nil;
                     break;
+                }
             }
-            break;
+        break;
     }
 }
 - (void)viewWillAppear:(BOOL)animated{

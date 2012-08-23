@@ -11,6 +11,8 @@
 		52071AB615E0E63900892264 /* SearchByCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52071AB415E0E63900892264 /* SearchByCategoryViewController.xib */; };
 		520AA76715E6119400B9D2B3 /* AboutCountAndLossViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 520AA76515E6119400B9D2B3 /* AboutCountAndLossViewController.m */; };
 		520AA76815E6119400B9D2B3 /* AboutCountAndLossViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520AA76615E6119400B9D2B3 /* AboutCountAndLossViewController.xib */; };
+		520AA76C15E616BC00B9D2B3 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 520AA76A15E616BC00B9D2B3 /* HelpViewController.m */; };
+		520AA76D15E616BC00B9D2B3 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520AA76B15E616BC00B9D2B3 /* HelpViewController.xib */; };
 		5225C4FB15E221C3000694FA /* catBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5225C4F715E221C3000694FA /* catBg.png */; };
 		5225C4FC15E221C3000694FA /* catBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5225C4F815E221C3000694FA /* catBg@2x.png */; };
 		5225C4FE15E221C3000694FA /* textfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5225C4FA15E221C3000694FA /* textfield@2x.png */; };
@@ -122,6 +124,9 @@
 		520AA76415E6119400B9D2B3 /* AboutCountAndLossViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutCountAndLossViewController.h; sourceTree = "<group>"; };
 		520AA76515E6119400B9D2B3 /* AboutCountAndLossViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutCountAndLossViewController.m; sourceTree = "<group>"; };
 		520AA76615E6119400B9D2B3 /* AboutCountAndLossViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutCountAndLossViewController.xib; sourceTree = "<group>"; };
+		520AA76915E616BB00B9D2B3 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		520AA76A15E616BC00B9D2B3 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		520AA76B15E616BC00B9D2B3 /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
 		5225C4F715E221C3000694FA /* catBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catBg.png; sourceTree = "<group>"; };
 		5225C4F815E221C3000694FA /* catBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "catBg@2x.png"; sourceTree = "<group>"; };
 		5225C4FA15E221C3000694FA /* textfield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield@2x.png"; sourceTree = "<group>"; };
@@ -275,12 +280,15 @@
 		520AA76315E6114A00B9D2B3 /* More Tab */ = {
 			isa = PBXGroup;
 			children = (
-				520AA76415E6119400B9D2B3 /* AboutCountAndLossViewController.h */,
-				520AA76515E6119400B9D2B3 /* AboutCountAndLossViewController.m */,
-				520AA76615E6119400B9D2B3 /* AboutCountAndLossViewController.xib */,
 				529CE63B15DDF93C00B1FF9C /* MoreViewController.h */,
 				529CE63C15DDF93C00B1FF9C /* MoreViewController.m */,
 				529CE63D15DDF93C00B1FF9C /* MoreViewController.xib */,
+				520AA76415E6119400B9D2B3 /* AboutCountAndLossViewController.h */,
+				520AA76515E6119400B9D2B3 /* AboutCountAndLossViewController.m */,
+				520AA76615E6119400B9D2B3 /* AboutCountAndLossViewController.xib */,
+				520AA76915E616BB00B9D2B3 /* HelpViewController.h */,
+				520AA76A15E616BC00B9D2B3 /* HelpViewController.m */,
+				520AA76B15E616BC00B9D2B3 /* HelpViewController.xib */,
 			);
 			name = "More Tab";
 			sourceTree = "<group>";
@@ -619,6 +627,7 @@
 				5225C4FE15E221C3000694FA /* textfield@2x.png in Resources */,
 				5225C50015E22272000694FA /* textfield.png in Resources */,
 				520AA76815E6119400B9D2B3 /* AboutCountAndLossViewController.xib in Resources */,
+				520AA76D15E616BC00B9D2B3 /* HelpViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,6 +653,7 @@
 				52071AB515E0E63900892264 /* SearchByCategoryViewController.m in Sources */,
 				5225C50315E263EB000694FA /* searchTextField.m in Sources */,
 				520AA76715E6119400B9D2B3 /* AboutCountAndLossViewController.m in Sources */,
+				520AA76C15E616BC00B9D2B3 /* HelpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
