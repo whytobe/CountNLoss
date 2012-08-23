@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MoreViewController : UIViewController
+@interface MoreViewController : UIViewController<UITableViewDataSource,UITableViewDataSource>
+
+@property (nonatomic) NSArray *moreMenu;
+@property (nonatomic) NSArray *moreSection;
+@property (weak, nonatomic) IBOutlet UITableView *moreTableView;
 
 @end

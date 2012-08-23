@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) UITabBarController *tabBarController;
 @property (strong, nonatomic) UINavigationController *foodNavigationController;
+@property (strong, nonatomic) UINavigationController *moreNavigationController;
 @property ( nonatomic) NSDictionary *foodArray;
 @property ( nonatomic) NSArray *historyArray;
 

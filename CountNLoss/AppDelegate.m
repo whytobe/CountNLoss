@@ -21,11 +21,16 @@
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
 @synthesize foodNavigationController = _foodNavigationController;
+@synthesize moreNavigationController = _moreNavigationController;
 @synthesize foodArray,historyArray;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self copyDatabaseIfNeeded];
+    UIImage *navigationBG = [[UIImage imageNamed:@"header"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,0,0,0)];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,[UIColor grayColor],UITextAttributeTextShadowColor,[NSValue valueWithUIOffset:UIOffsetMake(0, 0)],UITextAttributeTextShadowOffset,[UIFont fontWithName:@"BerlinSansFBDemi-Bold" size:24],UITextAttributeFont , nil]];
+    [[UINavigationBar appearance] setBackgroundImage:navigationBG forBarMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:0.42 green:0.72  blue:.05 alpha:1]];
     //Add Comment to master1.
     self.foodArray = [NSDictionary dictionaryWithDictionary:[CalorieList getAllFoodData:[self getDBPath]]];
     [self reloadHistory];
@@ -45,14 +50,12 @@
     [[self.tabBarController tabBar] setTintColor:[UIColor colorWithRed:0.09 green:0.17 blue:0.015 alpha:1]];
     
     self.foodNavigationController = [[UINavigationController alloc]initWithRootViewController:foodViewController];
-    UIImage *navigationBG = [[UIImage imageNamed:@"header"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,0,0,0)];
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,[UIColor grayColor],UITextAttributeTextShadowColor,[NSValue valueWithUIOffset:UIOffsetMake(0, 0)],UITextAttributeTextShadowOffset,[UIFont fontWithName:@"BerlinSansFBDemi-Bold" size:24],UITextAttributeFont , nil]];
-    [[UINavigationBar appearance] setBackgroundImage:navigationBG forBarMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:0.42 green:0.72  blue:.05 alpha:1]];
     
     
+    self.moreNavigationController = [[UINavigationController alloc]initWithRootViewController:moreViewController];
+
     
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.foodNavigationController, todayViewController,historyViewController,goalViewController,moreViewController, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:[self foodNavigationController], todayViewController,historyViewController,goalViewController,[self moreNavigationController], nil];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     
