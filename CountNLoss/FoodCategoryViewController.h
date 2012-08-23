@@ -10,7 +10,7 @@
 
 @class FoodCategoryViewController;
 
-@interface FoodCategoryViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface FoodCategoryViewController : UIViewController
 
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
 @property (nonatomic) NSArray *iconArray;

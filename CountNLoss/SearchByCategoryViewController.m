@@ -19,7 +19,7 @@
 @synthesize searchButton;
 @synthesize foodIcon;
 @synthesize foodArray,filteredFoodArray;
-@synthesize searchCategory;
+@synthesize searchCategory,addCalorieId;
 
 - (id)initWithCatName:(NSString *)nibNameOrNil catType:(NSString*)catTypeValue{
     self = [super initWithNibName:nibNameOrNil bundle:nil];
@@ -148,7 +148,7 @@
     NSInteger rowIndex = [[filteredFoodArray objectAtIndex:indexPath.row] integerValue];
     NSString *message = [NSString stringWithFormat:@"เพิ่ม '%@' ลงในรายการ\nอาหารที่ทานในวันนี้?",[[self.foodArray valueForKey:@"foodName"] objectAtIndex:rowIndex]];
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:message delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
-    
+    [self setAddCalorieId:[[self.foodArray valueForKey:@"foodId"] objectAtIndex:rowIndex]];
     [alertView show];
     //alertView = nil;
     
@@ -156,11 +156,13 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
 		NSLog(@"user pressed OK");
+        [CalorieHistory insertCalorie:[[self addCalorieId] intValue]];
         [[self navigationController]popToRootViewControllerAnimated:YES];
 	}
 	else {
 		NSLog(@"user pressed Cancel");
 	}
+    [self setAddCalorieId:nil];
 }
 - (void)viewDidUnload
 {

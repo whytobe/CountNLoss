@@ -17,7 +17,7 @@
 @property (nonatomic) NSDictionary *foodArray;
 @property (nonatomic,copy) NSArray *filteredFoodArray;
 @property (nonatomic) NSString *searchCategory;
-
+@property (nonatomic) NSNumber *addCalorieId;
 -(void)predicateFoodArrayWithString:(NSString *)string;
 - (id)initWithCatName:(NSString *)nibNameOrNil catType:(NSString*)catTypeValue;
 @end

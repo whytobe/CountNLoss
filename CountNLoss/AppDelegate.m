@@ -28,7 +28,7 @@
     [self copyDatabaseIfNeeded];
     //Add Comment to master1.
     self.foodArray = [NSDictionary dictionaryWithDictionary:[CalorieList getAllFoodData:[self getDBPath]]];
-    self.historyArray = [NSArray arrayWithArray:[CalorieHistory getFoodHistory:[self getDBPath]]];
+    self.historyArray = [NSArray arrayWithArray:[CalorieHistory getFoodHistoryToday]];
     //NSLog(@"%@",self.foodArray);
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -49,6 +49,8 @@
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,[UIColor grayColor],UITextAttributeTextShadowColor,[NSValue valueWithUIOffset:UIOffsetMake(0, 0)],UITextAttributeTextShadowOffset,[UIFont fontWithName:@"BerlinSansFBDemi-Bold" size:24],UITextAttributeFont , nil]];
     [[UINavigationBar appearance] setBackgroundImage:navigationBG forBarMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:0.42 green:0.72  blue:.05 alpha:1]];
+    
+    
     
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:self.foodNavigationController, todayViewController,historyViewController,goalViewController,moreViewController, nil];
     self.window.rootViewController = self.tabBarController;

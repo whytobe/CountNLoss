@@ -20,10 +20,10 @@
 @property ( nonatomic) NSNumber *historyFoodID;
 //@property (retain, nonatomic) NSDictionary *historyLists;
 
-+(NSArray*) getFoodHistoryByDate:(NSDate*)targetDate withDB:(NSString *)dbPath;
-+(NSArray*) getFoodHistory:(NSString *)dbPath;
-+(NSArray*)getFoodHistoryTodayWithDB:(NSString *)dbPath;
-
++(NSArray*) getFoodHistoryByDate:(NSDate*)targetDate;
++(NSArray*) getFoodHistory;
++(NSArray*) getFoodHistoryToday;
++(NSString *) getDBPath;
 +(void) insertCalorie:(int)withFoodId;
 +(void) deleteCalorie:(int)HistoryID;
 +(void) drinkAWater;
