@@ -16,4 +16,6 @@
 @property (strong, nonatomic) UINavigationController *foodNavigationController;
 @property ( nonatomic) NSDictionary *foodArray;
 @property ( nonatomic) NSArray *historyArray;
+
+- (void)reloadHistory;
 @end

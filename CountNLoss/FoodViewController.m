@@ -37,7 +37,7 @@
         [foodTableView setBackgroundView:[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bgList"]]];
         [foodTableView setBackgroundColor:nil];
         foodArray = ((AppDelegate*)[[UIApplication sharedApplication]delegate]).foodArray;
-        todayCalorie = ((AppDelegate*)[[UIApplication sharedApplication]delegate]).historyArray;
+        
         //NSLog(@"today Calorie : %@",foodArray);
         //[self setTitle:@"Count&Loss"];
     //foodTableView 
@@ -64,8 +64,13 @@
     //[self getFoodList];
     //[self setDrinkWater:3];
     // Do any additional setup after loading the view from its nib.
-}
 
+}
+- (void)viewDidAppear:(BOOL)animated{
+    [((AppDelegate*)[[UIApplication sharedApplication]delegate]) reloadHistory];
+    todayCalorie = ((AppDelegate*)[[UIApplication sharedApplication]delegate]).historyArray;
+    [[self foodTableView] reloadData];
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [[self todayCalorie]count];
 }

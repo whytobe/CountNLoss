@@ -28,7 +28,7 @@
     [self copyDatabaseIfNeeded];
     //Add Comment to master1.
     self.foodArray = [NSDictionary dictionaryWithDictionary:[CalorieList getAllFoodData:[self getDBPath]]];
-    self.historyArray = [NSArray arrayWithArray:[CalorieHistory getFoodHistoryToday]];
+    [self reloadHistory];
     //NSLog(@"%@",self.foodArray);
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -63,7 +63,9 @@
     
     return YES;
 }
-
+- (void)reloadHistory{
+    self.historyArray = [NSArray arrayWithArray:[CalorieHistory getFoodHistoryToday]];
+}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
