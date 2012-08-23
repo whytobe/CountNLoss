@@ -66,7 +66,7 @@
     // Do any additional setup after loading the view from its nib.
 
 }
-- (void)viewDidAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [((AppDelegate*)[[UIApplication sharedApplication]delegate]) reloadHistory];
     todayCalorie = ((AppDelegate*)[[UIApplication sharedApplication]delegate]).historyArray;
     [[self foodTableView] reloadData];

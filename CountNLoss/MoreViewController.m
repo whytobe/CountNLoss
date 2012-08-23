@@ -7,7 +7,7 @@
 //
 
 #import "MoreViewController.h"
-
+#import "AboutCountAndLossViewController.h"
 @interface MoreViewController ()
 
 @end
@@ -56,7 +56,51 @@
     //return 3;
     return [[self moreSection]count];
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.section) {
+        case 0:
+            NSLog(@"Profile tapped");
+            
+            break;
+        case 1:
+            switch (indexPath.row) {
+                case 0:
+                    NSLog(@"Upgrade to PRO tapped");
+                    
+                    break;
+                case 1:
+                    NSLog(@"Notice tapped");
+                    
+                    break;
+            }
+            break;
+        case 2:
+            switch (indexPath.row) {
+                case 0:
+                    NSLog(@"Notifications tapped");
+                    
+                    break;
+                case 1:
+                    NSLog(@"Tell a friend tapped");
+                    
+                    break;
+                case 2:
+                    NSLog(@"Help tapped");
+                    
+                    break;
+                case 3:
+                    NSLog(@"About Count & Loss tapped");
+                    UIViewController *aboutPage = [[AboutCountAndLossViewController alloc] initWithNibName:@"AboutCountAndLossViewController" bundle:nil];
+                    [aboutPage setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+                    [self presentModalViewController:aboutPage animated:YES];
+                    break;
+            }
+            break;
+    }
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [[self moreTableView] deselectRowAtIndexPath:[[self moreTableView] indexPathForSelectedRow] animated:NO];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
