@@ -20,6 +20,10 @@
 		5225C4FE15E221C3000694FA /* textfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5225C4FA15E221C3000694FA /* textfield@2x.png */; };
 		5225C50015E22272000694FA /* textfield.png in Resources */ = {isa = PBXBuildFile; fileRef = 5225C4FF15E22272000694FA /* textfield.png */; };
 		5225C50315E263EB000694FA /* searchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5225C50215E263EB000694FA /* searchTextField.m */; };
+		52979F6F15E776AE00C544FF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52979F6E15E776AE00C544FF /* QuartzCore.framework */; };
+		52979F7815E779EE00C544FF /* calorieProgess.m in Sources */ = {isa = PBXBuildFile; fileRef = 52979F7715E779EE00C544FF /* calorieProgess.m */; };
+		52979F8715E7874000C544FF /* progress-bar-fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 52979F8515E7874000C544FF /* progress-bar-fill.png */; };
+		52979F8815E7874000C544FF /* progress-bar-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 52979F8615E7874000C544FF /* progress-bar-bg.png */; };
 		529CE58F15DDF08100B1FF9C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 529CE58E15DDF08100B1FF9C /* UIKit.framework */; };
 		529CE59115DDF08100B1FF9C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 529CE59015DDF08100B1FF9C /* Foundation.framework */; };
 		529CE59315DDF08100B1FF9C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 529CE59215DDF08100B1FF9C /* CoreGraphics.framework */; };
@@ -138,6 +142,11 @@
 		5225C4FF15E22272000694FA /* textfield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textfield.png; sourceTree = "<group>"; };
 		5225C50115E263EB000694FA /* searchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchTextField.h; sourceTree = "<group>"; };
 		5225C50215E263EB000694FA /* searchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchTextField.m; sourceTree = "<group>"; };
+		52979F6E15E776AE00C544FF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		52979F7615E779EE00C544FF /* calorieProgess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calorieProgess.h; sourceTree = "<group>"; };
+		52979F7715E779EE00C544FF /* calorieProgess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = calorieProgess.m; sourceTree = "<group>"; };
+		52979F8515E7874000C544FF /* progress-bar-fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-bar-fill.png"; sourceTree = "<group>"; };
+		52979F8615E7874000C544FF /* progress-bar-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-bar-bg.png"; sourceTree = "<group>"; };
 		529CE58A15DDF08100B1FF9C /* CountNLoss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountNLoss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		529CE58E15DDF08100B1FF9C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		529CE59015DDF08100B1FF9C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -260,6 +269,7 @@
 				529CE58F15DDF08100B1FF9C /* UIKit.framework in Frameworks */,
 				529CE59115DDF08100B1FF9C /* Foundation.framework in Frameworks */,
 				529CE59315DDF08100B1FF9C /* CoreGraphics.framework in Frameworks */,
+				52979F6F15E776AE00C544FF /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +314,6 @@
 		529CE57F15DDF08100B1FF9C = {
 			isa = PBXGroup;
 			children = (
-				529CE64D15DDFB3B00B1FF9C /* libsqlite3.0.dylib */,
 				529CE59415DDF08100B1FF9C /* CountNLoss */,
 				529CE58D15DDF08100B1FF9C /* Frameworks */,
 				529CE58B15DDF08100B1FF9C /* Products */,
@@ -322,6 +331,8 @@
 		529CE58D15DDF08100B1FF9C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52979F6E15E776AE00C544FF /* QuartzCore.framework */,
+				529CE64D15DDFB3B00B1FF9C /* libsqlite3.0.dylib */,
 				529CE58E15DDF08100B1FF9C /* UIKit.framework */,
 				529CE59015DDF08100B1FF9C /* Foundation.framework */,
 				529CE59215DDF08100B1FF9C /* CoreGraphics.framework */,
@@ -396,6 +407,8 @@
 		529CE6A015DE2DDF00B1FF9C /* image */ = {
 			isa = PBXGroup;
 			children = (
+				52979F8515E7874000C544FF /* progress-bar-fill.png */,
+				52979F8615E7874000C544FF /* progress-bar-bg.png */,
 				5225C4FF15E22272000694FA /* textfield.png */,
 				5225C4F715E221C3000694FA /* catBg.png */,
 				5225C4F815E221C3000694FA /* catBg@2x.png */,
@@ -493,6 +506,8 @@
 				529CE6A615DE33D400B1FF9C /* FoodCategoryButton.m */,
 				5225C50115E263EB000694FA /* searchTextField.h */,
 				5225C50215E263EB000694FA /* searchTextField.m */,
+				52979F7615E779EE00C544FF /* calorieProgess.h */,
+				52979F7715E779EE00C544FF /* calorieProgess.m */,
 			);
 			name = CustomClass;
 			sourceTree = "<group>";
@@ -637,6 +652,8 @@
 				520AA76815E6119400B9D2B3 /* AboutCountAndLossViewController.xib in Resources */,
 				520AA76D15E616BC00B9D2B3 /* HelpViewController.xib in Resources */,
 				520AA77215E6541000B9D2B3 /* ProfileViewController.xib in Resources */,
+				52979F8715E7874000C544FF /* progress-bar-fill.png in Resources */,
+				52979F8815E7874000C544FF /* progress-bar-bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,6 +681,7 @@
 				520AA76715E6119400B9D2B3 /* AboutCountAndLossViewController.m in Sources */,
 				520AA76C15E616BC00B9D2B3 /* HelpViewController.m in Sources */,
 				520AA77115E6541000B9D2B3 /* ProfileViewController.m in Sources */,
+				52979F7815E779EE00C544FF /* calorieProgess.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

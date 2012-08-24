@@ -14,11 +14,14 @@
 }
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
 @property (nonatomic,retain) UIFont *myFont;
+@property (nonatomic) NSNumber *maxCalorie;
 @property (nonatomic) NSDictionary *todayCalorie;
 @property (nonatomic) NSDictionary *foodArray;
 @property (weak, nonatomic) IBOutlet UITableView *foodTableView;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *glasses;
 @property (nonatomic) NSNumber *totalCalorie;
+@property (weak, nonatomic) IBOutlet UIProgressView *calorieProgress;
+@property (weak, nonatomic) IBOutlet UILabel *calorieLabel;
 
 - (IBAction)addButtonTapped:(UIButton *)sender;
 - (void)reloadCalorie;

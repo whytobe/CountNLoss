@@ -13,17 +13,20 @@
 @end
 
 @implementation FoodViewController
+@synthesize calorieProgress;
+@synthesize calorieLabel;
 @synthesize foodTableView;
 @synthesize glasses;
 @synthesize labels;
 @synthesize myFont;
-@synthesize todayCalorie,foodArray,totalCalorie;
+@synthesize todayCalorie,foodArray,totalCalorie,maxCalorie;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self setMaxCalorie:[NSNumber numberWithInt:1200]];
         [self setTitle:@"Count&Loss"];
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Food" image:[UIImage imageNamed:@"food"] tag:0];
         [[self tabBarItem] setFinishedSelectedImage:nil withFinishedUnselectedImage:[UIImage imageNamed:@"food"]];
@@ -34,6 +37,8 @@
             [label setTextColor:[UIColor colorWithRed:0.521 green:0.533 blue:0.51 alpha:1]];
             
         }
+        [[self calorieLabel]setFont:[UIFont fontWithName:@"THSarabunPSK-Bold" size:18]];
+        [[self calorieLabel]setTextAlignment:UITextAlignmentRight];
         [foodTableView setBackgroundView:[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bgList"]]];
         [foodTableView setBackgroundColor:nil];
         foodArray = ((AppDelegate*)[[UIApplication sharedApplication]delegate]).foodArray;
@@ -77,12 +82,24 @@
         [self setTotalCalorie:[NSNumber numberWithInt:([[self totalCalorie] intValue]+foodCal)]];
     }];
     NSLog(@"Today total calorie : %@",totalCalorie);
-
+    
 }
+
+- (void)reloadCalorieProgress{
+    [[self calorieProgress]setFrame:CGRectMake(20, 42, 280, 30)];
+    //CGAffineTransform transform = CGAffineTransformMakeScale(1.0f, 3.0f);
+    //[[self calorieProgress]setTransform:transform];
+    [[self calorieProgress] setProgress:[[self totalCalorie]floatValue]/[[self maxCalorie]floatValue]];
+    [[self calorieLabel]setText:[NSString stringWithFormat:@"%@/%@ KCal",[self totalCalorie],[self maxCalorie]]];
+    [[self calorieLabel]setFrame:CGRectMake(20,42,100,30)];
+    //[[self calorieProgress] setProgress:1];
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [((AppDelegate*)[[UIApplication sharedApplication]delegate]) reloadHistory];
     [self setTodayCalorie:((AppDelegate*)[[UIApplication sharedApplication]delegate]).historyArray];
     [self reloadCalorie];
+    [self reloadCalorieProgress];
     [[self foodTableView] reloadData];
 }
 
@@ -148,6 +165,8 @@
     [self setTotalCalorie:nil];
     [self setTotalCalorie:nil];
     [self setFoodArray:nil];
+    [self setCalorieProgress:nil];
+    [self setCalorieLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
