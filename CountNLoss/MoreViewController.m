@@ -8,6 +8,7 @@
 
 #import "MoreViewController.h"
 #import "AboutCountAndLossViewController.h"
+#import "ProfileViewController.h"
 @interface MoreViewController ()
 
 @end
@@ -40,6 +41,7 @@
     NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
      cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     //[[cell textLabel]setText:@"TEST"];
     [[cell textLabel]setText:[[moreMenu objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
     [[cell textLabel] setFont:[UIFont fontWithName:@"THSarabunPSK-Bold" size:28]];
@@ -60,7 +62,8 @@
     switch (indexPath.section) {
         case 0:{
             NSLog(@"Profile tapped");
-            
+            UIViewController *profilePage = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil];
+            [[self navigationController] pushViewController:profilePage animated:YES];
             break;
         }
         case 1:
