@@ -29,7 +29,7 @@ static sqlite3_stmt *addStmt = nil;
 + (NSDictionary*) getAllFoodData:(NSString *)dbPath {
 	
 	//CountAndLossAppDelegate *appDelegate = (CountAndLossAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableArray *tempFoodArray = [[NSMutableArray alloc]init];
+    //NSMutableArray *tempFoodArray = [[NSMutableArray alloc]init];
     NSMutableArray *tempFoodIdArray = [[NSMutableArray alloc]init];
     NSMutableArray *tempFoodNameArray = [[NSMutableArray alloc]init];
     NSMutableArray *tempFoodTypeArray = [[NSMutableArray alloc]init];
@@ -68,13 +68,13 @@ static sqlite3_stmt *addStmt = nil;
 		sqlite3_close(database); //Even though the open call failed, close the database connection to release all the memory.
     }
 
-    [tempFoodArray addObjectsFromArray:tempFoodIdArray];
+    /*[tempFoodArray addObjectsFromArray:tempFoodIdArray];
     [tempFoodArray addObjectsFromArray:tempFoodNameArray];
     [tempFoodArray addObjectsFromArray:tempFoodTypeArray];
     [tempFoodArray addObjectsFromArray:tempFoodStoreArray];
     [tempFoodArray addObjectsFromArray:tempFoodCalorieArray];
     
-    /*tempFoodIdArray = nil;
+    tempFoodIdArray = nil;
     tempFoodNameArray = nil;
     tempFoodTypeArray = nil;
     tempFoodStoreArray = nil;

@@ -17,7 +17,7 @@
 @synthesize glasses;
 @synthesize labels;
 @synthesize myFont;
-@synthesize todayCalorie,foodArray;
+@synthesize todayCalorie,foodArray,totalCalorie;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -66,13 +66,28 @@
     // Do any additional setup after loading the view from its nib.
 
 }
+- (void)reloadCalorie{
+    [self setTotalCalorie:0];
+    //NSLog(@"%@",self.todayCalorie);
+    [[[self todayCalorie] valueForKey:@"calorieFoodId"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSNumber *calorieId = obj;
+        int foodId = [[[self foodArray] valueForKey:@"foodId"] indexOfObject:calorieId] ;
+        //NSLog(@"%@ Calorie =  %d",calorieId,foodId);
+        int foodCal = [[[[self foodArray] valueForKey:@"foodCalorie"] objectAtIndex:foodId] intValue];
+        [self setTotalCalorie:[NSNumber numberWithInt:([[self totalCalorie] intValue]+foodCal)]];
+    }];
+    NSLog(@"Today total calorie : %@",totalCalorie);
+
+}
 - (void)viewWillAppear:(BOOL)animated{
     [((AppDelegate*)[[UIApplication sharedApplication]delegate]) reloadHistory];
-    todayCalorie = ((AppDelegate*)[[UIApplication sharedApplication]delegate]).historyArray;
+    [self setTodayCalorie:((AppDelegate*)[[UIApplication sharedApplication]delegate]).historyArray];
+    [self reloadCalorie];
     [[self foodTableView] reloadData];
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[self todayCalorie]count];
+    return [[[self todayCalorie] valueForKey:@"calorieId"] count];
 }
 
 -(void)setDrinkWater:(int)numberOfGlasses{
@@ -104,7 +119,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil){
         cell = [[UITableViewCell alloc]initWithStyle  :UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-        NSNumber *rowFoodId = [NSNumber numberWithInteger:[((CalorieHistory*)[self.todayCalorie objectAtIndex:indexPath.row]).historyFoodID integerValue]];
+        NSNumber *rowFoodId = [NSNumber numberWithInteger:[[[[self todayCalorie] valueForKey:@"calorieFoodId"]  objectAtIndex:indexPath.row] integerValue]];
         //NSNumber *rowIndex = [[NSNumber alloc]init ];
         
         NSInteger rowIndex = [[foodArray valueForKey:@"foodId"] indexOfObject:rowFoodId ];
@@ -130,9 +145,9 @@
     [self setLabels:nil];
     [self setFoodTableView:nil];
     [self setGlasses:nil];
-    
-    self.todayCalorie = nil;
-    self.foodArray = nil;
+    [self setTotalCalorie:nil];
+    [self setTotalCalorie:nil];
+    [self setFoodArray:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

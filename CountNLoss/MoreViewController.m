@@ -34,7 +34,7 @@
         [self.tabBarItem setFinishedSelectedImage:nil withFinishedUnselectedImage:[UIImage imageNamed:@"more"]];
         [[self tabBarItem] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,nil] forState:UIControlStateNormal];
     }
-    NSLog(@"%@ : %@",[self moreSection],[self moreMenu]);
+    //NSLog(@"%@ : %@",[self moreSection],[self moreMenu]);
     return self;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -33,7 +33,7 @@
     [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:0.42 green:0.72  blue:.05 alpha:1]];
     //Add Comment to master1.
     self.foodArray = [NSDictionary dictionaryWithDictionary:[CalorieList getAllFoodData:[self getDBPath]]];
-    [self reloadHistory];
+    //[self reloadHistory];
     //NSLog(@"%@",self.foodArray);
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -67,7 +67,8 @@
     return YES;
 }
 - (void)reloadHistory{
-    self.historyArray = [NSArray arrayWithArray:[CalorieHistory getFoodHistoryToday]];
+    self.historyArray = [CalorieHistory getFoodHistoryToday];
+    //NSLog(@"%@",[self historyArray]);
 }
 - (void)applicationWillResignActive:(UIApplication *)application
 {

@@ -14,12 +14,12 @@
 }
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
 @property (nonatomic,retain) UIFont *myFont;
-@property (nonatomic) NSArray *todayCalorie;
+@property (nonatomic) NSDictionary *todayCalorie;
 @property (nonatomic) NSDictionary *foodArray;
 @property (weak, nonatomic) IBOutlet UITableView *foodTableView;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *glasses;
-- (IBAction)backToHome:(id)sender;
+@property (nonatomic) NSNumber *totalCalorie;
 
 - (IBAction)addButtonTapped:(UIButton *)sender;
-
+- (void)reloadCalorie;
 @end
