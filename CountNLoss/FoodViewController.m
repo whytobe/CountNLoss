@@ -26,6 +26,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self setTotalCalorie:0];
         [self setMaxCalorie:[NSNumber numberWithInt:1200]];
         [self setTitle:@"Count&Loss"];
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Food" image:[UIImage imageNamed:@"food"] tag:0];
@@ -89,9 +90,13 @@
     [[self calorieProgress]setFrame:CGRectMake(20, 42, 280, 30)];
     //CGAffineTransform transform = CGAffineTransformMakeScale(1.0f, 3.0f);
     //[[self calorieProgress]setTransform:transform];
-    [[self calorieProgress] setProgress:[[self totalCalorie]floatValue]/[[self maxCalorie]floatValue]];
+    float caloriePercent = [[self totalCalorie]floatValue]/[[self maxCalorie]floatValue];
+    [[self calorieProgress] setProgress:caloriePercent];
+    if ([self totalCalorie] == nil) [self setTotalCalorie:[NSNumber numberWithInt:0]];
     [[self calorieLabel]setText:[NSString stringWithFormat:@"%@/%@ KCal",[self totalCalorie],[self maxCalorie]]];
-    [[self calorieLabel]setFrame:CGRectMake(20,42,100,30)];
+    
+    float progessLeft = (20+(280*caloriePercent)-110 );
+    [[self calorieLabel]setFrame:CGRectMake((progessLeft < 20)? 20 : progessLeft,42,100,30)];
     //[[self calorieProgress] setProgress:1];
 }
 
