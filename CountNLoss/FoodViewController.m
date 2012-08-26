@@ -129,7 +129,7 @@
         if ([myGlass tag] < numberOfGlasses) {
             [obj setImage:[UIImage imageNamed:@"glass"] forState:UIControlStateNormal];
         } else {
-            *stop = YES;
+            [obj setImage:[UIImage imageNamed:@"emptyGlass"] forState:UIControlStateNormal];
         }
     }];
     //NSLog(@"drink water : %@",[self drinkWater]);
