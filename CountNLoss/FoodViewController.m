@@ -15,11 +15,12 @@
 @implementation FoodViewController
 @synthesize calorieProgress;
 @synthesize calorieLabel;
+@synthesize remainingCalorie;
 @synthesize foodTableView;
 @synthesize glasses;
 @synthesize labels;
 @synthesize myFont;
-@synthesize todayCalorie,foodArray,totalCalorie,maxCalorie;
+@synthesize todayCalorie,foodArray,totalCalorie,maxCalorie,drinkWater;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -73,6 +74,16 @@
 
 }
 - (void)reloadCalorie{
+    [((AppDelegate*)[[UIApplication sharedApplication]delegate]) reloadHistory];
+    [self setTodayCalorie:((AppDelegate*)[[UIApplication sharedApplication]delegate]).historyArray];
+}
+
+- (void)reloadWater{
+    [self setDrinkWater:[CalorieHistory waterCountToday]];
+    [self showDrinkWater:[[self drinkWater] intValue]];
+}
+
+- (void)reloadCalorieProgress{
     [self setTotalCalorie:0];
     //NSLog(@"%@",self.todayCalorie);
     [[[self todayCalorie] valueForKey:@"calorieFoodId"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -82,11 +93,9 @@
         int foodCal = [[[[self foodArray] valueForKey:@"foodCalorie"] objectAtIndex:foodId] intValue];
         [self setTotalCalorie:[NSNumber numberWithInt:([[self totalCalorie] intValue]+foodCal)]];
     }];
-    NSLog(@"Today total calorie : %@",totalCalorie);
     
-}
+    NSLog(@"Today total calorie : %@",totalCalorie);
 
-- (void)reloadCalorieProgress{
     [[self calorieProgress]setFrame:CGRectMake(20, 42, 280, 30)];
     //CGAffineTransform transform = CGAffineTransformMakeScale(1.0f, 3.0f);
     //[[self calorieProgress]setTransform:transform];
@@ -94,16 +103,17 @@
     [[self calorieProgress] setProgress:caloriePercent];
     if ([self totalCalorie] == nil) [self setTotalCalorie:[NSNumber numberWithInt:0]];
     [[self calorieLabel]setText:[NSString stringWithFormat:@"%@/%@ KCal",[self totalCalorie],[self maxCalorie]]];
-    
+    NSNumber *remainningCalorieNumber = [NSNumber numberWithInt:[[self maxCalorie] intValue]-[[self totalCalorie] intValue]];
+    [[self remainingCalorie]setText:[NSString stringWithFormat:@"%@ แคลอรี่", remainningCalorieNumber]];
     float progessLeft = (20+(280*caloriePercent)-110 );
-    [[self calorieLabel]setFrame:CGRectMake((progessLeft < 20)? 20 : progessLeft,42,100,30)];
+    [[self calorieLabel]setFrame:CGRectMake((progessLeft < 20)? 20 : ((progessLeft>190)? 190 : progessLeft),42,100,30)];
     //[[self calorieProgress] setProgress:1];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [((AppDelegate*)[[UIApplication sharedApplication]delegate]) reloadHistory];
-    [self setTodayCalorie:((AppDelegate*)[[UIApplication sharedApplication]delegate]).historyArray];
+    
     [self reloadCalorie];
+    [self reloadWater];
     [self reloadCalorieProgress];
     [[self foodTableView] reloadData];
 }
@@ -112,7 +122,7 @@
     return [[[self todayCalorie] valueForKey:@"calorieId"] count];
 }
 
--(void)setDrinkWater:(int)numberOfGlasses{
+-(void)showDrinkWater:(int)numberOfGlasses{
     [glasses enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIButton *myGlass = obj;
         if ([myGlass tag] < numberOfGlasses) {
@@ -121,6 +131,7 @@
             *stop = YES;
         }
     }];
+    NSLog(@"drink water : %@",[self drinkWater]);
 }
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     return [UIView new];
@@ -162,16 +173,21 @@
     return cell;
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+     [foodTableView setEditing:NO animated:YES];
+}
+
 - (void)viewDidUnload
 {
     [self setLabels:nil];
     [self setFoodTableView:nil];
     [self setGlasses:nil];
     [self setTotalCalorie:nil];
-    [self setTotalCalorie:nil];
+    [self setTodayCalorie:nil];
     [self setFoodArray:nil];
     [self setCalorieProgress:nil];
     [self setCalorieLabel:nil];
+    [self setRemainingCalorie:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -186,11 +202,34 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete){
+        NSLog(@"Delete row %d : %@",indexPath.row,[[[self todayCalorie] valueForKey:@"calorieId"]objectAtIndex:indexPath.row]);
+        [CalorieHistory deleteCalorie:[[[[self todayCalorie] valueForKey:@"calorieId"]objectAtIndex:indexPath.row] intValue]];
+        [self reloadCalorie];
+        [self reloadCalorieProgress];
+        //[[self foodTableView] reloadData];
+        //NSLog(@"row count : %d",[[[self todayCalorie] valueForKey:@"calorieId"] count]);
+        //[[self todayCalorie] removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+    }
+}
+
 - (IBAction)addButtonTapped:(UIButton *)sender {
     UIViewController *foodCategoryView = [[FoodCategoryViewController alloc] initWithNibName:@"FoodCategoryViewController" bundle:nil ];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithTitle: @"Back" style: UIBarButtonItemStyleBordered target: nil action: nil];
     [[self navigationItem] setBackBarButtonItem: backButton];
     [[self navigationController] pushViewController:foodCategoryView animated:YES];
+}
+
+- (IBAction)editCalorieHistory:(id)sender {
+    [foodTableView setEditing:![foodTableView isEditing] animated:YES];
+}
+
+- (IBAction)drinkAWater:(id)sender {
+    [CalorieHistory drinkAWater];
+    [self reloadWater];
 }
 
 @end

@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
 @property (nonatomic,retain) UIFont *myFont;
 @property (nonatomic) NSNumber *maxCalorie;
+@property (nonatomic) NSNumber *drinkWater;
 @property (nonatomic) NSDictionary *todayCalorie;
 @property (nonatomic) NSDictionary *foodArray;
 @property (weak, nonatomic) IBOutlet UITableView *foodTableView;
@@ -22,7 +23,11 @@
 @property (nonatomic) NSNumber *totalCalorie;
 @property (weak, nonatomic) IBOutlet UIProgressView *calorieProgress;
 @property (weak, nonatomic) IBOutlet UILabel *calorieLabel;
+@property (weak, nonatomic) IBOutlet UILabel *remainingCalorie;
 
 - (IBAction)addButtonTapped:(UIButton *)sender;
+- (IBAction)editCalorieHistory:(id)sender;
+- (IBAction)drinkAWater:(id)sender;
+
 - (void)reloadCalorie;
 @end

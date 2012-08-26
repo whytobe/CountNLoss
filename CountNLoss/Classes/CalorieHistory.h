@@ -27,6 +27,9 @@
 +(NSString *) getDBPath;
 +(void) insertCalorie:(int)withFoodId;
 +(void) deleteCalorie:(int)HistoryID;
+
++(NSNumber*)waterCountToday;
++(NSNumber*)waterCountByDate:(NSDate*)targetDate;
 +(void) drinkAWater;
 +(void) dropAWater;
 @end
