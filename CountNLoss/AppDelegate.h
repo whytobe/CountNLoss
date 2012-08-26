@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CountAndLoss.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -17,6 +17,7 @@
 @property (strong, nonatomic) UINavigationController *moreNavigationController;
 @property ( nonatomic) NSDictionary *foodArray;
 @property ( nonatomic) NSDictionary *historyArray;
-
+@property (nonatomic) CountAndLoss *myProfile;
 - (void)reloadHistory;
+- (void)reloadProfile;
 @end

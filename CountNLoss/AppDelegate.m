@@ -22,11 +22,13 @@
 @synthesize tabBarController = _tabBarController;
 @synthesize foodNavigationController = _foodNavigationController;
 @synthesize moreNavigationController = _moreNavigationController;
-@synthesize foodArray,historyArray;
+@synthesize foodArray,historyArray,myProfile;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self copyDatabaseIfNeeded];
+    myProfile = [CountAndLoss initCountAndLoss];
+    //NSLog(@"%@",myProfile);
     UIImage *navigationBG = [[UIImage imageNamed:@"header"] resizableImageWithCapInsets:UIEdgeInsetsMake(0,0,0,0)];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,[UIColor grayColor],UITextAttributeTextShadowColor,[NSValue valueWithUIOffset:UIOffsetMake(0, 0)],UITextAttributeTextShadowOffset,[UIFont fontWithName:@"BerlinSansFBDemi-Bold" size:24],UITextAttributeFont , nil]];
     [[UINavigationBar appearance] setBackgroundImage:navigationBG forBarMetrics:UIBarMetricsDefault];
@@ -54,6 +56,10 @@
     
     self.moreNavigationController = [[UINavigationController alloc]initWithRootViewController:moreViewController];
 
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+
+    
     
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:[self foodNavigationController], todayViewController,historyViewController,goalViewController,[self moreNavigationController], nil];
     self.window.rootViewController = self.tabBarController;
@@ -66,9 +72,14 @@
     
     return YES;
 }
+
 - (void)reloadHistory{
     self.historyArray = [CalorieHistory getFoodHistoryToday];
     //NSLog(@"%@",[self historyArray]);
+}
+
+- (void)reloadProfile{
+    self.myProfile = [CountAndLoss initCountAndLoss];
 }
 - (void)applicationWillResignActive:(UIApplication *)application
 {

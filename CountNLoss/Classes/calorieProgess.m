@@ -9,7 +9,7 @@
 #import "calorieProgess.h"
 #define kCustomProgressViewFillOffsetX 2
 #define kCustomProgressViewFillOffsetTopY 1
-#define kCustomProgressViewFillOffsetBottomY 3
+#define kCustomProgressViewFillOffsetBottomY 4
 @implementation calorieProgess
 
 - (id)initWithFrame:(CGRect)frame
@@ -23,7 +23,7 @@
 
 - (void)drawRect:(CGRect)rect {
     
-    CGSize backgroundStretchPoints = {11, 40}, fillStretchPoints = {7,35};
+    CGSize backgroundStretchPoints = {21, 18}, fillStretchPoints = {15,15};
     
     // Initialize the stretchable images.
     UIImage *background = [[UIImage imageNamed:@"progress-bar-bg.png"] stretchableImageWithLeftCapWidth:backgroundStretchPoints.width 

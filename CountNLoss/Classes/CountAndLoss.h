@@ -21,10 +21,7 @@
 
 -(float)getBMI;
 -(float)getBMR;
--(void) setWeight:(float)weight;
--(void) setHeight:(float)height;
--(void) setAge:(float)age;
--(void) setGender:(BOOL)gender;
--(void) setActivity:(float)activity;
-
+-(void) saveData;
+-(CountAndLoss*)initCountAndLoss;
++(CountAndLoss*)initCountAndLoss;
 @end

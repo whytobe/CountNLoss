@@ -7,7 +7,7 @@
 //
 
 #import "FoodViewController.h"
-
+#import "AppDelegate.h"
 @interface FoodViewController ()
     
 @end
@@ -28,7 +28,8 @@
     if (self) {
         // Custom initialization
         [self setTotalCalorie:0];
-        [self setMaxCalorie:[NSNumber numberWithInt:1200]];
+        int maxCal = [((AppDelegate*)[[UIApplication sharedApplication] delegate]).myProfile getBMR];
+        [self setMaxCalorie:[NSNumber numberWithInt: maxCal]];
         [self setTitle:@"Count&Loss"];
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Food" image:[UIImage imageNamed:@"food"] tag:0];
         [[self tabBarItem] setFinishedSelectedImage:nil withFinishedUnselectedImage:[UIImage imageNamed:@"food"]];
@@ -94,9 +95,9 @@
         [self setTotalCalorie:[NSNumber numberWithInt:([[self totalCalorie] intValue]+foodCal)]];
     }];
     
-    NSLog(@"Today total calorie : %@",totalCalorie);
+    //NSLog(@"Today total calorie : %@",totalCalorie);
 
-    [[self calorieProgress]setFrame:CGRectMake(20, 42, 280, 30)];
+    [[self calorieProgress]setFrame:CGRectMake(20, 38, 280, 40)];
     //CGAffineTransform transform = CGAffineTransformMakeScale(1.0f, 3.0f);
     //[[self calorieProgress]setTransform:transform];
     float caloriePercent = [[self totalCalorie]floatValue]/[[self maxCalorie]floatValue];
@@ -131,7 +132,7 @@
             *stop = YES;
         }
     }];
-    NSLog(@"drink water : %@",[self drinkWater]);
+    //NSLog(@"drink water : %@",[self drinkWater]);
 }
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     return [UIView new];
@@ -204,7 +205,7 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete){
-        NSLog(@"Delete row %d : %@",indexPath.row,[[[self todayCalorie] valueForKey:@"calorieId"]objectAtIndex:indexPath.row]);
+        //NSLog(@"Delete row %d : %@",indexPath.row,[[[self todayCalorie] valueForKey:@"calorieId"]objectAtIndex:indexPath.row]);
         [CalorieHistory deleteCalorie:[[[[self todayCalorie] valueForKey:@"calorieId"]objectAtIndex:indexPath.row] intValue]];
         [self reloadCalorie];
         [self reloadCalorieProgress];

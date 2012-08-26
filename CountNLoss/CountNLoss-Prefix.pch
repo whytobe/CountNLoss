@@ -13,7 +13,4 @@
     #import <Foundation/Foundation.h>
     #import <sqlite3.h>
     #import "AppDelegate.h"
-    #import "CalorieList.h"
-    #import "CalorieHistory.h"
-    #import "CountAndLoss.h"
 #endif

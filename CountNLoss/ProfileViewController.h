@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CountAndLoss.h"
 @interface ProfileViewController : UIViewController
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
 @property (weak, nonatomic) IBOutlet UILabel *BMILabel;
 @property (weak, nonatomic) IBOutlet UILabel *BMRLabel;
-
+@property (nonatomic) CountAndLoss *myProfile;
+@property (weak, nonatomic) IBOutlet UITextField *heightTextField;
+@property (weak, nonatomic) IBOutlet UITextField *widthTextField;
+@property (weak, nonatomic) IBOutlet UITextField *ageTextField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *sexSegmentControl;
 @end
