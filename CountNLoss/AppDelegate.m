@@ -23,6 +23,7 @@
 @synthesize foodNavigationController = _foodNavigationController;
 @synthesize moreNavigationController = _moreNavigationController;
 @synthesize historyNavigationController = _historyNavigationController;
+@synthesize todayNavigationController = _todayNavigationController;
 @synthesize foodArray,historyArray,myProfile;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -40,11 +41,11 @@
     //NSLog(@"%@",self.foodArray);
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    UIViewController *foodViewController = [[FoodViewController alloc] initWithNibName:@"FoodViewController" bundle:nil];
+    UIViewController *foodViewController = [[FoodCategoryViewController alloc] initWithNibName:@"FoodCategoryViewController" bundle:nil];
     UIViewController *goalViewController = [[GoalViewController alloc] initWithNibName:@"GoalViewController" bundle:nil];
     UIViewController *historyViewController = [[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil];
     UIViewController *moreViewController = [[MoreViewController alloc] initWithNibName:@"MoreViewController" bundle:nil];
-    UIViewController *todayViewController = [[TodayViewController alloc] initWithNibName:@"TodayViewController" bundle:nil];
+    UIViewController *todayViewController = [[FoodViewController alloc] initWithNibName:@"FoodViewController" bundle:nil];
 
     self.tabBarController = [[UITabBarController alloc] init];
     [[self.tabBarController tabBar] setBackgroundImage:[UIImage imageNamed:@"bgTab"]];
@@ -55,18 +56,22 @@
     self.foodNavigationController = [[UINavigationController alloc]initWithRootViewController:foodViewController];    
     self.moreNavigationController = [[UINavigationController alloc]initWithRootViewController:moreViewController];
     self.historyNavigationController = [[UINavigationController alloc]initWithRootViewController:historyViewController];
+    self.todayNavigationController = [[UINavigationController alloc]initWithRootViewController:todayViewController];
 
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 
     
     
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:[self foodNavigationController], todayViewController,[self historyNavigationController],goalViewController,[self moreNavigationController], nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:[self foodNavigationController], [self todayNavigationController],[self historyNavigationController],goalViewController,[self moreNavigationController], nil];
     self.window.rootViewController = self.tabBarController;
+    
+    self.tabBarController.selectedIndex = 2;
+    
     [self.window makeKeyAndVisible];
     
     
-    
+
     //NSLog(@"Food Array : %@",self.foodArray);
     //NSLog(@"History Array : %@",self.historyArray);
     

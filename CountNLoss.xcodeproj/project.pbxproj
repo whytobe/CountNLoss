@@ -23,8 +23,12 @@
 		5225C4FE15E221C3000694FA /* textfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5225C4FA15E221C3000694FA /* textfield@2x.png */; };
 		5225C50015E22272000694FA /* textfield.png in Resources */ = {isa = PBXBuildFile; fileRef = 5225C4FF15E22272000694FA /* textfield.png */; };
 		5225C50315E263EB000694FA /* searchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5225C50215E263EB000694FA /* searchTextField.m */; };
+		525854EF15EB9D6D0098AB49 /* HistoryDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525854ED15EB9D6D0098AB49 /* HistoryDetailController.m */; };
+		525854F015EB9D6D0098AB49 /* HistoryDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 525854EE15EB9D6D0098AB49 /* HistoryDetailController.xib */; };
 		5293A3F815EB28080096FB8F /* fooddb.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5293A3F515EB26870096FB8F /* fooddb.sqlite */; };
 		5293A3F915EB28080096FB8F /* history.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5293A3F615EB26870096FB8F /* history.sqlite */; };
+		5293A41515EB428B0096FB8F /* logo114.png in Resources */ = {isa = PBXBuildFile; fileRef = 5293A41415EB428B0096FB8F /* logo114.png */; };
+		5293A41715EB42B70096FB8F /* logo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 5293A41615EB42B60096FB8F /* logo57.png */; };
 		52979F6F15E776AE00C544FF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52979F6E15E776AE00C544FF /* QuartzCore.framework */; };
 		52979F7815E779EE00C544FF /* calorieProgess.m in Sources */ = {isa = PBXBuildFile; fileRef = 52979F7715E779EE00C544FF /* calorieProgess.m */; };
 		52979F8715E7874000C544FF /* progress-bar-fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 52979F8515E7874000C544FF /* progress-bar-fill.png */; };
@@ -125,6 +129,12 @@
 		529CE69E15DE2CD200B1FF9C /* header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 529CE69C15DE2CD200B1FF9C /* header@2x.png */; };
 		529CE6A215DE2E0E00B1FF9C /* BRLNSDB.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 529CE6A115DE2DEE00B1FF9C /* BRLNSDB.TTF */; };
 		529CE6A715DE33D400B1FF9C /* FoodCategoryButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 529CE6A615DE33D400B1FF9C /* FoodCategoryButton.m */; };
+		52BC9A7C15EB5BC600900443 /* graphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A7B15EB5BC600900443 /* graphView.m */; };
+		52BC9A8915EB5DE900900443 /* ECCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A7F15EB5DE900900443 /* ECCommon.m */; };
+		52BC9A8A15EB5DE900900443 /* ECGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A8215EB5DE900900443 /* ECGraph.m */; };
+		52BC9A8B15EB5DE900900443 /* ECGraphItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A8415EB5DE900900443 /* ECGraphItem.m */; };
+		52BC9A8C15EB5DE900900443 /* ECGraphLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A8615EB5DE900900443 /* ECGraphLine.m */; };
+		52BC9A8D15EB5DE900900443 /* ECGraphPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A8815EB5DE900900443 /* ECGraphPoint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,8 +183,15 @@
 		5225C4FF15E22272000694FA /* textfield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textfield.png; sourceTree = "<group>"; };
 		5225C50115E263EB000694FA /* searchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchTextField.h; sourceTree = "<group>"; };
 		5225C50215E263EB000694FA /* searchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchTextField.m; sourceTree = "<group>"; };
+		525854EC15EB9D6D0098AB49 /* HistoryDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryDetailController.h; sourceTree = "<group>"; };
+		525854ED15EB9D6D0098AB49 /* HistoryDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryDetailController.m; sourceTree = "<group>"; };
+		525854EE15EB9D6D0098AB49 /* HistoryDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryDetailController.xib; sourceTree = "<group>"; };
 		5293A3F515EB26870096FB8F /* fooddb.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = fooddb.sqlite; sourceTree = "<group>"; };
 		5293A3F615EB26870096FB8F /* history.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = history.sqlite; sourceTree = "<group>"; };
+		5293A41015EB42490096FB8F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		5293A41215EB42510096FB8F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		5293A41415EB428B0096FB8F /* logo114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo114.png; sourceTree = "<group>"; };
+		5293A41615EB42B60096FB8F /* logo57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo57.png; sourceTree = "<group>"; };
 		52979F6E15E776AE00C544FF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		52979F7615E779EE00C544FF /* calorieProgess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calorieProgess.h; sourceTree = "<group>"; };
 		52979F7715E779EE00C544FF /* calorieProgess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = calorieProgess.m; sourceTree = "<group>"; };
@@ -290,6 +307,18 @@
 		529CE6A115DE2DEE00B1FF9C /* BRLNSDB.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = BRLNSDB.TTF; sourceTree = "<group>"; };
 		529CE6A515DE33D400B1FF9C /* FoodCategoryButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodCategoryButton.h; sourceTree = "<group>"; };
 		529CE6A615DE33D400B1FF9C /* FoodCategoryButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodCategoryButton.m; sourceTree = "<group>"; };
+		52BC9A7A15EB5BC600900443 /* graphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphView.h; sourceTree = "<group>"; };
+		52BC9A7B15EB5BC600900443 /* graphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = graphView.m; sourceTree = "<group>"; };
+		52BC9A7E15EB5DE900900443 /* ECCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECCommon.h; sourceTree = "<group>"; };
+		52BC9A7F15EB5DE900900443 /* ECCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECCommon.m; sourceTree = "<group>"; };
+		52BC9A8115EB5DE900900443 /* ECGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECGraph.h; sourceTree = "<group>"; };
+		52BC9A8215EB5DE900900443 /* ECGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECGraph.m; sourceTree = "<group>"; };
+		52BC9A8315EB5DE900900443 /* ECGraphItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECGraphItem.h; sourceTree = "<group>"; };
+		52BC9A8415EB5DE900900443 /* ECGraphItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECGraphItem.m; sourceTree = "<group>"; };
+		52BC9A8515EB5DE900900443 /* ECGraphLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECGraphLine.h; sourceTree = "<group>"; };
+		52BC9A8615EB5DE900900443 /* ECGraphLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECGraphLine.m; sourceTree = "<group>"; };
+		52BC9A8715EB5DE900900443 /* ECGraphPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECGraphPoint.h; sourceTree = "<group>"; };
+		52BC9A8815EB5DE900900443 /* ECGraphPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECGraphPoint.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -363,9 +392,28 @@
 			name = data;
 			sourceTree = "<group>";
 		};
+		5293A40F15EB30B00096FB8F /* History Tab */ = {
+			isa = PBXGroup;
+			children = (
+				529CE63815DDF93C00B1FF9C /* HistoryViewController.h */,
+				529CE63915DDF93C00B1FF9C /* HistoryViewController.m */,
+				529CE63A15DDF93C00B1FF9C /* HistoryViewController.xib */,
+				525854EC15EB9D6D0098AB49 /* HistoryDetailController.h */,
+				525854ED15EB9D6D0098AB49 /* HistoryDetailController.m */,
+				525854EE15EB9D6D0098AB49 /* HistoryDetailController.xib */,
+				52BC9A7A15EB5BC600900443 /* graphView.h */,
+				52BC9A7B15EB5BC600900443 /* graphView.m */,
+			);
+			name = "History Tab";
+			sourceTree = "<group>";
+		};
 		529CE57F15DDF08100B1FF9C = {
 			isa = PBXGroup;
 			children = (
+				5293A41615EB42B60096FB8F /* logo57.png */,
+				5293A41415EB428B0096FB8F /* logo114.png */,
+				5293A41215EB42510096FB8F /* Default.png */,
+				5293A41015EB42490096FB8F /* Default@2x.png */,
 				529CE59415DDF08100B1FF9C /* CountNLoss */,
 				529CE58D15DDF08100B1FF9C /* Frameworks */,
 				529CE58B15DDF08100B1FF9C /* Products */,
@@ -383,6 +431,7 @@
 		529CE58D15DDF08100B1FF9C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52BC9A7D15EB5DE900900443 /* Core */,
 				521A5FAE15EA61290097C77C /* TapkuLibrary.bundle */,
 				521A5FAF15EA61290097C77C /* TapkuLibrary.xcodeproj */,
 				521A4BD815EA5FBF0097C77C /* MapKit.framework */,
@@ -401,16 +450,14 @@
 				529CE59D15DDF08100B1FF9C /* AppDelegate.h */,
 				529CE59E15DDF08100B1FF9C /* AppDelegate.m */,
 				520AA76115E6113800B9D2B3 /* Food Tab */,
-				529CE63515DDF93C00B1FF9C /* GoalViewController.h */,
-				529CE63615DDF93C00B1FF9C /* GoalViewController.m */,
-				529CE63715DDF93C00B1FF9C /* GoalViewController.xib */,
-				529CE63815DDF93C00B1FF9C /* HistoryViewController.h */,
-				529CE63915DDF93C00B1FF9C /* HistoryViewController.m */,
-				529CE63A15DDF93C00B1FF9C /* HistoryViewController.xib */,
+				5293A40F15EB30B00096FB8F /* History Tab */,
 				520AA76315E6114A00B9D2B3 /* More Tab */,
 				529CE63E15DDF93C00B1FF9C /* TodayViewController.h */,
 				529CE63F15DDF93C00B1FF9C /* TodayViewController.m */,
 				529CE64015DDF93C00B1FF9C /* TodayViewController.xib */,
+				529CE63515DDF93C00B1FF9C /* GoalViewController.h */,
+				529CE63615DDF93C00B1FF9C /* GoalViewController.m */,
+				529CE63715DDF93C00B1FF9C /* GoalViewController.xib */,
 				529CE62E15DDF8F500B1FF9C /* Resource */,
 				529CE5C115DDF51F00B1FF9C /* Classes */,
 				529CE59515DDF08100B1FF9C /* Supporting Files */,
@@ -565,6 +612,31 @@
 				52979F7715E779EE00C544FF /* calorieProgess.m */,
 			);
 			name = CustomClass;
+			sourceTree = "<group>";
+		};
+		52BC9A7D15EB5DE900900443 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				52BC9A7E15EB5DE900900443 /* ECCommon.h */,
+				52BC9A7F15EB5DE900900443 /* ECCommon.m */,
+				52BC9A8015EB5DE900900443 /* ECGraph */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		52BC9A8015EB5DE900900443 /* ECGraph */ = {
+			isa = PBXGroup;
+			children = (
+				52BC9A8115EB5DE900900443 /* ECGraph.h */,
+				52BC9A8215EB5DE900900443 /* ECGraph.m */,
+				52BC9A8315EB5DE900900443 /* ECGraphItem.h */,
+				52BC9A8415EB5DE900900443 /* ECGraphItem.m */,
+				52BC9A8515EB5DE900900443 /* ECGraphLine.h */,
+				52BC9A8615EB5DE900900443 /* ECGraphLine.m */,
+				52BC9A8715EB5DE900900443 /* ECGraphPoint.h */,
+				52BC9A8815EB5DE900900443 /* ECGraphPoint.m */,
+			);
+			path = ECGraph;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -735,6 +807,9 @@
 				52979F8715E7874000C544FF /* progress-bar-fill.png in Resources */,
 				52979F8815E7874000C544FF /* progress-bar-bg.png in Resources */,
 				521A5FB515EA61290097C77C /* TapkuLibrary.bundle in Resources */,
+				5293A41515EB428B0096FB8F /* logo114.png in Resources */,
+				5293A41715EB42B70096FB8F /* logo57.png in Resources */,
+				525854F015EB9D6D0098AB49 /* HistoryDetailController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,6 +838,13 @@
 				520AA76C15E616BC00B9D2B3 /* HelpViewController.m in Sources */,
 				520AA77115E6541000B9D2B3 /* ProfileViewController.m in Sources */,
 				52979F7815E779EE00C544FF /* calorieProgess.m in Sources */,
+				52BC9A7C15EB5BC600900443 /* graphView.m in Sources */,
+				52BC9A8915EB5DE900900443 /* ECCommon.m in Sources */,
+				52BC9A8A15EB5DE900900443 /* ECGraph.m in Sources */,
+				52BC9A8B15EB5DE900900443 /* ECGraphItem.m in Sources */,
+				52BC9A8C15EB5DE900900443 /* ECGraphLine.m in Sources */,
+				52BC9A8D15EB5DE900900443 /* ECGraphPoint.m in Sources */,
+				525854EF15EB9D6D0098AB49 /* HistoryDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

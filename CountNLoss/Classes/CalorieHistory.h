@@ -21,7 +21,7 @@
 //@property (retain, nonatomic) NSDictionary *historyLists;
 +(BOOL)openDatabse;
 +(void)closeDatabase;
-+(NSDictionary*) getFoodHistoryByDate:(NSDate*)targetDate;
++(NSDictionary*) getFoodHistoryByDate:(NSString*)targetDate;
 +(NSDictionary*) getFoodHistory;
 +(NSDictionary*) getFoodHistoryToday;
 +(NSString *) getDBPath;
@@ -29,7 +29,9 @@
 +(void) deleteCalorie:(int)HistoryID;
 
 +(NSNumber*)waterCountToday;
-+(NSNumber*)waterCountByDate:(NSDate*)targetDate;
++(NSNumber*)waterCountByDate:(NSString*)targetDate;
 +(void) drinkAWater;
 +(void) dropAWater;
++(NSString*)getTime;
++(NSString*)getDate;
 @end

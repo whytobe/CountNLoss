@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UINavigationController *foodNavigationController;
 @property (strong, nonatomic) UINavigationController *moreNavigationController;
 @property (strong, nonatomic) UINavigationController *historyNavigationController;
+@property (strong, nonatomic) UINavigationController *todayNavigationController;
 @property ( nonatomic) NSDictionary *foodArray;
 @property ( nonatomic) NSDictionary *historyArray;
 @property (nonatomic) CountAndLoss *myProfile;

@@ -20,11 +20,6 @@ static sqlite3_stmt *addStmt = nil;
 
 @synthesize historyID,historyDate,historyFoodID;
 +(NSString *) getDBPath {
-	
-	//Search for standard documents using NSSearchPathForDirectoriesInDomains
-	//First Param = Searching the documents directory
-	//Second Param = Searching the Users directory and not the System
-	//Expand any tildes and identify home directories.
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
 	NSString *documentsDir = [paths objectAtIndex:0];
 	return [documentsDir stringByAppendingPathComponent:@"history.sqlite"];
@@ -37,7 +32,8 @@ static sqlite3_stmt *addStmt = nil;
 +(NSNumber*)waterCountToday{
     NSNumber *waterCount = [NSNumber numberWithInt:0];
     if (sqlite3_open([[self getDBPath] UTF8String], &database) == SQLITE_OK) {
-		const char *sql = "select count(calorie_id) from history where calorie_food_id == 0 and calorie_date between strftime('%Y-%m-%d 00:00:00') and strftime('%Y-%m-%d 23:59:59')";
+        NSString *insertStatement = [NSString stringWithFormat:@"select count(calorie_id) from history where calorie_food_id == 0 and calorie_date between '%@ 00:00:00' and '%@ 23:59:59'", [self getDate],[self getDate]];
+        const char *sql = [insertStatement UTF8String];
 		sqlite3_stmt *selectstmt;
 		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
 			
@@ -47,45 +43,53 @@ static sqlite3_stmt *addStmt = nil;
 		}
     }
 	else{
-		sqlite3_close(database); //Even though the open call failed, close the database connection to release all the memory.
+		sqlite3_close(database); 
     }
     return waterCount;
 }
++(NSString*)getDateTime{
+    NSDate* now = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSDateFormatter* localTime = [[NSDateFormatter alloc] init];
+    [localTime setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    return [localTime stringFromDate:now];
+}
 
-+(NSNumber*)waterCountByDate:(NSDate *)targetDate{
-    return nil;
++(NSString*)getDate{
+    NSDate* now = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSDateFormatter* localTime = [[NSDateFormatter alloc] init];
+    [localTime setDateFormat:@"yyyy-MM-dd"];
+    return [localTime stringFromDate:now];
+}
++(NSNumber*)waterCountByDate:(NSString*)targetDate{
+    NSNumber *waterCount = [NSNumber numberWithInt:0];
+    if (sqlite3_open([[self getDBPath] UTF8String], &database) == SQLITE_OK) {
+        NSString *insertStatement = [NSString stringWithFormat:@"select count(calorie_id) from history where calorie_food_id == 0 and calorie_date between '%@ 00:00:00' and '%@ 23:59:59'", targetDate,targetDate];
+        const char *sql = [insertStatement UTF8String];
+		sqlite3_stmt *selectstmt;
+		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
+			
+			while(sqlite3_step(selectstmt) == SQLITE_ROW) {
+				waterCount = [NSNumber numberWithInt: sqlite3_column_int(selectstmt, 0)];
+            } 
+		}
+    }
+	else{
+		sqlite3_close(database); 
+    }
+    return waterCount;
 }
 +(void)drinkAWater{
-    const char *sql = "insert into history(calorie_food_id,calorie_date) Values(0,strftime('%Y-%m-%d %H:%M:%S'))";
     if ([self openDatabse]) {
-        if(sqlite3_prepare_v2(database, sql, -1, &addStmt, NULL) != SQLITE_OK)
-            NSAssert1(0, @"Error while creating add statement. '%s'", sqlite3_errmsg(database));
+        NSString *insertStatement = [NSString stringWithFormat:@"INSERT INTO history(calorie_food_id,calorie_date) VALUES(0,'%@')", [self getDateTime]];
         
-        //sqlite3_bind_int(addStmt, 1, withFoodId);
-        if (SQLITE_DONE != sqlite3_step(addStmt)) {
-            NSAssert1(0, @"Error while inserting data. '%s'", sqlite3_errmsg(database));
-        }
+        char *error;
+        if ( !sqlite3_exec(database, [insertStatement UTF8String], NULL, NULL, &error) == SQLITE_OK) 
+            NSAssert1(0, @"Error while inserting data. '%s'", error);
     }
-	//Reset the add statement.
-	sqlite3_reset(addStmt);
     [self closeDatabase];
-    NSLog(@"Drink a water");
-    
 }
 +(void)dropAWater{
-    /*NSMutableArray *tmpHistoryID = [[NSMutableArray alloc]initWithArray:historyID];
-    NSMutableArray *tmpHistoryDate = [[NSMutableArray alloc] initWithArray:historyDate];
-    NSMutableArray *tmpHistoryFoodID = [[NSMutableArray alloc] initWithArray:historyFoodID];
-    
-    NSUInteger indexOfArray = [tmpHistoryFoodID indexOfObject:[NSNumber numberWithInt:WATER_FOOD_ID]];
-    [tmpHistoryID removeObjectAtIndex:indexOfArray];
-    [tmpHistoryDate removeObjectAtIndex:indexOfArray];
-    [tmpHistoryFoodID removeObjectAtIndex:indexOfArray];
-    
-    historyID = [NSArray arrayWithArray:tmpHistoryID];
-    historyDate = [NSArray arrayWithArray:tmpHistoryDate];
-    historyFoodID = [NSArray arrayWithArray:tmpHistoryFoodID];*/
-    
+    //Command
 }
 
 +(BOOL)openDatabse{
@@ -95,20 +99,15 @@ static sqlite3_stmt *addStmt = nil;
     sqlite3_close(database);
 }
 +(void)insertCalorie:(int)withFoodId{
-    
-    const char *sql = "insert into history(calorie_food_id,calorie_date) Values(?,strftime('%Y-%m-%d %H:%M:%S'))";
-     if ([self openDatabse]) {
-         if(sqlite3_prepare_v2(database, sql, -1, &addStmt, NULL) != SQLITE_OK)
-             NSAssert1(0, @"Error while creating add statement. '%s'", sqlite3_errmsg(database));
-
-         sqlite3_bind_int(addStmt, 1, withFoodId);
-        if (SQLITE_DONE != sqlite3_step(addStmt)) {
-            NSAssert1(0, @"Error while inserting data. '%s'", sqlite3_errmsg(database));
-        }
-     }
-	//Reset the add statement.
-	sqlite3_reset(addStmt);
+    if ([self openDatabse]) {
+        NSString *insertStatement = [NSString stringWithFormat:@"insert into history(calorie_food_id,calorie_date) Values(%d,'%@')",withFoodId, [self getDateTime]];
+        //NSLog(@"%@",insertStatement);
+        char *error;
+        if ( !sqlite3_exec(database, [insertStatement UTF8String], NULL, NULL, &error) == SQLITE_OK) 
+            NSAssert1(0, @"Error while inserting data. '%s'", error);
+    }
     [self closeDatabase];
+    
 }
 
 +(void)deleteCalorie:(int)withHistoryID{
@@ -122,7 +121,6 @@ static sqlite3_stmt *addStmt = nil;
             NSAssert1(0, @"Error while inserting data. '%s'", sqlite3_errmsg(database));
         }
     }
-	//Reset the add statement.
 	sqlite3_reset(deleteStmt);
     [self closeDatabase];
 
@@ -131,7 +129,7 @@ static sqlite3_stmt *addStmt = nil;
     return [NSString stringWithFormat:@"History id:%@, History Date:%@, History Food ID: %@",self.historyID,self.historyDate,self.historyFoodID];
 }
 +(NSDictionary*)getFoodHistory{
-    //CountAndLossAppDelegate *appDelegate = (CountAndLossAppDelegate *)[[UIApplication sharedApplication] delegate];
+
     NSMutableArray *tempFood = [[NSMutableArray alloc]init];
     if ([self openDatabse]) {
 		const char *sql = "select calorie_id,calorie_date,calorie_food_id from history where calorie_food_id != 0";
@@ -139,60 +137,28 @@ static sqlite3_stmt *addStmt = nil;
 		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
 			
 			while(sqlite3_step(selectstmt) == SQLITE_ROW) {
-				
-				//NSNumber *primaryKey = [NSNumber numberWithInt: sqlite3_column_int(selectstmt, 0)];
 				CalorieHistory *history = [[CalorieHistory alloc] init];
-				history.historyID = [NSNumber numberWithInt: sqlite3_column_int(selectstmt, 0)];//[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)];
+				history.historyID = [NSNumber numberWithInt: sqlite3_column_int(selectstmt, 0)];
 				history.historyDate = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)];
                 history.historyFoodID = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 2)];
-                //calorie.foodCalorie = [NSNumber numberWithFloat:sqlite3_column_double(selectstmt, 4)];
-				//calorie.isDirty = NO;
-				//NSLog(@"Id :%@, %@ %@",calorie.foodId,calorie.foodName,calorie.foodCalorie);
-                
 				[tempFood addObject:history];
             }
 		}
     }
 	else{
-		[self closeDatabase]; //Even though the open call failed, close the database connection to release all the memory.
+		[self closeDatabase]; 
     }
     return nil;
 }
-+(NSDictionary*)getFoodHistoryByDate:(NSDate *)targetDate{
-    NSMutableArray *tempFood = [[NSMutableArray alloc]init];
-    if (sqlite3_open([[self getDBPath] UTF8String], &database) == SQLITE_OK) {
-		const char *sql = "select calorie_id,calorie_date,calorie_food_id from history where calorie_food_id != 0 and calorie_date between strftime('%Y-%m-%d 00:00:00') and strftime('%Y-%m-%d 23:59:59')";
-		sqlite3_stmt *selectstmt;
-		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
-			
-			while(sqlite3_step(selectstmt) == SQLITE_ROW) {
-				
-				//NSNumber *primaryKey = [NSNumber numberWithInt: sqlite3_column_int(selectstmt, 0)];
-				CalorieHistory *history = [[CalorieHistory alloc] init];
-				history.historyID = [NSNumber numberWithInt: sqlite3_column_int(selectstmt, 0)];//[NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)];
-				history.historyDate = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 1)];
-                history.historyFoodID = [NSString stringWithUTF8String:(char *)sqlite3_column_text(selectstmt, 2)];
-                //calorie.foodCalorie = [NSNumber numberWithFloat:sqlite3_column_double(selectstmt, 4)];
-				//calorie.isDirty = NO;
-				//NSLog(@"Id :%@, %@ %@",calorie.foodId,calorie.foodName,calorie.foodCalorie);
-                
-				[tempFood addObject:history];
-            }
-		}
-    }
-	else{
-		sqlite3_close(database); //Even though the open call failed, close the database connection to release all the memory.
-    }
-    return nil;
-}
-+(NSDictionary*)getFoodHistoryToday{
-
-    //NSMutableArray *tempFood = [[NSMutableArray alloc]init];
++(NSDictionary*)getFoodHistoryByDate:(NSString*)targetDate{
     NSMutableArray *tempCalorieId  = [[NSMutableArray alloc]init];
     NSMutableArray *tempCalorieDate = [[NSMutableArray alloc]init];
     NSMutableArray *tempCalorieFoodId = [[NSMutableArray alloc]init];
     if (sqlite3_open([[self getDBPath] UTF8String], &database) == SQLITE_OK) {
-		const char *sql = "select calorie_id,calorie_date,calorie_food_id from history where calorie_food_id != 0 and calorie_date between strftime('%Y-%m-%d 00:00:00') and strftime('%Y-%m-%d 23:59:59')";
+		NSString *insertStatement = [NSString stringWithFormat:@"select calorie_id,calorie_date,calorie_food_id from history where calorie_food_id != 0 and calorie_date between '%@ 00:00:00' and '%@ 23:59:59'", targetDate,targetDate];
+        
+        const char *sql = [insertStatement UTF8String];
+        
 		sqlite3_stmt *selectstmt;
 		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
 			
@@ -204,22 +170,45 @@ static sqlite3_stmt *addStmt = nil;
                 [tempCalorieDate addObject:calorieDate?[NSString stringWithCString:calorieDate encoding:NSUTF8StringEncoding]:@""];
 				[tempCalorieFoodId addObject:calorieFoodId];
                 
-				//tempCalorieId = nil;
-                //tempCalorieDate = nil;
-                //tempCalorieFoodId = nil;
             }
             
             
 		}
     }
 	else{
-		sqlite3_close(database); //Even though the open call failed, close the database connection to release all the memory.
+		sqlite3_close(database); 
     }
-    /*
-    [tempFood addObject:tempCalorieId];
-    [tempFood addObject:tempCalorieDate];
-    [tempFood addObject:tempCalorieFoodId];
-    */
+    NSLog(@"Result in date %@ : %@",targetDate,[NSDictionary dictionaryWithObjectsAndKeys:tempCalorieId,@"calorieId",tempCalorieDate,@"calorieDate",tempCalorieFoodId,@"calorieFoodId", nil]);
+    return [NSDictionary dictionaryWithObjectsAndKeys:tempCalorieId,@"calorieId",tempCalorieDate,@"calorieDate",tempCalorieFoodId,@"calorieFoodId", nil];
+}
++(NSDictionary*)getFoodHistoryToday{
+    NSMutableArray *tempCalorieId  = [[NSMutableArray alloc]init];
+    NSMutableArray *tempCalorieDate = [[NSMutableArray alloc]init];
+    NSMutableArray *tempCalorieFoodId = [[NSMutableArray alloc]init];
+    if (sqlite3_open([[self getDBPath] UTF8String], &database) == SQLITE_OK) {
+        NSString *insertStatement = [NSString stringWithFormat:@"select calorie_id,calorie_date,calorie_food_id from history where calorie_food_id != 0 and calorie_date between '%@ 00:00:00' and '%@ 23:59:59'", [self getDate],[self getDate]];
+
+        const char *sql = [insertStatement UTF8String];
+
+		sqlite3_stmt *selectstmt;
+		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
+			
+			while(sqlite3_step(selectstmt) == SQLITE_ROW) {
+				NSNumber *calorieId = [NSNumber numberWithInt: sqlite3_column_int(selectstmt, 0)];
+                const char* calorieDate = (const char*)sqlite3_column_text(selectstmt, 1);
+                NSNumber *calorieFoodId = [NSNumber numberWithInt: sqlite3_column_int(selectstmt, 2)];
+				[tempCalorieId addObject:calorieId];
+                [tempCalorieDate addObject:calorieDate?[NSString stringWithCString:calorieDate encoding:NSUTF8StringEncoding]:@""];
+				[tempCalorieFoodId addObject:calorieFoodId];
+                
+            }
+            
+            
+		}
+    }
+	else{
+		sqlite3_close(database); 
+    }
     return [NSDictionary dictionaryWithObjectsAndKeys:tempCalorieId,@"calorieId",tempCalorieDate,@"calorieDate",tempCalorieFoodId,@"calorieFoodId", nil];
 
 }

@@ -155,12 +155,12 @@
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
-		NSLog(@"user pressed OK");
+		//NSLog(@"user pressed OK");
         [CalorieHistory insertCalorie:[[self addCalorieId] intValue]];
         [[self navigationController]popToRootViewControllerAnimated:YES];
 	}
 	else {
-		NSLog(@"user pressed Cancel");
+		//NSLog(@"user pressed Cancel");
 	}
     [self setAddCalorieId:nil];
 }

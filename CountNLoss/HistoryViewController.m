@@ -7,7 +7,12 @@
 //
 
 #import "HistoryViewController.h"
-
+#import "ECCommon.h"
+#import "ECGraphPoint.h"
+#import "ECGraphLine.h"
+#import "ECGraphItem.h"
+#import "graphView.h"
+#import "HistoryDetailController.h"
 @interface HistoryViewController ()
 
 @end
@@ -59,12 +64,10 @@
             break;
         case 1:
         {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            [[cell textLabel]setText:@"ประวัติการรับประทานอาหาร : x - x สิงหาคม 2555"];
-            [[cell textLabel] setFont:[UIFont fontWithName:@"THSarabunPSK-Bold" size:22]];
-            [[cell textLabel] setTextColor:[UIColor colorWithRed:0.521 green:0.533 blue:0.51 alpha:1]];
-            [[cell textLabel] setTextAlignment:UITextAlignmentCenter];
-
+            cell = [[UITableViewCell alloc]initWithFrame:CGRectZero];
+            UIView *myGraphView = [[graphView alloc] initWithFrame:CGRectMake(0,0, 300, 300)];
+            [myGraphView setBackgroundColor:[UIColor clearColor]];
+            [cell.contentView addSubview:myGraphView];
         }
             break;
         case 2 :
@@ -89,7 +92,7 @@
     if (self) {
         // Custom initialization
         [self setTitle:@"History"];
-        
+        [self setDataArray:[[NSMutableArray alloc]init]];
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"History" image:[UIImage imageNamed:@"history"] tag:0];
         [self.tabBarItem setFinishedSelectedImage:nil withFinishedUnselectedImage:[UIImage imageNamed:@"history"]];
         [[self tabBarItem] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,nil] forState:UIControlStateNormal];
@@ -114,7 +117,6 @@
 
 
 - (NSArray*) calendarMonthView:(TKCalendarMonthView*)monthView marksFromDate:(NSDate*)startDate toDate:(NSDate*)lastDate{
-	[self generateRandomDataForStartDate:startDate endDate:lastDate];
 	return dataArray;
 }
 
@@ -122,58 +124,20 @@
     NSLog(@"Will Change Month");
 }
 - (void) calendarMonthView:(TKCalendarMonthView*)monthView didSelectDate:(NSDate*)date{
-	
-	// CHANGE THE DATE TO YOUR TIMEZONE
-	//TKDateInformation info = [date dateInformationWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-	//NSDate *myTimeZoneDay = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone systemTimeZone]];
-	//[calendar selectDate:date];
-	NSLog(@"Date Selected: %@",date);
-	
-	//[self.tableView reloadData];
+    NSDateFormatter* localTime = [[NSDateFormatter alloc] init];
+    [localTime setDateFormat:@"yyyy-MM-dd"];
+     UIViewController *historyDetail = [[HistoryDetailController alloc] initWithNibName:@"HistoryDetailController" bundle:nil inDate:[localTime stringFromDate:date]];
+    [[self navigationController]pushViewController:historyDetail animated:NO];
+	NSLog(@"Date Selected: %@",[localTime stringFromDate:date]);
+
 }
 
-- (void) generateRandomDataForStartDate:(NSDate*)start endDate:(NSDate*)end{
-	// this function sets up dataArray & dataDictionary
-	// dataArray: has boolean markers for each day to pass to the calendar view (via the delegate function)
-	// dataDictionary: has items that are associated with date keys (for tableview)
-	
-	
-	NSLog(@"Delegate Range: %@ %@ %d",start,end,[start daysBetweenDate:end]);
-	
-	self.dataArray = [NSMutableArray array];
-	//self.dataDictionary = [NSMutableDictionary dictionary];
-	
-	NSDate *d = start;
-	while(YES){
-		
-		int r = arc4random();
-		if(r % 3==1){
-			//[self.dataDictionary setObject:[NSArray arrayWithObjects:@"Item one",@"Item two",nil] forKey:d];
-			[self.dataArray addObject:[NSNumber numberWithBool:YES]];
-			
-		}else if(r%4==1){
-			//[self.dataDictionary setObject:[NSArray arrayWithObjects:@"Item one",nil] forKey:d];
-			[self.dataArray addObject:[NSNumber numberWithBool:YES]];
-			
-		}else
-			[self.dataArray addObject:[NSNumber numberWithBool:NO]];
-		
-		
-		TKDateInformation info = [d dateInformationWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-		info.day++;
-		d = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-		if([d compare:end]==NSOrderedDescending) break;
-	}
-	
-}
 
 - (void)viewDidUnload
 {
     [self setHistoryTableView:nil];
     [super viewDidUnload];
     
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
