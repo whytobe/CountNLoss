@@ -26,7 +26,7 @@
 
 +(NSDictionary*) getAllFoodData:(NSString *)dbPath;
 +(void) finalizeStatements;
-
++(NSString *) getDBPath;
 - (id) initWithPrimaryKey:(NSNumber*)pk;
 - (void) removeFood;
 - (void) addFood;

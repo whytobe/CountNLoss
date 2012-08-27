@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <TapkuLibrary/TapkuLibrary.h>
 
-@interface HistoryViewController : UIViewController
+@interface HistoryViewController : UIViewController<TKCalendarMonthViewDataSource,TKCalendarMonthViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
+@property (nonatomic) TKCalendarMonthView *calendar;
+@property (retain,nonatomic) NSMutableArray *dataArray;
+@property (retain,nonatomic) NSMutableDictionary *dataDictionary;
+@property (weak, nonatomic) IBOutlet UITableView *historyTableView;
+
+- (void) generateRandomDataForStartDate:(NSDate*)start endDate:(NSDate*)end;
 @end

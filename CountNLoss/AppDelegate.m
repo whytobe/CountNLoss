@@ -22,6 +22,7 @@
 @synthesize tabBarController = _tabBarController;
 @synthesize foodNavigationController = _foodNavigationController;
 @synthesize moreNavigationController = _moreNavigationController;
+@synthesize historyNavigationController = _historyNavigationController;
 @synthesize foodArray,historyArray,myProfile;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -51,17 +52,16 @@
     [[self.tabBarController tabBar] setSelectedImageTintColor:[UIColor whiteColor]];
     [[self.tabBarController tabBar] setTintColor:[UIColor colorWithRed:0.09 green:0.17 blue:0.015 alpha:1]];
     
-    self.foodNavigationController = [[UINavigationController alloc]initWithRootViewController:foodViewController];
-    
-    
+    self.foodNavigationController = [[UINavigationController alloc]initWithRootViewController:foodViewController];    
     self.moreNavigationController = [[UINavigationController alloc]initWithRootViewController:moreViewController];
+    self.historyNavigationController = [[UINavigationController alloc]initWithRootViewController:historyViewController];
 
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 
     
     
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:[self foodNavigationController], todayViewController,historyViewController,goalViewController,[self moreNavigationController], nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:[self foodNavigationController], todayViewController,[self historyNavigationController],goalViewController,[self moreNavigationController], nil];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     
@@ -130,8 +130,20 @@
 	//Expand any tildes and identify home directories.
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
 	NSString *documentsDir = [paths objectAtIndex:0];
-	return [documentsDir stringByAppendingPathComponent:@"countnlose.sqlite"];
+	return [documentsDir stringByAppendingPathComponent:@"fooddb.sqlite"];
 }
+
+- (NSString *) getHistoryDBPath {
+	
+	//Search for standard documents using NSSearchPathForDirectoriesInDomains
+	//First Param = Searching the documents directory
+	//Second Param = Searching the Users directory and not the System
+	//Expand any tildes and identify home directories.
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
+	NSString *documentsDir = [paths objectAtIndex:0];
+	return [documentsDir stringByAppendingPathComponent:@"history.sqlite"];
+}
+
 - (void) copyDatabaseIfNeeded {
 	
 	//Using NSFileManager we can perform many file system operations.
@@ -142,7 +154,14 @@
 	
 	if(!success) {
 		
-		NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"countnlose.sqlite"];
+		NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"fooddb.sqlite"];
+		success = [fileManager copyItemAtPath:defaultDBPath toPath:dbPath error:&error];
+		
+		if (!success) 
+			NSAssert1(0, @"Failed to create writable database file with message '%@'.", [error localizedDescription]);
+        
+        dbPath = [self getHistoryDBPath];
+        defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"history.sqlite"];
 		success = [fileManager copyItemAtPath:defaultDBPath toPath:dbPath error:&error];
 		
 		if (!success) 

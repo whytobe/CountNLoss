@@ -18,6 +18,16 @@ static sqlite3_stmt *addStmt = nil;
 
 @synthesize foodId,foodName,foodType,foodStore,foodCalorie;
 
++(NSString *) getDBPath {
+	
+	//Search for standard documents using NSSearchPathForDirectoriesInDomains
+	//First Param = Searching the documents directory
+	//Second Param = Searching the Users directory and not the System
+	//Expand any tildes and identify home directories.
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
+	NSString *documentsDir = [paths objectAtIndex:0];
+	return [documentsDir stringByAppendingPathComponent:@"fooddb.sqlite"];
+}
 -(void)dealloc{
     [self setFoodId:nil];
     [self setFoodName:nil];
@@ -35,7 +45,7 @@ static sqlite3_stmt *addStmt = nil;
     NSMutableArray *tempFoodTypeArray = [[NSMutableArray alloc]init];
     NSMutableArray *tempFoodStoreArray = [[NSMutableArray alloc]init];
     NSMutableArray *tempFoodCalorieArray = [[NSMutableArray alloc]init];
-    if (sqlite3_open([dbPath UTF8String], &database) == SQLITE_OK) {
+    if (sqlite3_open([[self getDBPath] UTF8String], &database) == SQLITE_OK) {
 		const char *sql = "select food_id,food_name,food_type,food_store,food_calorie from food where food_id != 0";
 		sqlite3_stmt *selectstmt;
 		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {

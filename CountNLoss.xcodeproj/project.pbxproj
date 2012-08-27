@@ -15,11 +15,16 @@
 		520AA76D15E616BC00B9D2B3 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520AA76B15E616BC00B9D2B3 /* HelpViewController.xib */; };
 		520AA77115E6541000B9D2B3 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 520AA76F15E6541000B9D2B3 /* ProfileViewController.m */; };
 		520AA77215E6541000B9D2B3 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520AA77015E6541000B9D2B3 /* ProfileViewController.xib */; };
+		521A4BD915EA5FBF0097C77C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521A4BD815EA5FBF0097C77C /* MapKit.framework */; };
+		521A5FB515EA61290097C77C /* TapkuLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 521A5FAE15EA61290097C77C /* TapkuLibrary.bundle */; };
+		521A5FBE15EA61380097C77C /* libTapkuLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 521A5FB915EA612A0097C77C /* libTapkuLibrary.a */; };
 		5225C4FB15E221C3000694FA /* catBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5225C4F715E221C3000694FA /* catBg.png */; };
 		5225C4FC15E221C3000694FA /* catBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5225C4F815E221C3000694FA /* catBg@2x.png */; };
 		5225C4FE15E221C3000694FA /* textfield@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5225C4FA15E221C3000694FA /* textfield@2x.png */; };
 		5225C50015E22272000694FA /* textfield.png in Resources */ = {isa = PBXBuildFile; fileRef = 5225C4FF15E22272000694FA /* textfield.png */; };
 		5225C50315E263EB000694FA /* searchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5225C50215E263EB000694FA /* searchTextField.m */; };
+		5293A3F815EB28080096FB8F /* fooddb.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5293A3F515EB26870096FB8F /* fooddb.sqlite */; };
+		5293A3F915EB28080096FB8F /* history.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5293A3F615EB26870096FB8F /* history.sqlite */; };
 		52979F6F15E776AE00C544FF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52979F6E15E776AE00C544FF /* QuartzCore.framework */; };
 		52979F7815E779EE00C544FF /* calorieProgess.m in Sources */ = {isa = PBXBuildFile; fileRef = 52979F7715E779EE00C544FF /* calorieProgess.m */; };
 		52979F8715E7874000C544FF /* progress-bar-fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 52979F8515E7874000C544FF /* progress-bar-fill.png */; };
@@ -39,7 +44,6 @@
 		529CE60C15DDF8EF00B1FF9C /* bgList@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 529CE5E715DDF8EF00B1FF9C /* bgList@2x.png */; };
 		529CE60D15DDF8EF00B1FF9C /* bgTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 529CE5E815DDF8EF00B1FF9C /* bgTab.png */; };
 		529CE60E15DDF8EF00B1FF9C /* bgTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 529CE5E915DDF8EF00B1FF9C /* bgTab@2x.png */; };
-		529CE60F15DDF8EF00B1FF9C /* countnlose.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 529CE5EA15DDF8EF00B1FF9C /* countnlose.sqlite */; };
 		529CE61015DDF8EF00B1FF9C /* emptyGlass.png in Resources */ = {isa = PBXBuildFile; fileRef = 529CE5EB15DDF8EF00B1FF9C /* emptyGlass.png */; };
 		529CE61115DDF8EF00B1FF9C /* emptyGlass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 529CE5EC15DDF8EF00B1FF9C /* emptyGlass@2x.png */; };
 		529CE61215DDF8EF00B1FF9C /* food.png in Resources */ = {isa = PBXBuildFile; fileRef = 529CE5ED15DDF8EF00B1FF9C /* food.png */; };
@@ -123,6 +127,30 @@
 		529CE6A715DE33D400B1FF9C /* FoodCategoryButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 529CE6A615DE33D400B1FF9C /* FoodCategoryButton.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		521A5FB815EA612A0097C77C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 521A5FAF15EA61290097C77C /* TapkuLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = TapkuLibrary;
+		};
+		521A5FBA15EA612A0097C77C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 521A5FAF15EA61290097C77C /* TapkuLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3B45DDF1134C736600D24C1A;
+			remoteInfo = LogicTests;
+		};
+		521A5FBC15EA61350097C77C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 521A5FAF15EA61290097C77C /* TapkuLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = TapkuLibrary;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		52071AB215E0E63900892264 /* SearchByCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchByCategoryViewController.h; sourceTree = "<group>"; };
 		52071AB315E0E63900892264 /* SearchByCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchByCategoryViewController.m; sourceTree = "<group>"; };
@@ -136,12 +164,17 @@
 		520AA76E15E6541000B9D2B3 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		520AA76F15E6541000B9D2B3 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		520AA77015E6541000B9D2B3 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		521A4BD815EA5FBF0097C77C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		521A5FAE15EA61290097C77C /* TapkuLibrary.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TapkuLibrary.bundle; path = ../tapkulibrary/src/TapkuLibrary.bundle; sourceTree = "<group>"; };
+		521A5FAF15EA61290097C77C /* TapkuLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TapkuLibrary.xcodeproj; path = ../tapkulibrary/src/TapkuLibrary.xcodeproj; sourceTree = "<group>"; };
 		5225C4F715E221C3000694FA /* catBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catBg.png; sourceTree = "<group>"; };
 		5225C4F815E221C3000694FA /* catBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "catBg@2x.png"; sourceTree = "<group>"; };
 		5225C4FA15E221C3000694FA /* textfield@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textfield@2x.png"; sourceTree = "<group>"; };
 		5225C4FF15E22272000694FA /* textfield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textfield.png; sourceTree = "<group>"; };
 		5225C50115E263EB000694FA /* searchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchTextField.h; sourceTree = "<group>"; };
 		5225C50215E263EB000694FA /* searchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchTextField.m; sourceTree = "<group>"; };
+		5293A3F515EB26870096FB8F /* fooddb.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = fooddb.sqlite; sourceTree = "<group>"; };
+		5293A3F615EB26870096FB8F /* history.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = history.sqlite; sourceTree = "<group>"; };
 		52979F6E15E776AE00C544FF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		52979F7615E779EE00C544FF /* calorieProgess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calorieProgess.h; sourceTree = "<group>"; };
 		52979F7715E779EE00C544FF /* calorieProgess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = calorieProgess.m; sourceTree = "<group>"; };
@@ -169,7 +202,6 @@
 		529CE5E715DDF8EF00B1FF9C /* bgList@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgList@2x.png"; sourceTree = "<group>"; };
 		529CE5E815DDF8EF00B1FF9C /* bgTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgTab.png; sourceTree = "<group>"; };
 		529CE5E915DDF8EF00B1FF9C /* bgTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgTab@2x.png"; sourceTree = "<group>"; };
-		529CE5EA15DDF8EF00B1FF9C /* countnlose.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = countnlose.sqlite; sourceTree = "<group>"; };
 		529CE5EB15DDF8EF00B1FF9C /* emptyGlass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emptyGlass.png; sourceTree = "<group>"; };
 		529CE5EC15DDF8EF00B1FF9C /* emptyGlass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emptyGlass@2x.png"; sourceTree = "<group>"; };
 		529CE5ED15DDF8EF00B1FF9C /* food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = food.png; sourceTree = "<group>"; };
@@ -265,7 +297,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				521A5FBE15EA61380097C77C /* libTapkuLibrary.a in Frameworks */,
 				529CE64E15DDFB3B00B1FF9C /* libsqlite3.0.dylib in Frameworks */,
+				521A4BD915EA5FBF0097C77C /* MapKit.framework in Frameworks */,
 				529CE58F15DDF08100B1FF9C /* UIKit.framework in Frameworks */,
 				529CE59115DDF08100B1FF9C /* Foundation.framework in Frameworks */,
 				529CE59315DDF08100B1FF9C /* CoreGraphics.framework in Frameworks */,
@@ -311,6 +345,24 @@
 			name = "More Tab";
 			sourceTree = "<group>";
 		};
+		521A5FB015EA61290097C77C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				521A5FB915EA612A0097C77C /* libTapkuLibrary.a */,
+				521A5FBB15EA612A0097C77C /* LogicTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5293A3F415EB267B0096FB8F /* data */ = {
+			isa = PBXGroup;
+			children = (
+				5293A3F515EB26870096FB8F /* fooddb.sqlite */,
+				5293A3F615EB26870096FB8F /* history.sqlite */,
+			);
+			name = data;
+			sourceTree = "<group>";
+		};
 		529CE57F15DDF08100B1FF9C = {
 			isa = PBXGroup;
 			children = (
@@ -331,8 +383,11 @@
 		529CE58D15DDF08100B1FF9C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				52979F6E15E776AE00C544FF /* QuartzCore.framework */,
+				521A5FAE15EA61290097C77C /* TapkuLibrary.bundle */,
+				521A5FAF15EA61290097C77C /* TapkuLibrary.xcodeproj */,
+				521A4BD815EA5FBF0097C77C /* MapKit.framework */,
 				529CE64D15DDFB3B00B1FF9C /* libsqlite3.0.dylib */,
+				52979F6E15E776AE00C544FF /* QuartzCore.framework */,
 				529CE58E15DDF08100B1FF9C /* UIKit.framework */,
 				529CE59015DDF08100B1FF9C /* Foundation.framework */,
 				529CE59215DDF08100B1FF9C /* CoreGraphics.framework */,
@@ -386,6 +441,7 @@
 		529CE62E15DDF8F500B1FF9C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				5293A3F415EB267B0096FB8F /* data */,
 				529CE69F15DE2DC500B1FF9C /* Fonts */,
 				529CE6A015DE2DDF00B1FF9C /* image */,
 			);
@@ -457,7 +513,6 @@
 				529CE5E715DDF8EF00B1FF9C /* bgList@2x.png */,
 				529CE5E815DDF8EF00B1FF9C /* bgTab.png */,
 				529CE5E915DDF8EF00B1FF9C /* bgTab@2x.png */,
-				529CE5EA15DDF8EF00B1FF9C /* countnlose.sqlite */,
 				529CE5EB15DDF8EF00B1FF9C /* emptyGlass.png */,
 				529CE5EC15DDF8EF00B1FF9C /* emptyGlass@2x.png */,
 				529CE5ED15DDF8EF00B1FF9C /* food.png */,
@@ -526,6 +581,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				521A5FBD15EA61350097C77C /* PBXTargetDependency */,
 			);
 			name = CountNLoss;
 			productName = CountNLoss;
@@ -551,6 +607,12 @@
 			mainGroup = 529CE57F15DDF08100B1FF9C;
 			productRefGroup = 529CE58B15DDF08100B1FF9C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 521A5FB015EA61290097C77C /* Products */;
+					ProjectRef = 521A5FAF15EA61290097C77C /* TapkuLibrary.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				529CE58915DDF08100B1FF9C /* CountNLoss */,
@@ -558,11 +620,30 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		521A5FB915EA612A0097C77C /* libTapkuLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTapkuLibrary.a;
+			remoteRef = 521A5FB815EA612A0097C77C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		521A5FBB15EA612A0097C77C /* LogicTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = LogicTests.octest;
+			remoteRef = 521A5FBA15EA612A0097C77C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		529CE58815DDF08100B1FF9C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5293A3F815EB28080096FB8F /* fooddb.sqlite in Resources */,
+				5293A3F915EB28080096FB8F /* history.sqlite in Resources */,
 				529CE6A215DE2E0E00B1FF9C /* BRLNSDB.TTF in Resources */,
 				529CE59915DDF08100B1FF9C /* InfoPlist.strings in Resources */,
 				529CE60915DDF8EF00B1FF9C /* bg.png in Resources */,
@@ -571,7 +652,6 @@
 				529CE60C15DDF8EF00B1FF9C /* bgList@2x.png in Resources */,
 				529CE60D15DDF8EF00B1FF9C /* bgTab.png in Resources */,
 				529CE60E15DDF8EF00B1FF9C /* bgTab@2x.png in Resources */,
-				529CE60F15DDF8EF00B1FF9C /* countnlose.sqlite in Resources */,
 				529CE61015DDF8EF00B1FF9C /* emptyGlass.png in Resources */,
 				529CE61115DDF8EF00B1FF9C /* emptyGlass@2x.png in Resources */,
 				529CE61215DDF8EF00B1FF9C /* food.png in Resources */,
@@ -654,6 +734,7 @@
 				520AA77215E6541000B9D2B3 /* ProfileViewController.xib in Resources */,
 				52979F8715E7874000C544FF /* progress-bar-fill.png in Resources */,
 				52979F8815E7874000C544FF /* progress-bar-bg.png in Resources */,
+				521A5FB515EA61290097C77C /* TapkuLibrary.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,6 +767,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		521A5FBD15EA61350097C77C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TapkuLibrary;
+			targetProxy = 521A5FBC15EA61350097C77C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		529CE59715DDF08100B1FF9C /* InfoPlist.strings */ = {
@@ -749,7 +838,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CountNLoss/CountNLoss-Prefix.pch";
+				HEADER_SEARCH_PATHS = ../tapkulibrary/src/;
 				INFOPLIST_FILE = "CountNLoss/CountNLoss-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -760,7 +854,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CountNLoss/CountNLoss-Prefix.pch";
+				HEADER_SEARCH_PATHS = ../tapkulibrary/src/;
 				INFOPLIST_FILE = "CountNLoss/CountNLoss-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

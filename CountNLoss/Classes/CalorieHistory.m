@@ -27,7 +27,7 @@ static sqlite3_stmt *addStmt = nil;
 	//Expand any tildes and identify home directories.
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
 	NSString *documentsDir = [paths objectAtIndex:0];
-	return [documentsDir stringByAppendingPathComponent:@"countnlose.sqlite"];
+	return [documentsDir stringByAppendingPathComponent:@"history.sqlite"];
 }
 -(void)dealloc{
     [self setHistoryID:nil];
