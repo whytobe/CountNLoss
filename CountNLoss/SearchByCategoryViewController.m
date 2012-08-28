@@ -31,6 +31,12 @@
         [resultTableView setBackgroundView:[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"catBG"]]];
         self.foodArray = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).foodArray;
         [self predicateFoodArrayWithString:@""];
+        if (catTypeValue == @"1"){
+            [[self foodIcon]setHidden:YES];
+            [[self categoryName] setText:@"ค้นหาอาหารจากทุกประเภท"];
+            [[self categoryName] setFrame:CGRectMake(20, 30, 280, 30)];
+            [[self searchText] setFrame:CGRectMake(20, 65, 260, 20)];
+        }
         
     }
     return self;

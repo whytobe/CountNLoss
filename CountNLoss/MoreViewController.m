@@ -70,6 +70,8 @@
             switch (indexPath.row) {
                 case 0:{
                     NSLog(@"Upgrade to PRO tapped");
+                    NSURL *url = [[NSURL alloc]initWithString: @"http://itunes.apple.com/gb/app/angry-birds/id343200656?mt=8" ];
+                    [[UIApplication sharedApplication] openURL:url];
                     
                     break;
                 }
