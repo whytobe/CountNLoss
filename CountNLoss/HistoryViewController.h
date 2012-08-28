@@ -16,5 +16,4 @@
 @property (retain,nonatomic) NSMutableDictionary *dataDictionary;
 @property (weak, nonatomic) IBOutlet UITableView *historyTableView;
 
-- (void) generateRandomDataForStartDate:(NSDate*)start endDate:(NSDate*)end;
 @end

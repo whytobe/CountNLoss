@@ -14,7 +14,6 @@
 
 static sqlite3 *database = nil;
 static sqlite3_stmt *deleteStmt = nil;
-static sqlite3_stmt *addStmt = nil;
 
 @implementation CalorieHistory
 
@@ -178,7 +177,7 @@ static sqlite3_stmt *addStmt = nil;
 	else{
 		sqlite3_close(database); 
     }
-    NSLog(@"Result in date %@ : %@",targetDate,[NSDictionary dictionaryWithObjectsAndKeys:tempCalorieId,@"calorieId",tempCalorieDate,@"calorieDate",tempCalorieFoodId,@"calorieFoodId", nil]);
+    //NSLog(@"Result in date %@ : %@",targetDate,[NSDictionary dictionaryWithObjectsAndKeys:tempCalorieId,@"calorieId",tempCalorieDate,@"calorieDate",tempCalorieFoodId,@"calorieFoodId", nil]);
     return [NSDictionary dictionaryWithObjectsAndKeys:tempCalorieId,@"calorieId",tempCalorieDate,@"calorieDate",tempCalorieFoodId,@"calorieFoodId", nil];
 }
 +(NSDictionary*)getFoodHistoryToday{

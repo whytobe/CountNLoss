@@ -32,6 +32,6 @@
 +(NSNumber*)waterCountByDate:(NSString*)targetDate;
 +(void) drinkAWater;
 +(void) dropAWater;
-+(NSString*)getTime;
++(NSString*)getDateTime;
 +(NSString*)getDate;
 @end

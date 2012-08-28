@@ -25,7 +25,6 @@
 		5225C50315E263EB000694FA /* searchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 5225C50215E263EB000694FA /* searchTextField.m */; };
 		525854EF15EB9D6D0098AB49 /* HistoryDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525854ED15EB9D6D0098AB49 /* HistoryDetailController.m */; };
 		525854F015EB9D6D0098AB49 /* HistoryDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 525854EE15EB9D6D0098AB49 /* HistoryDetailController.xib */; };
-		5293A3F815EB28080096FB8F /* fooddb.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5293A3F515EB26870096FB8F /* fooddb.sqlite */; };
 		5293A3F915EB28080096FB8F /* history.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5293A3F615EB26870096FB8F /* history.sqlite */; };
 		5293A41515EB428B0096FB8F /* logo114.png in Resources */ = {isa = PBXBuildFile; fileRef = 5293A41415EB428B0096FB8F /* logo114.png */; };
 		5293A41715EB42B70096FB8F /* logo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 5293A41615EB42B60096FB8F /* logo57.png */; };
@@ -186,7 +185,6 @@
 		525854EC15EB9D6D0098AB49 /* HistoryDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryDetailController.h; sourceTree = "<group>"; };
 		525854ED15EB9D6D0098AB49 /* HistoryDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryDetailController.m; sourceTree = "<group>"; };
 		525854EE15EB9D6D0098AB49 /* HistoryDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryDetailController.xib; sourceTree = "<group>"; };
-		5293A3F515EB26870096FB8F /* fooddb.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = fooddb.sqlite; sourceTree = "<group>"; };
 		5293A3F615EB26870096FB8F /* history.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = history.sqlite; sourceTree = "<group>"; };
 		5293A41015EB42490096FB8F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		5293A41215EB42510096FB8F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -319,6 +317,7 @@
 		52BC9A8615EB5DE900900443 /* ECGraphLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECGraphLine.m; sourceTree = "<group>"; };
 		52BC9A8715EB5DE900900443 /* ECGraphPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECGraphPoint.h; sourceTree = "<group>"; };
 		52BC9A8815EB5DE900900443 /* ECGraphPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECGraphPoint.m; sourceTree = "<group>"; };
+		52FDA53115EC7B8C002D3D68 /* fooddb.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = fooddb.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,7 +385,7 @@
 		5293A3F415EB267B0096FB8F /* data */ = {
 			isa = PBXGroup;
 			children = (
-				5293A3F515EB26870096FB8F /* fooddb.sqlite */,
+				52FDA53115EC7B8C002D3D68 /* fooddb.sqlite */,
 				5293A3F615EB26870096FB8F /* history.sqlite */,
 			);
 			name = data;
@@ -714,7 +713,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5293A3F815EB28080096FB8F /* fooddb.sqlite in Resources */,
 				5293A3F915EB28080096FB8F /* history.sqlite in Resources */,
 				529CE6A215DE2E0E00B1FF9C /* BRLNSDB.TTF in Resources */,
 				529CE59915DDF08100B1FF9C /* InfoPlist.strings in Resources */,

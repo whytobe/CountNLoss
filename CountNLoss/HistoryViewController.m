@@ -129,7 +129,7 @@
 }
 
 -(void)calendarMonthView:(TKCalendarMonthView *)monthView monthWillChange:(NSDate *)month animated:(BOOL)animated{
-    NSLog(@"Will Change Month");
+    //NSLog(@"Will Change Month");
 }
 - (void) calendarMonthView:(TKCalendarMonthView*)monthView didSelectDate:(NSDate*)date{
     NSDateFormatter* localTime = [[NSDateFormatter alloc] init];
@@ -137,7 +137,7 @@
      UIViewController *historyDetail = [[HistoryDetailController alloc] initWithNibName:@"HistoryDetailController" bundle:nil inDate:[localTime stringFromDate:date]];
     [calendar setDelegate:nil];
     [[self navigationController]pushViewController:historyDetail animated:YES];
-	NSLog(@"Date Selected: %@",[localTime stringFromDate:date]);
+	//NSLog(@"Date Selected: %@",[localTime stringFromDate:date]);
 
 }
 
