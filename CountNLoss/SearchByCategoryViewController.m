@@ -37,10 +37,6 @@
             [[self categoryName] setFrame:CGRectMake(20, 30, 280, 30)];
             [[self searchText] setFrame:CGRectMake(20, 65, 260, 20)];
         }
-        
-        UITapGestureRecognizer *tapTableView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignAllTextField)];
-    
-        [resultTableView addGestureRecognizer:tapTableView];
     }
     return self;
 }
