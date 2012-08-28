@@ -153,6 +153,10 @@
     //alertView = nil;
     
 }
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [[self searchText]resignFirstResponder];
+    [super touchesBegan:touches withEvent:event];
+}
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
 		//NSLog(@"user pressed OK");

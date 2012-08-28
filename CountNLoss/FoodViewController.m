@@ -46,21 +46,6 @@
         [foodTableView setBackgroundColor:nil];
         foodArray = ((AppDelegate*)[[UIApplication sharedApplication]delegate]).foodArray;
         
-        //NSLog(@"today Calorie : %@",foodArray);
-        //[self setTitle:@"Count&Loss"];
-    //foodTableView 
-        
-        
-        /*NSArray *names = [UIFont familyNames];
-        NSArray *fontFaces;
-        NSLog(@"Font FamilyNames");
-        for (NSString *name in names) {
-            NSLog(@"Font Family: %@",name);
-            fontFaces = [UIFont fontNamesForFamilyName:name];
-            for (NSString *fname in fontFaces) {
-                NSLog(@" %@",fname);
-            }
-        }*/
     }
     return self;
 }
@@ -151,7 +136,7 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil){
+    //if (cell == nil){
         cell = [[UITableViewCell alloc]initWithStyle  :UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         NSNumber *rowFoodId = [NSNumber numberWithInteger:[[[[self todayCalorie] valueForKey:@"calorieFoodId"]  objectAtIndex:indexPath.row] integerValue]];
         //NSNumber *rowIndex = [[NSNumber alloc]init ];
@@ -170,7 +155,7 @@
         [[cell textLabel] setTextColor:[UIColor grayColor]];
         [[cell detailTextLabel] setTextColor:[UIColor grayColor]];
 
-    }
+    //}
     return cell;
 }
 
@@ -209,11 +194,8 @@
         [CalorieHistory deleteCalorie:[[[[self todayCalorie] valueForKey:@"calorieId"]objectAtIndex:indexPath.row] intValue]];
         [self reloadCalorie];
         [self reloadCalorieProgress];
-        //[[self foodTableView] reloadData];
-        //NSLog(@"row count : %d",[[[self todayCalorie] valueForKey:@"calorieId"] count]);
-        //[[self todayCalorie] removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
+        [tableView reloadData];        
     }
 }
 
