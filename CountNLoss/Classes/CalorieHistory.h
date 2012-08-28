@@ -24,6 +24,7 @@
 +(NSDictionary*) getFoodHistoryByDate:(NSString*)targetDate;
 +(NSDictionary*) getFoodHistory;
 +(NSDictionary*) getFoodHistoryToday;
++(NSDictionary*) getMostFavouriteFood;
 +(NSString *) getDBPath;
 +(void) insertCalorie:(int)withFoodId;
 +(void) deleteCalorie:(int)HistoryID;
@@ -34,4 +35,5 @@
 +(void) dropAWater;
 +(NSString*)getDateTime;
 +(NSString*)getDate;
+
 @end

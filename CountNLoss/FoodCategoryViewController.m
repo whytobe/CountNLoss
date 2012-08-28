@@ -74,7 +74,7 @@
             FoodCategoryButton *myButton= [[FoodCategoryButton alloc]initWithType:[self.iconArray objectAtIndex:i] withCaption:[self.nameArray objectAtIndex:i] isLocked:[(NSNumber*)[self.lockArray objectAtIndex:i] boolValue] atPosition:i+1];
             [myButton setTag:i];
             [buttonArray addObject:myButton];
-            if (![(NSNumber*)[self.lockArray objectAtIndex:i] boolValue])
+            //if (![(NSNumber*)[self.lockArray objectAtIndex:i] boolValue])
                 [myButton addTarget:self action:@selector(tester:) forControlEvents:UIControlEventTouchUpInside];
             [[self view] addSubview:myButton];
         }

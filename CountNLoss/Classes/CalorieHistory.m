@@ -212,5 +212,30 @@ static sqlite3_stmt *deleteStmt = nil;
 
 }
 
++(NSDictionary*)getMostFavouriteFood{
+    NSMutableArray *tempCalorieCount = [[NSMutableArray alloc]init];
+    NSMutableArray *tempCalorieFoodId = [[NSMutableArray alloc]init];
+    if (sqlite3_open([[self getDBPath] UTF8String], &database) == SQLITE_OK) {
+        NSString *insertStatement = [NSString stringWithFormat:@"SELECT calorie_food_id,count(calorie_id) from history where calorie_food_id != 0 group by calorie_food_id order by count(calorie_id) desc"];
+        
+        const char *sql = [insertStatement UTF8String];
+        
+		sqlite3_stmt *selectstmt;
+		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
+			
+			while(sqlite3_step(selectstmt) == SQLITE_ROW) {
+				NSNumber *calorieCount = [NSNumber numberWithInt: sqlite3_column_int(selectstmt, 1)];
+                NSNumber *calorieFoodId = [NSNumber numberWithInt: sqlite3_column_int(selectstmt, 0)];
+				[tempCalorieCount addObject:calorieCount];
+				[tempCalorieFoodId addObject:calorieFoodId];
+            }
+		}
+    }
+	else{
+		sqlite3_close(database); 
+    }
+    return [NSDictionary dictionaryWithObjectsAndKeys:tempCalorieFoodId,@"calorieFoodId",tempCalorieCount,@"calorieCount",nil];
+}
+
 
 @end

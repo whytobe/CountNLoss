@@ -19,5 +19,6 @@
 @property (nonatomic) NSString *searchCategory;
 @property (nonatomic) NSNumber *addCalorieId;
 -(void)predicateFoodArrayWithString:(NSString *)string;
+- (IBAction)pushBack:(id)sender;
 - (id)initWithCatName:(NSString *)nibNameOrNil catType:(NSString*)catTypeValue;
 @end
