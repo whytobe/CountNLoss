@@ -216,7 +216,7 @@ static sqlite3_stmt *deleteStmt = nil;
     NSMutableArray *tempCalorieCount = [[NSMutableArray alloc]init];
     NSMutableArray *tempCalorieFoodId = [[NSMutableArray alloc]init];
     if (sqlite3_open([[self getDBPath] UTF8String], &database) == SQLITE_OK) {
-        NSString *insertStatement = [NSString stringWithFormat:@"SELECT calorie_food_id,count(calorie_id) from history where calorie_food_id != 0 group by calorie_food_id order by count(calorie_id) desc"];
+        NSString *insertStatement = [NSString stringWithFormat:@"SELECT calorie_food_id,count(calorie_id),max(calorie_date) from history where calorie_food_id != 0 group by calorie_food_id order by count(calorie_id)desc ,max(calorie_date) desc"];
         
         const char *sql = [insertStatement UTF8String];
         
