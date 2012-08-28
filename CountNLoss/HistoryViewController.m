@@ -74,7 +74,6 @@
         {
             cell = [[UITableViewCell alloc]initWithFrame:CGRectZero];
             calendar = 	[[TKCalendarMonthView alloc] init];
-            calendar.delegate = self;
             calendar.dataSource = self;
             calendar.frame = CGRectMake(0, 0, self.calendar.frame.size.width, self.calendar.frame.size.height);
 
@@ -105,7 +104,16 @@
     }
     return self;
 }
+- (void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    
+    calendar.delegate = self;
+}
 - (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
     [calendar reload];
     [historyTableView reloadData];
 }
@@ -127,7 +135,8 @@
     NSDateFormatter* localTime = [[NSDateFormatter alloc] init];
     [localTime setDateFormat:@"yyyy-MM-dd"];
      UIViewController *historyDetail = [[HistoryDetailController alloc] initWithNibName:@"HistoryDetailController" bundle:nil inDate:[localTime stringFromDate:date]];
-    [[self navigationController]pushViewController:historyDetail animated:NO];
+    [calendar setDelegate:nil];
+    [[self navigationController]pushViewController:historyDetail animated:YES];
 	NSLog(@"Date Selected: %@",[localTime stringFromDate:date]);
 
 }

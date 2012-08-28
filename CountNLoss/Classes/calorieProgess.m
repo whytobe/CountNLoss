@@ -42,7 +42,7 @@
     // Compute the width for the current progress value, 0.0 - 1.0 corresponding 
     // to 0% and 100% respectively.
     NSInteger curWidth = floor([self progress] * maxWidth);
-    
+    curWidth = (curWidth < 15)? 15 : curWidth;
     // Create the rectangle for our fill image accounting for the position offsets,
     // 1 in the X direction and 1, 3 on the top and bottom for the Y.
     CGRect fillRect = CGRectMake(rect.origin.x + kCustomProgressViewFillOffsetX,
