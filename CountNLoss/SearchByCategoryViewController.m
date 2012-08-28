@@ -77,12 +77,15 @@
         [tempFilterCategory addObjectsFromArray:[[CalorieList getAllFoodDataWithCat:self.searchCategory] valueForKey:@"foodId"]];
     }
     [intersection intersectSet:[NSMutableSet setWithArray:tempFilterCategory]];
-    
-    self.filteredFoodArray = [[intersection allObjects] mutableCopy];
 
-    //NSLog(@"Intersec %@ with %@ result : %@",[NSMutableSet setWithArray:tempFilterArray],[NSMutableSet setWithArray:tempFilterCategory],[intersection allObjects]);
-    //NSLog(@"Filter Food Array from category %@ : %@",self.searchCategory,self.filteredFoodArray);
-    
+    NSMutableDictionary *allWhole = [[NSMutableDictionary alloc]init];
+    [[intersection allObjects] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [allWhole setValue:[[self.foodArray valueForKey:@"foodName"] objectAtIndex:[[self.foodArray valueForKey:@"foodId"] indexOfObject:obj]] forKey:obj];
+    }];
+
+    NSArray* sortedKeys = [allWhole keysSortedByValueUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    //NSLog(@"sorted : %@",sortedKeys);
+    self.filteredFoodArray = sortedKeys;
     
     [resultTableView reloadData];
     
