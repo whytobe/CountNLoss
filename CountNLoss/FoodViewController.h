@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIProgressView *calorieProgress;
 @property (weak, nonatomic) IBOutlet UILabel *calorieLabel;
 @property (weak, nonatomic) IBOutlet UILabel *remainingCalorie;
+@property (weak, nonatomic) IBOutlet UILabel *currentWeightLabel;
+@property (weak, nonatomic) IBOutlet UILabel *goalWeightLabel;
 
 - (IBAction)addButtonTapped:(UIButton *)sender;
 - (IBAction)editCalorieHistory:(id)sender;

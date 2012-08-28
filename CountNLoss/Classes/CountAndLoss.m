@@ -9,7 +9,7 @@
 #import "CountAndLoss.h"
 
 @implementation CountAndLoss
-@synthesize myAge,myBMI,myActivity,myBMR,myGender,myHeight,myWeight;
+@synthesize myAge,myBMI,myActivity,myBMR,myGender,myHeight,myWeight,historyWeight;
 
 -(float)getBMI{
     self.myBMI = self.myWeight / pow(myHeight/100,2.0);
@@ -26,21 +26,41 @@
     }
     return self.myBMR;
 }
+-(NSString*)getDate{
+    NSDate* now = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSDateFormatter* localTime = [[NSDateFormatter alloc] init];
+    [localTime setDateFormat:@"yyyy-MM-dd"];
+    return [localTime stringFromDate:now];
+}
 -(NSString *)dataFilePath{
     return [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"myprofile.plist"];
 }
 -(CountAndLoss*)initCountAndLoss{
     self = [super init];
     if (self){
+        
         NSDictionary *myProfile = [[NSDictionary alloc]initWithContentsOfFile:[self dataFilePath]];
         //[self setMyProfile:[NSMutableDictionary dictionaryWithContentsOfFile:[self dataFilePath]]];
         [self setMyHeight:[[myProfile valueForKey:@"height"]floatValue]];
-        [self setMyWeight:[[myProfile valueForKey:@"weight"]floatValue]];
-        [self setMyAge:[[myProfile valueForKey:@"age"]floatValue]];
+        
+        [self setHistoryWeight:[myProfile valueForKey:@"weight"]];
+        [self setMyAge:[[myProfile valueForKey:@"age"]intValue]];
         [self setMyGender:[[myProfile valueForKey:@"gender"]boolValue]];
+        historyWeight = [NSMutableDictionary dictionaryWithDictionary:[myProfile valueForKey:@"weight"]];
+        if (historyWeight.count > 0){
+            id aKey = [[historyWeight allKeys] objectAtIndex:0];
+            [self setMyWeight:[[[self historyWeight] valueForKey:aKey]floatValue]];
+        } else {
+            historyWeight = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSNumber numberWithFloat:[self myWeight]],[self getDate], nil];
+        }
     }
     return self;
 }
+-(NSNumber*)getCurrentWeight{
+    id aKey = [[historyWeight allKeys] objectAtIndex:0];
+    return [[self historyWeight] valueForKey:aKey];
+}
+
 +(CountAndLoss*)initCountAndLoss{
     return [[CountAndLoss alloc]initCountAndLoss];
 }
@@ -51,12 +71,17 @@
 }
 
 -(void)saveData{
+    
+    [[self historyWeight] setObject:[NSNumber numberWithFloat:[self myWeight]] forKey:[self getDate]];
+    
     NSDictionary *writeMyProfile = [NSDictionary dictionaryWithObjectsAndKeys:
                                [NSNumber numberWithFloat:[self myHeight]],@"height",
-                               [NSNumber numberWithFloat:[self myWeight]],@"weight",
+                               [self historyWeight],@"weight",
                                [NSNumber numberWithFloat:[self myAge]],@"age",
                                [NSNumber numberWithBool:[self myGender]],@"gender",
                                nil];
+    NSLog(@"%@",writeMyProfile);
+    //NSLog(@"Last Object : %@",[[historyWeight allValues]f]);
     [writeMyProfile writeToFile:[self dataFilePath] atomically:YES];
 }
 @end

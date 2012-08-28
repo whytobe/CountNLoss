@@ -8,6 +8,8 @@
 
 #import "FoodViewController.h"
 #import "AppDelegate.h"
+#import "ProfileViewController.h"
+
 @interface FoodViewController ()
     
 @end
@@ -16,6 +18,8 @@
 @synthesize calorieProgress;
 @synthesize calorieLabel;
 @synthesize remainingCalorie;
+@synthesize currentWeightLabel;
+@synthesize goalWeightLabel;
 @synthesize foodTableView;
 @synthesize glasses;
 @synthesize labels;
@@ -28,8 +32,6 @@
     if (self) {
         // Custom initialization
         [self setTotalCalorie:0];
-        int maxCal = [((AppDelegate*)[[UIApplication sharedApplication] delegate]).myProfile getBMR];
-        [self setMaxCalorie:[NSNumber numberWithInt: maxCal]];
         [self setTitle:@"Count&Loss"];
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Today" image:[UIImage imageNamed:@"today"] tag:0];
         [[self tabBarItem] setFinishedSelectedImage:nil withFinishedUnselectedImage:[UIImage imageNamed:@"today"]];
@@ -54,10 +56,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     //[self getFoodList];
     //[self setDrinkWater:3];
     // Do any additional setup after loading the view from its nib.
 
+}
+-(void)viewDidAppear:(BOOL)animated{
+    //ProfileViewController *profilePage = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil];
+    //[profilePage.widthTextField becomeFirstResponder];
+    //[[self navigationController] pushViewController:profilePage animated:YES];
 }
 - (void)reloadCalorie{
     [((AppDelegate*)[[UIApplication sharedApplication]delegate]) reloadHistory];
@@ -97,12 +105,15 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    
+    [self setMaxCalorie:[NSNumber numberWithInt: [((AppDelegate*)[[UIApplication sharedApplication] delegate]).myProfile getBMR]]];
+    [[self currentWeightLabel]setText:[NSString stringWithFormat:@"%@ Kg.",[((AppDelegate*)[[UIApplication sharedApplication] delegate]).myProfile getCurrentWeight]]];
     [self reloadCalorie];
     [self reloadWater];
     [self reloadCalorieProgress];
     [[self foodTableView] reloadData];
     [[self foodTableView] setEditing:NO animated:NO];
+    
+    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -175,6 +186,8 @@
     [self setCalorieProgress:nil];
     [self setCalorieLabel:nil];
     [self setRemainingCalorie:nil];
+    [self setCurrentWeightLabel:nil];
+    [self setGoalWeightLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

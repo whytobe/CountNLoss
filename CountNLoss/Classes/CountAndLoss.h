@@ -14,6 +14,7 @@
 @property (nonatomic) float myHeight;
 @property (nonatomic) float myActivity;
 @property (nonatomic) BOOL myGender;
+@property (nonatomic) NSMutableDictionary *historyWeight;
 @property (nonatomic) float myAge;
 @property (nonatomic) float myBMI;
 @property (nonatomic) float myBMR;
@@ -21,7 +22,9 @@
 
 -(float)getBMI;
 -(float)getBMR;
+-(NSNumber*)getCurrentWeight;
 -(void) saveData;
 -(CountAndLoss*)initCountAndLoss;
 +(CountAndLoss*)initCountAndLoss;
+-(NSString*)getDate;
 @end
