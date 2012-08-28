@@ -24,7 +24,8 @@
 @property (nonatomic, copy) NSNumber *foodCalorie;
 
 
-+(NSDictionary*) getAllFoodData:(NSString *)dbPath;
++(NSDictionary*) getAllFoodData;
++(NSDictionary*) getAllFoodDataWithCat:(NSString *)catId;
 +(void) finalizeStatements;
 +(NSString *) getDBPath;
 - (id) initWithPrimaryKey:(NSNumber*)pk;

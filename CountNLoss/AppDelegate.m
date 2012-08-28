@@ -37,7 +37,7 @@
     [[UINavigationBar appearance] setBackgroundImage:navigationBG forBarMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:0.42 green:0.72  blue:.05 alpha:1]];
     //Add Comment to master1.
-    self.foodArray = [NSDictionary dictionaryWithDictionary:[CalorieList getAllFoodData:[self getDBPath]]];
+    self.foodArray = [NSDictionary dictionaryWithDictionary:[CalorieList getAllFoodData]];
     //[self reloadHistory];
     //NSLog(@"%@",self.foodArray);
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

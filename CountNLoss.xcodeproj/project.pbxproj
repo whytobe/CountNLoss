@@ -186,8 +186,6 @@
 		525854ED15EB9D6D0098AB49 /* HistoryDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryDetailController.m; sourceTree = "<group>"; };
 		525854EE15EB9D6D0098AB49 /* HistoryDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryDetailController.xib; sourceTree = "<group>"; };
 		5293A3F615EB26870096FB8F /* history.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = history.sqlite; sourceTree = "<group>"; };
-		5293A41015EB42490096FB8F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		5293A41215EB42510096FB8F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		5293A41415EB428B0096FB8F /* logo114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo114.png; sourceTree = "<group>"; };
 		5293A41615EB42B60096FB8F /* logo57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo57.png; sourceTree = "<group>"; };
 		52979F6E15E776AE00C544FF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -411,8 +409,6 @@
 			children = (
 				5293A41615EB42B60096FB8F /* logo57.png */,
 				5293A41415EB428B0096FB8F /* logo114.png */,
-				5293A41215EB42510096FB8F /* Default.png */,
-				5293A41015EB42490096FB8F /* Default@2x.png */,
 				529CE59415DDF08100B1FF9C /* CountNLoss */,
 				529CE58D15DDF08100B1FF9C /* Frameworks */,
 				529CE58B15DDF08100B1FF9C /* Products */,

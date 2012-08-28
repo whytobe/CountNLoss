@@ -31,12 +31,8 @@
         [resultTableView setBackgroundView:[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"catBG"]]];
         self.foodArray = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).foodArray;
         [self predicateFoodArrayWithString:@""];
-        if (catTypeValue == @"1"){
-            [[self foodIcon]setHidden:YES];
-            [[self categoryName] setText:@"ค้นหาอาหารจากทุกประเภท"];
-            [[self categoryName] setFrame:CGRectMake(20, 30, 280, 30)];
-            [[self searchText] setFrame:CGRectMake(20, 65, 260, 20)];
-        }
+        [[self categoryName] setFont:[UIFont fontWithName:@"THSarabunPSK-Bold" size:24]];
+        [[self categoryName] setTextColor:[UIColor colorWithRed:0.521 green:0.533 blue:0.51 alpha:1]];
     }
     return self;
 }
@@ -60,48 +56,30 @@
     [[self searchText]resignFirstResponder];
 }
 -(void)predicateFoodArrayWithString:(NSString *)string{
+    
+    if ([string length] == 0) string = @"^";
+    NSIndexSet *indexFilteredFood = [[self.foodArray objectForKey:@"foodName"] indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop){
+        NSString *s = (NSString*)obj;
+        NSRange range = [s rangeOfString: string options:NSStringEnumerationLocalized];
+        return range.location != NSNotFound;
+    }];
+    NSMutableArray *tempFilterArray = [[NSMutableArray alloc]init];
+    [indexFilteredFood enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+        [tempFilterArray addObject:[[self.foodArray valueForKey:@"foodId"]objectAtIndex:idx]];
+    }];
+    //Intersect Filter
+    NSMutableSet *intersection = [NSMutableSet setWithArray:tempFilterArray];
+    NSMutableArray *tempFilterCategory = [[NSMutableArray alloc]init];
     if ([self searchCategory] == @"112"){ 
         //NSLog(@"Most : %@",[CalorieHistory getMostFavouriteFood]);
-        self.filteredFoodArray = [[CalorieHistory getMostFavouriteFood] valueForKey:@"calorieFoodId"];
+        [tempFilterCategory addObjectsFromArray:[[CalorieHistory getMostFavouriteFood] valueForKey:@"calorieFoodId"]];
     } else {
-        if ([string length] == 0) string = @"^";
-        NSIndexSet *indexFilteredFood = [[self.foodArray objectForKey:@"foodName"] indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop){
-            NSString *s = (NSString*)obj;
-            NSRange range = [s rangeOfString: string options:NSStringEnumerationLocalized];
-            return range.location != NSNotFound;
-        }];
-        NSMutableArray *tempFilterArray = [[NSMutableArray alloc]init];
-        [indexFilteredFood enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-            [tempFilterArray addObject:[NSNumber numberWithInteger:idx]];
-        }];
-        //Intersect Filter
-        NSMutableSet *intersection = [NSMutableSet setWithArray:tempFilterArray];
-        
-        NSIndexSet *indexFilteredCategory = [[self.foodArray objectForKey:@"foodType"] indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop){
-            NSString *s = (NSString*)obj;
-            NSRange range = [s rangeOfString: self.searchCategory options:NSStringEnumerationLocalized];
-            return range.location != NSNotFound;
-        }];
-        
-        NSMutableArray *tempFilterCategory = [[NSMutableArray alloc]init];
-        [indexFilteredCategory enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-            [tempFilterCategory addObject:[NSNumber numberWithInteger:idx]];
-        }];
-        
-        [intersection intersectSet:[NSMutableSet setWithArray:tempFilterCategory]];
-        
-        self.filteredFoodArray = [intersection allObjects];
-        
-        tempFilterCategory = nil;
-        indexFilteredCategory = nil;
-        tempFilterArray = nil;
-        indexFilteredFood = nil;
-        intersection = nil;
+        [tempFilterCategory addObjectsFromArray:[[CalorieList getAllFoodDataWithCat:self.searchCategory] valueForKey:@"foodId"]];
     }
-    NSMutableArray *zeroDebug = [NSMutableArray arrayWithArray: self.filteredFoodArray];
-    [zeroDebug removeObjectIdenticalTo:[NSNumber numberWithInt:0]];
-    self.filteredFoodArray = [NSArray arrayWithArray:zeroDebug];
-    zeroDebug = nil;
+    [intersection intersectSet:[NSMutableSet setWithArray:tempFilterCategory]];
+    
+    self.filteredFoodArray = [[intersection allObjects] mutableCopy];
+
     //NSLog(@"Intersec %@ with %@ result : %@",[NSMutableSet setWithArray:tempFilterArray],[NSMutableSet setWithArray:tempFilterCategory],[intersection allObjects]);
     //NSLog(@"Filter Food Array from category %@ : %@",self.searchCategory,self.filteredFoodArray);
     
@@ -156,7 +134,7 @@
     int rowIndex = [[self.foodArray valueForKey:@"foodId"] indexOfObject:foodId];
     //NSLog(@"Filter : %@",self.filteredFoodArray);
     
-    if (!cell){
+
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
 
         [[cell textLabel]setText:[NSString stringWithFormat:@"%@",[[self.foodArray valueForKey:@"foodName"]objectAtIndex:rowIndex]]];
@@ -166,11 +144,7 @@
         [[cell detailTextLabel]setText:[NSString stringWithFormat:@"%@ แคลอรี่", [[self.foodArray valueForKey:@"foodCalorie"]objectAtIndex:rowIndex]]];
         [[cell detailTextLabel]setFont:[UIFont fontWithName:@"TH SarabunPSK" size:20]];
         [[cell detailTextLabel]setTextColor:[UIColor grayColor]];
-    } else {
-        [[cell textLabel]setText:[NSString stringWithFormat:@"%@",[[self.foodArray valueForKey:@"foodName"]objectAtIndex:rowIndex]]];
-        [[cell detailTextLabel]setText:[NSString stringWithFormat:@"%@ แคลอรี่", [[self.foodArray valueForKey:@"foodCalorie"]objectAtIndex:rowIndex]]];
 
-    }
     return cell;
 }
 

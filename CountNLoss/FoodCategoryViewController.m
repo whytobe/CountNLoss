@@ -30,12 +30,13 @@
     //[sender resignFirstResponder];
     //NSLog(@"Begin Edit");
     SearchByCategoryViewController *nextPage = [[SearchByCategoryViewController alloc]initWithCatName:@"SearchByCategoryViewController" catType:@"1"];
-    [[nextPage foodIcon] setBackgroundImage:[UIImage imageNamed:@"button_available"] forState:UIControlStateNormal];
-    [[nextPage foodIcon] setImage:[UIImage imageNamed:@"icon_chicken"] forState:UIControlStateNormal];
-    [[nextPage categoryName] setText:@"อาหารทุกประเภท"];
+    //[[nextPage foodIcon] setBackgroundImage:[UIImage imageNamed:@"button_available"] forState:UIControlStateNormal];
+    //[[nextPage foodIcon] setImage:[UIImage imageNamed:@"icon_chicken"] forState:UIControlStateNormal];
+    [[nextPage foodIcon]setHidden:YES];
+    [[nextPage categoryName] setFrame:CGRectMake(20, 30, 280, 30)];
+    [[nextPage searchText] setFrame:CGRectMake(20, 65, 260, 20)];
+    [[nextPage categoryName] setText:@"ค้นหาจากอาหารทุกประเภท"];
     [nextPage setTitle:@"อาหารทุกประเภท"];
-    [[nextPage categoryName] setFont:[UIFont fontWithName:@"THSarabunPSK-Bold" size:24]];
-    [[nextPage categoryName] setTextColor:[UIColor colorWithRed:0.521 green:0.533 blue:0.51 alpha:1]];
     //nextPage.firstSightResponse = YES;
     nextPage.searchCategory = @"1";
     [[nextPage searchText]becomeFirstResponder];
@@ -89,8 +90,7 @@
     [[nextPage foodIcon] setImage:[UIImage imageNamed:[self.iconArray objectAtIndex:sender.tag]] forState:UIControlStateNormal];
     [[nextPage categoryName] setText:[self.nameArray objectAtIndex:sender.tag]];
     [nextPage setTitle:[self.nameArray objectAtIndex:sender.tag]];
-    [[nextPage categoryName] setFont:[UIFont fontWithName:@"THSarabunPSK-Bold" size:24]];
-    [[nextPage categoryName] setTextColor:[UIColor colorWithRed:0.521 green:0.533 blue:0.51 alpha:1]];
+    
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithTitle: @"Back" style: UIBarButtonItemStyleBordered target: nil action: nil];
     [[self navigationItem] setBackBarButtonItem: backButton];
