@@ -102,6 +102,7 @@
     [self reloadWater];
     [self reloadCalorieProgress];
     [[self foodTableView] reloadData];
+    [[self foodTableView] setEditing:NO animated:NO];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
