@@ -134,6 +134,12 @@
 		52BC9A8B15EB5DE900900443 /* ECGraphItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A8415EB5DE900900443 /* ECGraphItem.m */; };
 		52BC9A8C15EB5DE900900443 /* ECGraphLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A8615EB5DE900900443 /* ECGraphLine.m */; };
 		52BC9A8D15EB5DE900900443 /* ECGraphPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A8815EB5DE900900443 /* ECGraphPoint.m */; };
+		52BE1A6515EDF00D00C751BF /* button_long.png in Resources */ = {isa = PBXBuildFile; fileRef = 52BE1A6315EDF00D00C751BF /* button_long.png */; };
+		52BE1A6615EDF00D00C751BF /* button_long@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52BE1A6415EDF00D00C751BF /* button_long@2x.png */; };
+		52BE1A6A15EDFCD900C751BF /* AddFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BE1A6815EDFCD900C751BF /* AddFoodViewController.m */; };
+		52BE1A6B15EDFCD900C751BF /* AddFoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BE1A6915EDFCD900C751BF /* AddFoodViewController.xib */; };
+		52BE1A6F15EE23A600C751BF /* SelectCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BE1A6D15EE23A600C751BF /* SelectCategoryViewController.m */; };
+		52BE1A7015EE23A600C751BF /* SelectCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BE1A6E15EE23A600C751BF /* SelectCategoryViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -315,6 +321,14 @@
 		52BC9A8615EB5DE900900443 /* ECGraphLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECGraphLine.m; sourceTree = "<group>"; };
 		52BC9A8715EB5DE900900443 /* ECGraphPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECGraphPoint.h; sourceTree = "<group>"; };
 		52BC9A8815EB5DE900900443 /* ECGraphPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECGraphPoint.m; sourceTree = "<group>"; };
+		52BE1A6315EDF00D00C751BF /* button_long.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_long.png; sourceTree = "<group>"; };
+		52BE1A6415EDF00D00C751BF /* button_long@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_long@2x.png"; sourceTree = "<group>"; };
+		52BE1A6715EDFCD900C751BF /* AddFoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFoodViewController.h; sourceTree = "<group>"; };
+		52BE1A6815EDFCD900C751BF /* AddFoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFoodViewController.m; sourceTree = "<group>"; };
+		52BE1A6915EDFCD900C751BF /* AddFoodViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFoodViewController.xib; sourceTree = "<group>"; };
+		52BE1A6C15EE23A500C751BF /* SelectCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCategoryViewController.h; sourceTree = "<group>"; };
+		52BE1A6D15EE23A600C751BF /* SelectCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCategoryViewController.m; sourceTree = "<group>"; };
+		52BE1A6E15EE23A600C751BF /* SelectCategoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCategoryViewController.xib; sourceTree = "<group>"; };
 		52FDA53115EC7B8C002D3D68 /* fooddb.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = fooddb.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -342,12 +356,18 @@
 				529CE62F15DDF93C00B1FF9C /* FoodCategoryViewController.h */,
 				529CE63015DDF93C00B1FF9C /* FoodCategoryViewController.m */,
 				529CE63115DDF93C00B1FF9C /* FoodCategoryViewController.xib */,
+				52BE1A6C15EE23A500C751BF /* SelectCategoryViewController.h */,
+				52BE1A6D15EE23A600C751BF /* SelectCategoryViewController.m */,
+				52BE1A6E15EE23A600C751BF /* SelectCategoryViewController.xib */,
 				52071AB215E0E63900892264 /* SearchByCategoryViewController.h */,
 				52071AB315E0E63900892264 /* SearchByCategoryViewController.m */,
 				52071AB415E0E63900892264 /* SearchByCategoryViewController.xib */,
 				529CE63215DDF93C00B1FF9C /* FoodViewController.h */,
 				529CE63315DDF93C00B1FF9C /* FoodViewController.m */,
 				529CE63415DDF93C00B1FF9C /* FoodViewController.xib */,
+				52BE1A6715EDFCD900C751BF /* AddFoodViewController.h */,
+				52BE1A6815EDFCD900C751BF /* AddFoodViewController.m */,
+				52BE1A6915EDFCD900C751BF /* AddFoodViewController.xib */,
 			);
 			name = "Food Tab";
 			sourceTree = "<group>";
@@ -505,6 +525,8 @@
 		529CE6A015DE2DDF00B1FF9C /* image */ = {
 			isa = PBXGroup;
 			children = (
+				52BE1A6315EDF00D00C751BF /* button_long.png */,
+				52BE1A6415EDF00D00C751BF /* button_long@2x.png */,
 				52979F8515E7874000C544FF /* progress-bar-fill.png */,
 				52979F8615E7874000C544FF /* progress-bar-bg.png */,
 				5225C4FF15E22272000694FA /* textfield.png */,
@@ -804,6 +826,10 @@
 				5293A41515EB428B0096FB8F /* logo114.png in Resources */,
 				5293A41715EB42B70096FB8F /* logo57.png in Resources */,
 				525854F015EB9D6D0098AB49 /* HistoryDetailController.xib in Resources */,
+				52BE1A6515EDF00D00C751BF /* button_long.png in Resources */,
+				52BE1A6615EDF00D00C751BF /* button_long@2x.png in Resources */,
+				52BE1A6B15EDFCD900C751BF /* AddFoodViewController.xib in Resources */,
+				52BE1A7015EE23A600C751BF /* SelectCategoryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -839,6 +865,8 @@
 				52BC9A8C15EB5DE900900443 /* ECGraphLine.m in Sources */,
 				52BC9A8D15EB5DE900900443 /* ECGraphPoint.m in Sources */,
 				525854EF15EB9D6D0098AB49 /* HistoryDetailController.m in Sources */,
+				52BE1A6A15EDFCD900C751BF /* AddFoodViewController.m in Sources */,
+				52BE1A6F15EE23A600C751BF /* SelectCategoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

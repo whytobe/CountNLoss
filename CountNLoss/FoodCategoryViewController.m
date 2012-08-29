@@ -9,7 +9,7 @@
 #import "FoodCategoryViewController.h"
 #import "FoodCategoryButton.h"
 #import "SearchByCategoryViewController.h"
-
+#import "AddFoodViewController.h"
 @interface FoodCategoryViewController ()
 
 @end
@@ -58,9 +58,9 @@
         [[self tabBarItem] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],UITextAttributeTextColor,nil] forState:UIControlStateNormal];
         
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]]];
-        NSMutableArray *tempIconArray = [NSMutableArray arrayWithObjects:@"icon_chicken",@"icon_pork",@"icon_meat",@"icon_fish",@"icon_vegetable",@"icon_fruit",@"icon_cake",@"icon_beverage",@"icon_fastfood",@"icon_restuarant",@"icon_vine",@"icon_folkspoon",@"icon_platefolkspoon",@"icon_noodle", nil];
-        NSMutableArray *tempNameArray = [NSMutableArray arrayWithObjects:@"ไก่",@"หมู",@"เนื้อ",@"ทะเล",@"ผัก",@"ผลไม้",@"ของหวาน",@"เครื่องดื่ม",@"ฟาสต์ฟู้ด",@"ร้านอาหารชั้นนำ",@"เครื่องดื่มแอลกอฮอลล์",@"รายการที่กินบ่อย",@"อาหารยอดนิยม",@"อาหารตามสั่ง", nil];
-        NSMutableArray *tempLockedArray = [NSMutableArray arrayWithObjects:[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:NO], nil];
+        NSArray *tempIconArray = [NSArray arrayWithObjects:@"icon_chicken",@"icon_pork",@"icon_meat",@"icon_fish",@"icon_vegetable",@"icon_fruit",@"icon_cake",@"icon_beverage",@"icon_fastfood",@"icon_restuarant",@"icon_vine",@"icon_folkspoon",@"icon_platefolkspoon",@"icon_noodle", nil];
+        NSArray *tempNameArray = [NSArray arrayWithObjects:@"ไก่",@"หมู",@"เนื้อ",@"ทะเล",@"ผัก",@"ผลไม้",@"ของหวาน",@"เครื่องดื่ม",@"ฟาสต์ฟู้ด",@"ร้านอาหารชั้นนำ",@"เครื่องดื่มแอลกอฮอลล์",@"รายการที่กินบ่อย",@"อาหารยอดนิยม",@"อาหารตามสั่ง", nil];
+        NSArray *tempLockedArray = [NSArray arrayWithObjects:[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:NO],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:YES],[NSNumber numberWithBool:NO], nil];
         NSArray *tempCagetoryTypeArray = [NSArray arrayWithObjects:@"101",@"102",@"103",@"104",@"105",@"106",@"107",@"108",@"109",@"110",@"111",@"112",@"113",@"114", nil];
         self.iconArray = [NSArray arrayWithArray: tempIconArray];
         self.nameArray = [NSArray arrayWithArray: tempNameArray];
@@ -80,11 +80,32 @@
                 [myButton addTarget:self action:@selector(tester:) forControlEvents:UIControlEventTouchUpInside];
             [[self view] addSubview:myButton];
         }
+        
+        //Add Button add food.
         self.categoryButton = buttonArray;
+        
+        float yPos = 36+(((14/4)*72) + ((14/4)*10));
+        float xPos = 16+((14%4)*72);
+        UIButton *addMenuButton = [[UIButton alloc]initWithFrame:CGRectMake(xPos, yPos, 140, 72)];
+        [addMenuButton setTitle:@"+ เพิ่มเมนู" forState:UIControlStateNormal];
+        [addMenuButton setBackgroundImage:[UIImage imageNamed:@"button_long"] forState:UIControlStateNormal];
+        [[addMenuButton titleLabel]setFont:[UIFont fontWithName:@"THSarabunPSK-Bold" size:30]];
+        [[addMenuButton  titleLabel]setTextColor:[UIColor whiteColor]];
+        [addMenuButton addTarget:self action:@selector(addFood) forControlEvents:UIControlEventTouchUpInside];
+        [[self view]addSubview:addMenuButton];
+        
+        
+        addMenuButton = nil;
         buttonArray = nil;
     }
     return self;
 }
+
+-(void)addFood{
+    AddFoodViewController *addFoodPage = [[AddFoodViewController alloc]initWithNibName:@"AddFoodViewController" bundle:nil];
+    [[self navigationController]pushViewController:addFoodPage animated:YES];
+}
+
 -(void)tester:(UIButton*)sender{
     SearchByCategoryViewController *nextPage = [[SearchByCategoryViewController alloc]initWithCatName:@"SearchByCategoryViewController" catType:[[self categoryArray]objectAtIndex:sender.tag]];
     [[nextPage foodIcon] setBackgroundImage:[UIImage imageNamed:@"button_available"] forState:UIControlStateNormal];
@@ -127,7 +148,6 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
 
 
 @end

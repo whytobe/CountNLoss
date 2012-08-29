@@ -13,13 +13,16 @@
 @interface FoodCategoryViewController : UIViewController
 
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
+
 @property (nonatomic) NSArray *iconArray;
 @property (nonatomic) NSArray *nameArray;
 @property (nonatomic) NSArray *lockArray;
 @property (nonatomic) NSArray *categoryArray;
 @property (nonatomic) NSArray *categoryButton;
 @property (weak, nonatomic) IBOutlet UITextField *allSearchTextField;
+
 - (IBAction)back:(id)sender;
 - (IBAction)startSearch:(id)sender;
+
 
 @end

@@ -42,6 +42,7 @@
 						<string key="NSFrame">{{25, 11}, {106, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="890555031"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -72,6 +73,7 @@
 						<string key="NSFrame">{{139, 12}, {136, 24}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="550646591"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -109,6 +111,7 @@
 						<string key="NSFrame">{{283, 12}, {17, 24}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -262,7 +265,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">21</int>
+			<int key="maxID">23</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -283,17 +286,20 @@
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">allSearchTextField</string>
-						<string key="NS.object.0">UITextField</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">allSearchTextField</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="allSearchTextField">UITextField</string>
+						<string key="searchButton">UIButton</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="allSearchTextField">
 							<string key="name">allSearchTextField</string>
 							<string key="candidateClassName">UITextField</string>
 						</object>
-					</object>
+						<object class="IBToOneOutletInfo" key="searchButton">
+							<string key="name">searchButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+					</dictionary>
 					<object class="NSMutableDictionary" key="toManyOutletInfosByName">
 						<string key="NS.key.0">labels</string>
 						<object class="IBToManyOutletInfo" key="NS.object.0">
