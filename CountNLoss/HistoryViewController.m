@@ -72,12 +72,14 @@
             break;
         case 2 :
         {
-            cell = [[UITableViewCell alloc]initWithFrame:CGRectZero];
+            if (!cell){
+            cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0,0, 320 , 310)];
             calendar = 	[[TKCalendarMonthView alloc] init];
             calendar.dataSource = self;
-            calendar.frame = CGRectMake(0, 0, self.calendar.frame.size.width, self.calendar.frame.size.height);
-
+            calendar.frame = CGRectMake(0, 0, 320, 310);
+            [calendar setBackgroundColor:[UIColor clearColor]];
             [cell.contentView addSubview:calendar];
+            }
             
         }
         default:
@@ -98,9 +100,6 @@
         
         [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]]];
         [[self historyTableView]setBackgroundColor:[UIColor clearColor]];
-        
-        
-        
     }
     return self;
 }
@@ -125,11 +124,13 @@
 
 
 - (NSArray*) calendarMonthView:(TKCalendarMonthView*)monthView marksFromDate:(NSDate*)startDate toDate:(NSDate*)lastDate{
-	return dataArray;
+	return nil;
 }
-
+-(void)calendarMonthView:(TKCalendarMonthView *)monthView monthDidChange:(NSDate *)month animated:(BOOL)animated{
+    NSLog(@"%@",month);
+}
 -(void)calendarMonthView:(TKCalendarMonthView *)monthView monthWillChange:(NSDate *)month animated:(BOOL)animated{
-    //NSLog(@"Will Change Month");
+    NSLog(@"%@",[historyTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]]);
 }
 - (void) calendarMonthView:(TKCalendarMonthView*)monthView didSelectDate:(NSDate*)date{
     NSDateFormatter* localTime = [[NSDateFormatter alloc] init];
@@ -137,10 +138,9 @@
      UIViewController *historyDetail = [[HistoryDetailController alloc] initWithNibName:@"HistoryDetailController" bundle:nil inDate:[localTime stringFromDate:date]];
     [calendar setDelegate:nil];
     [[self navigationController]pushViewController:historyDetail animated:YES];
-	//NSLog(@"Date Selected: %@",[localTime stringFromDate:date]);
+	NSLog(@"Date Selected: %@",[localTime stringFromDate:date]);
 
 }
-
 
 - (void)viewDidUnload
 {
