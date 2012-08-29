@@ -22,7 +22,9 @@
 
 -(float)getBMI;
 -(float)getBMR;
+-(BOOL)checkCurrentWeight;
 -(NSNumber*)getCurrentWeight;
+-(BOOL)checkCompleteProfile;
 -(void) saveData;
 -(CountAndLoss*)initCountAndLoss;
 +(CountAndLoss*)initCountAndLoss;

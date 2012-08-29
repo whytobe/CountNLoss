@@ -63,9 +63,25 @@
 
 }
 -(void)viewDidAppear:(BOOL)animated{
-    //ProfileViewController *profilePage = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil];
-    //[profilePage.widthTextField becomeFirstResponder];
-    //[[self navigationController] pushViewController:profilePage animated:YES];
+    NSString *alertText = nil;
+    if (![((AppDelegate*)[[UIApplication sharedApplication]delegate]).myProfile checkCurrentWeight]){
+        alertText = @"คุณยังไม่ได้บันทึกน้ำหนักประจำวัน";
+    }
+    if (![((AppDelegate*)[[UIApplication sharedApplication]delegate]).myProfile checkCompleteProfile]){
+        alertText = @"คุณยังไม่ได้กรอกข้อมูลประจำตัว หรือกรอกข้อมูลไม่ครบ";
+    }
+    if (alertText){
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"แจ้งเตือน" message:alertText delegate:self cancelButtonTitle:nil otherButtonTitles:@"ตกลง"   , nil];
+        [alertView show];
+        alertView = nil;
+    }
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0){
+        ProfileViewController *profilePage = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil];
+        [profilePage.widthTextField becomeFirstResponder];
+        [[self navigationController] pushViewController:profilePage animated:YES];
+    }
 }
 - (void)reloadCalorie{
     [((AppDelegate*)[[UIApplication sharedApplication]delegate]) reloadHistory];

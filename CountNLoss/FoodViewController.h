@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FoodCategoryViewController.h"
 
-@interface FoodViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIApplicationDelegate>{
+@interface FoodViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UIApplicationDelegate,UIAlertViewDelegate>{
     UIFont *myFont;
 }
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;

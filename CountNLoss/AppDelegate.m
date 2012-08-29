@@ -67,7 +67,7 @@
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:[self foodNavigationController], [self todayNavigationController],[self historyNavigationController],goalViewController,[self moreNavigationController], nil];
     self.window.rootViewController = self.tabBarController;
     
-    self.tabBarController.selectedIndex = 2;
+    self.tabBarController.selectedIndex = 1;
     
     [self.window makeKeyAndVisible];
     

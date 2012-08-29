@@ -37,8 +37,6 @@
 }
 -(CountAndLoss*)initCountAndLoss{
     self = [super init];
-    if (self){
-        
         NSDictionary *myProfile = [[NSDictionary alloc]initWithContentsOfFile:[self dataFilePath]];
         //[self setMyProfile:[NSMutableDictionary dictionaryWithContentsOfFile:[self dataFilePath]]];
         [self setMyHeight:[[myProfile valueForKey:@"height"]floatValue]];
@@ -48,19 +46,26 @@
         [self setMyGender:[[myProfile valueForKey:@"gender"]boolValue]];
         historyWeight = [NSMutableDictionary dictionaryWithDictionary:[myProfile valueForKey:@"weight"]];
         if (historyWeight.count > 0){
-            id aKey = [[historyWeight allKeys] objectAtIndex:0];
+            id aKey = [[historyWeight allKeys] lastObject];
             [self setMyWeight:[[[self historyWeight] valueForKey:aKey]floatValue]];
         } else {
             historyWeight = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSNumber numberWithFloat:[self myWeight]],[self getDate], nil];
         }
-    }
     return self;
 }
 -(NSNumber*)getCurrentWeight{
-    id aKey = [[historyWeight allKeys] objectAtIndex:0];
+    id aKey = [[historyWeight allKeys] lastObject];
     return [[self historyWeight] valueForKey:aKey];
 }
-
+-(BOOL)checkCurrentWeight{
+    NSString *aKey = [[historyWeight allKeys] lastObject];
+    BOOL result = ([[self getDate] isEqualToString: aKey]&& [self myWeight] > 0 );
+    //NSLog(@"Last weight date : %@ / %@ | %f = %i",aKey,[self getDate],[self myWeight],result);
+    return result;
+}
+-(BOOL)checkCompleteProfile{
+    return [self myAge] > 0 && [self myWeight] > 0 && [self myHeight] > 0;
+}
 +(CountAndLoss*)initCountAndLoss{
     return [[CountAndLoss alloc]initCountAndLoss];
 }
