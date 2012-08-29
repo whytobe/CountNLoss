@@ -35,6 +35,7 @@
     [[nextPage foodIcon]setHidden:YES];
     [[nextPage categoryName] setFrame:CGRectMake(20, 30, 280, 30)];
     [[nextPage searchText] setFrame:CGRectMake(20, 65, 260, 20)];
+    [[nextPage searchDetail] setFrame:CGRectMake(20, 88, 280, 15)];
     [[nextPage categoryName] setText:@"ค้นหาจากอาหารทุกประเภท"];
     [nextPage setTitle:@"อาหารทุกประเภท"];
     //nextPage.firstSightResponse = YES;

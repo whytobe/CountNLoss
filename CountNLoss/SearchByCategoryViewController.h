@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchText;
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UIButton *foodIcon;
+@property (weak, nonatomic) IBOutlet UILabel *searchDetail;
 @property (nonatomic) NSDictionary *foodArray;
 @property (nonatomic,copy) NSArray *filteredFoodArray;
 @property (nonatomic) NSString *searchCategory;

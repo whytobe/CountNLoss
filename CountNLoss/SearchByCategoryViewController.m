@@ -18,6 +18,7 @@
 @synthesize searchText;
 @synthesize searchButton;
 @synthesize foodIcon;
+@synthesize searchDetail;
 @synthesize foodArray,filteredFoodArray;
 @synthesize searchCategory,addCalorieId;
 
@@ -33,6 +34,8 @@
         [self predicateFoodArrayWithString:@""];
         [[self categoryName] setFont:[UIFont fontWithName:@"THSarabunPSK-Bold" size:24]];
         [[self categoryName] setTextColor:[UIColor colorWithRed:0.521 green:0.533 blue:0.51 alpha:1]];
+        [[self searchDetail] setFont:[UIFont fontWithName:@"THSarabunPSK-Bold" size:16]];
+        [[self searchDetail] setTextColor:[UIColor colorWithRed:0.521 green:0.533 blue:0.51 alpha:.7]];
     }
     return self;
 }
@@ -86,7 +89,7 @@
     NSArray* sortedKeys = [allWhole keysSortedByValueUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     //NSLog(@"sorted : %@",sortedKeys);
     self.filteredFoodArray = sortedKeys;
-    
+    [searchDetail setText:[NSString stringWithFormat:@"พบ %d รายการ",[[self filteredFoodArray]count]]];
     [resultTableView reloadData];
     
 }
@@ -186,6 +189,7 @@
     [self setFoodArray:nil];
     [self setFilteredFoodArray:nil];
     [self setSearchCategory:nil];
+    [self setSearchDetail:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
