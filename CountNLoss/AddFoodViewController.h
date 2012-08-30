@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddFoodViewController : UIViewController<UITextFieldDelegate>
+@interface AddFoodViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labels;
 @property (nonatomic) NSString *addFoodName;
 @property (nonatomic) NSNumber *addFoodCalorie;

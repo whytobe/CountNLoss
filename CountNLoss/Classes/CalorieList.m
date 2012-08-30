@@ -9,37 +9,21 @@
 #import "CalorieList.h"
 
 static sqlite3 *database = nil;
-static sqlite3_stmt *deleteStmt = nil;
-static sqlite3_stmt *addStmt = nil;
 //static sqlite3_stmt *detailStmt = nil;
 //static sqlite3_stmt *updateStmt = nil;
 
 @implementation CalorieList
 
-@synthesize foodId,foodName,foodType,foodStore,foodCalorie;
-
 +(NSString *) getDBPath {
 	
-	//Search for standard documents using NSSearchPathForDirectoriesInDomains
-	//First Param = Searching the documents directory
-	//Second Param = Searching the Users directory and not the System
-	//Expand any tildes and identify home directories.
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
 	NSString *documentsDir = [paths objectAtIndex:0];
 	return [documentsDir stringByAppendingPathComponent:@"fooddb.sqlite"];
 }
 -(void)dealloc{
-    [self setFoodId:nil];
-    [self setFoodName:nil];
-    [self setFoodType:nil];
-    [self setFoodStore:nil];
-    [self setFoodCalorie:nil];
     
 }
 + (NSDictionary*) getAllFoodDataWithCat:(NSString *)catId {
-	
-	//CountAndLossAppDelegate *appDelegate = (CountAndLossAppDelegate *)[[UIApplication sharedApplication] delegate];
-    //NSMutableArray *tempFoodArray = [[NSMutableArray alloc]init];
     NSMutableArray *tempFoodIdArray = [[NSMutableArray alloc]init];
     NSMutableArray *tempFoodNameArray = [[NSMutableArray alloc]init];
     NSMutableArray *tempFoodTypeArray = [[NSMutableArray alloc]init];
@@ -56,9 +40,6 @@ static sqlite3_stmt *addStmt = nil;
                 const char* tempFoodName = (const char*)sqlite3_column_text(selectstmt, 1);
                 const char* tempFoodType = (const char*)sqlite3_column_text(selectstmt, 2);
                 const char* tempFoodStore = (const char*)sqlite3_column_text(selectstmt, 3);
-                //NSString *tempFoodName = [NSString stringWithFormat:@"%s",(char *)sqlite3_column_text(selectstmt, 1)];
-                ///NSString *tempFoodType = [NSString stringWithFormat:@"%s",(char *)sqlite3_column_text(selectstmt, 2)];
-                //NSString *tempFoodStore = [NSString stringWithFormat:@"%s",(char *)sqlite3_column_text(selectstmt, 3)];
                 NSNumber *tempFoodCalorie = [NSNumber numberWithDouble:sqlite3_column_double(selectstmt, 4)];
 				[tempFoodIdArray addObject:primaryKey];
                 [tempFoodNameArray addObject:tempFoodName?[NSString stringWithCString:tempFoodName encoding:NSUTF8StringEncoding]:@""];
@@ -70,20 +51,48 @@ static sqlite3_stmt *addStmt = nil;
                 tempFoodType = nil;
                 tempFoodStore = nil;
                 tempFoodCalorie = nil;
-				//NSLog(@"Id :%@, %@ %@",calorie.foodId,calorie.foodName,calorie.foodCalorie);
+
             }
 		}
     }
 	else{
-		sqlite3_close(database); //Even though the open call failed, close the database connection to release all the memory.
+		sqlite3_close(database); 
+    }
+    
+    //Get custom database from mydb.sqlite.
+    if (sqlite3_open([[self getMyDBPath] UTF8String], &database) == SQLITE_OK) {
+		NSString *sql = [NSString stringWithFormat:@"select food_id,food_name,food_type,food_store,food_calorie from food where food_id != 0 and food_type like '%%%@%%'",catId];
+		sqlite3_stmt *selectstmt;
+		if(sqlite3_prepare_v2(database, [sql UTF8String], -1, &selectstmt, NULL) == SQLITE_OK) {
+			
+			while(sqlite3_step(selectstmt) == SQLITE_ROW) {
+				
+				NSNumber *primaryKey = [NSNumber numberWithInt: sqlite3_column_int(selectstmt, 0)];
+                const char* tempFoodName = (const char*)sqlite3_column_text(selectstmt, 1);
+                const char* tempFoodType = (const char*)sqlite3_column_text(selectstmt, 2);
+                const char* tempFoodStore = (const char*)sqlite3_column_text(selectstmt, 3);
+                NSNumber *tempFoodCalorie = [NSNumber numberWithDouble:sqlite3_column_double(selectstmt, 4)];
+				[tempFoodIdArray addObject:primaryKey];
+                [tempFoodNameArray addObject:tempFoodName?[NSString stringWithCString:tempFoodName encoding:NSUTF8StringEncoding]:@""];
+				[tempFoodTypeArray addObject:tempFoodType?[NSString stringWithCString:tempFoodType encoding:NSUTF8StringEncoding]:@""];
+                [tempFoodStoreArray addObject:tempFoodStore?[NSString stringWithCString:tempFoodStore encoding:NSUTF8StringEncoding]:@""];
+                [tempFoodCalorieArray addObject:tempFoodCalorie];
+                primaryKey = nil;
+                tempFoodName = nil;
+                tempFoodType = nil;
+                tempFoodStore = nil;
+                tempFoodCalorie = nil;
+                
+            }
+		}
+    }
+	else{
+		sqlite3_close(database); 
     }
     
     return [NSDictionary dictionaryWithObjectsAndKeys:tempFoodIdArray,@"foodId",tempFoodNameArray,@"foodName",tempFoodTypeArray,@"foodType",tempFoodStoreArray,@"foodStore",tempFoodCalorieArray,@"foodCalorie", nil];
 }
 + (NSDictionary*) getAllFoodData {
-	
-	//CountAndLossAppDelegate *appDelegate = (CountAndLossAppDelegate *)[[UIApplication sharedApplication] delegate];
-    //NSMutableArray *tempFoodArray = [[NSMutableArray alloc]init];
     NSMutableArray *tempFoodIdArray = [[NSMutableArray alloc]init];
     NSMutableArray *tempFoodNameArray = [[NSMutableArray alloc]init];
     NSMutableArray *tempFoodTypeArray = [[NSMutableArray alloc]init];
@@ -100,9 +109,6 @@ static sqlite3_stmt *addStmt = nil;
                 const char* tempFoodName = (const char*)sqlite3_column_text(selectstmt, 1);
                 const char* tempFoodType = (const char*)sqlite3_column_text(selectstmt, 2);
                 const char* tempFoodStore = (const char*)sqlite3_column_text(selectstmt, 3);
-                //NSString *tempFoodName = [NSString stringWithFormat:@"%s",(char *)sqlite3_column_text(selectstmt, 1)];
-                ///NSString *tempFoodType = [NSString stringWithFormat:@"%s",(char *)sqlite3_column_text(selectstmt, 2)];
-                //NSString *tempFoodStore = [NSString stringWithFormat:@"%s",(char *)sqlite3_column_text(selectstmt, 3)];
                 NSNumber *tempFoodCalorie = [NSNumber numberWithDouble:sqlite3_column_double(selectstmt, 4)];
 				[tempFoodIdArray addObject:primaryKey];
                 [tempFoodNameArray addObject:tempFoodName?[NSString stringWithCString:tempFoodName encoding:NSUTF8StringEncoding]:@""];
@@ -114,74 +120,76 @@ static sqlite3_stmt *addStmt = nil;
                 tempFoodType = nil;
                 tempFoodStore = nil;
                 tempFoodCalorie = nil;
-				//NSLog(@"Id :%@, %@ %@",calorie.foodId,calorie.foodName,calorie.foodCalorie);
             }
 		}
     }
 	else{
-		sqlite3_close(database); //Even though the open call failed, close the database connection to release all the memory.
+		sqlite3_close(database); 
+    }
+    
+    //Get custom database from mydb.sqlite.
+    if (sqlite3_open([[self getMyDBPath] UTF8String], &database) == SQLITE_OK) {
+		const char *sql = "select food_id,food_name,food_type,food_store,food_calorie from food";
+		sqlite3_stmt *selectstmt;
+		if(sqlite3_prepare_v2(database, sql, -1, &selectstmt, NULL) == SQLITE_OK) {
+			
+			while(sqlite3_step(selectstmt) == SQLITE_ROW) {
+				
+				NSNumber *primaryKey = [NSNumber numberWithInt: sqlite3_column_int(selectstmt, 0)];
+                const char* tempFoodName = (const char*)sqlite3_column_text(selectstmt, 1);
+                const char* tempFoodType = (const char*)sqlite3_column_text(selectstmt, 2);
+                const char* tempFoodStore = (const char*)sqlite3_column_text(selectstmt, 3);
+                NSNumber *tempFoodCalorie = [NSNumber numberWithDouble:sqlite3_column_double(selectstmt, 4)];
+				[tempFoodIdArray addObject:primaryKey];
+                [tempFoodNameArray addObject:tempFoodName?[NSString stringWithCString:tempFoodName encoding:NSUTF8StringEncoding]:@""];
+				[tempFoodTypeArray addObject:tempFoodType?[NSString stringWithCString:tempFoodType encoding:NSUTF8StringEncoding]:@""];
+                [tempFoodStoreArray addObject:tempFoodStore?[NSString stringWithCString:tempFoodStore encoding:NSUTF8StringEncoding]:@""];
+                [tempFoodCalorieArray addObject:tempFoodCalorie];
+                primaryKey = nil;
+                tempFoodName = nil;
+                tempFoodType = nil;
+                tempFoodStore = nil;
+                tempFoodCalorie = nil;
+            }
+		}
+    }
+	else{
+		sqlite3_close(database); 
     }
     
     return [NSDictionary dictionaryWithObjectsAndKeys:tempFoodIdArray,@"foodId",tempFoodNameArray,@"foodName",tempFoodTypeArray,@"foodType",tempFoodStoreArray,@"foodStore",tempFoodCalorieArray,@"foodCalorie", nil];
-}
--(NSString*)description{
-    return [NSString stringWithFormat:@"Food id:%@, FoodName:%@, FoodType: %@, FoodCalorie: %@",self.foodId,self.foodName,self.foodType,self.foodCalorie];
 }
 + (void) finalizeStatements {
 	
 	if(database) sqlite3_close(database);
 }
 
-- (id) initWithPrimaryKey:(NSNumber*) pk {
-	
-	self = [super init];
-	foodId = pk;
-	return self;
-}
-- (void) deleteCoffee {
-	
-	if(deleteStmt == nil) {
-		const char *sql = "delete from food where food_id = ?";
-		if(sqlite3_prepare_v2(database, sql, -1, &deleteStmt, NULL) != SQLITE_OK)
-			NSAssert1(0, @"Error while creating delete statement. '%s'", sqlite3_errmsg(database));
-	}
-	
-	//When binding parameters, index starts from 1 and not zero.
-	sqlite3_bind_int(deleteStmt, 1,(int)foodId);
-	
-	if (SQLITE_DONE != sqlite3_step(deleteStmt)) 
-		NSAssert1(0, @"Error while deleting. '%s'", sqlite3_errmsg(database));
-	
-	sqlite3_reset(deleteStmt);
-}
-
-- (void) addFood {
-	
-	if(addStmt == nil) {
-		const char *sql = "insert into food(food_name, food_type, food_store, food_calorie) Values(?, ?, ?, ?)";
-		if(sqlite3_prepare_v2(database, sql, -1, &addStmt, NULL) != SQLITE_OK)
-			NSAssert1(0, @"Error while creating add statement. '%s'", sqlite3_errmsg(database));
-	}
-	
-	sqlite3_bind_text(addStmt, 1, [foodName UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(addStmt, 2, [foodType UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(addStmt, 3, [foodStore UTF8String], -1, SQLITE_TRANSIENT);
-	sqlite3_bind_double(addStmt, 4, [foodCalorie doubleValue]);
-	
-	if(SQLITE_DONE != sqlite3_step(addStmt))
-		NSAssert1(0, @"Error while inserting data. '%s'", sqlite3_errmsg(database));
-	else
-		//SQLite provides a method to get the last primary key inserted by using sqlite3_last_insert_rowid
-		foodId = [NSNumber numberWithInt:sqlite3_last_insert_rowid(database)];
-	
-	//Reset the add statement.
-	sqlite3_reset(addStmt);
++ (void) addFoodWithName:(NSString*)foodName andFoodType:(NSString*)foodType andFoodCalorie:(NSNumber*)foodCalorie andFoodStoreOrNil:(NSString*)foodStore {
+    if ([self openDatabse]) {
+        NSString *insertStatement = [NSString stringWithFormat:@"INSERT INTO food(food_name,food_type,food_store,food_calorie) VALUES('%@','%@','%@',%@)", foodName,foodType,foodStore,foodCalorie];
+        
+        char *error;
+        if ( !sqlite3_exec(database, [insertStatement UTF8String], NULL, NULL, &error) == SQLITE_OK) 
+            NSAssert1(0, @"Error while inserting data. '%s'", error);
+    }
+    [self closeDatabase];
 }
 
 -(void)removeFood{
     
 }
++(BOOL)openDatabse{
+    return sqlite3_open([[self getMyDBPath] UTF8String], &database) == SQLITE_OK;
+}
++(void)closeDatabase{
+    sqlite3_close(database);
+}
 
++(NSString *) getMyDBPath {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
+	NSString *documentsDir = [paths objectAtIndex:0];
+	return [documentsDir stringByAppendingPathComponent:@"mydb.sqlite"];
+}
 
 
 @end

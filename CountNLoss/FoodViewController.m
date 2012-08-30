@@ -46,7 +46,7 @@
         [[self calorieLabel]setTextAlignment:UITextAlignmentRight];
         [foodTableView setBackgroundView:[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bgList"]]];
         [foodTableView setBackgroundColor:nil];
-        foodArray = ((AppDelegate*)[[UIApplication sharedApplication]delegate]).foodArray;
+        
         
     }
     return self;
@@ -121,6 +121,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [self setFoodArray:((AppDelegate*)[[UIApplication sharedApplication]delegate]).foodArray];
     [self setMaxCalorie:[NSNumber numberWithInt: [((AppDelegate*)[[UIApplication sharedApplication] delegate]).myProfile getBMR]]];
     [[self currentWeightLabel]setText:[NSString stringWithFormat:@"%@ Kg.",[((AppDelegate*)[[UIApplication sharedApplication] delegate]).myProfile getCurrentWeight]]];
     [self reloadCalorie];

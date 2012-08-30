@@ -9,7 +9,7 @@
 #import "AddFoodViewController.h"
 #import "SelectCategoryViewController.h"
 #import "CalorieList.h"
-
+#import "AppDelegate.h"
 @interface AddFoodViewController ()
 
 @end
@@ -43,15 +43,45 @@
         float yPos = 36+(((14/4)*72) + ((14/4)*10)) + 20;
         float xPos = 16+((14%4)*72) + 10;
         UIButton *addMenuButton = [[UIButton alloc]initWithFrame:CGRectMake(xPos, yPos, 140, 72)];
-        [addMenuButton setTitle:@"เพิ่มอาหาร" forState:UIControlStateNormal];
+        [addMenuButton setTitle:@"เพิ่ม" forState:UIControlStateNormal];
         [addMenuButton setBackgroundImage:[UIImage imageNamed:@"button_long"] forState:UIControlStateNormal];
         [[addMenuButton titleLabel]setFont:[UIFont fontWithName:@"THSarabunPSK-Bold" size:30]];
         [[addMenuButton  titleLabel]setTextColor:[UIColor whiteColor]];
+        [addMenuButton addTarget:self action:@selector(insertButtonTapped) forControlEvents:UIControlEventTouchUpInside];
         [[self view]addSubview:addMenuButton];
     }
     return self;
 }
+-(void)insertButtonTapped{
+    [self setAddFoodName:[textFieldFoodName text]];
+    [self setAddFoodCalorie:(NSNumber*)[textFieldFoodCalorie text]];
+    if ([self addFoodName] && [self addFoodCalorie] && ![[[self selectedCategoryLabel ]text] isEqualToString:@"เลือกประเภท"] ){
+        NSLog(@"Insert Food Name : %@, Calorie : %@, Type Id : %@",[self addFoodName],[self addFoodCalorie],[[self typeIdArray] objectAtIndex:[[self addFoodType] intValue]]);
+                UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"แจ้งเตือน" message:@"ยืนยันการเพิ่มข้อมูล" delegate:self cancelButtonTitle:@"ยกเลิก" otherButtonTitles:@"ยืนยัน", nil];
+        [alertView show];
+        alertView =nil;
+        
+    } else {
+        NSLog(@"กรอกข้อมูลไม่ครบอะ");
+        NSMutableString *messageAlert = [NSMutableString stringWithFormat:@"คุณยังไม่ได้"];
+        if (![self addFoodName]) [messageAlert appendString:@" กรอกชื่ออาหาร"];
+        if (![self addFoodCalorie]) [messageAlert appendString:@" กรอกแคลอรี่"];
+        if ([[[self selectedCategoryLabel ]text] isEqualToString:@"เลือกประเภท"]) [messageAlert appendString:@" เลือกประเภท"];
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"แจ้งเตือน" message:messageAlert delegate:self cancelButtonTitle:@"ตกลง" otherButtonTitles:nil, nil];
+        [alertView show];
+         alertView =nil;
+        messageAlert = nil;
+    }
+}
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1){
+        [CalorieList addFoodWithName:[self addFoodName] andFoodType:[[self typeIdArray] objectAtIndex:[[self addFoodType] intValue]] andFoodCalorie:[self addFoodCalorie] andFoodStoreOrNil:nil];
+        ((AppDelegate*)[[UIApplication sharedApplication]delegate]).foodArray = [NSDictionary dictionaryWithDictionary:[CalorieList getAllFoodData]];
+
+        [[self navigationController] popViewControllerAnimated:YES];
+    }
+}
 -(void)viewWillAppear:(BOOL)animated{
     if ([self addFoodType]){
         [[self selectCategoryButton] setTitle:nil forState:UIControlStateNormal];

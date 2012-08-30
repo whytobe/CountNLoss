@@ -128,6 +128,8 @@
 		529CE69E15DE2CD200B1FF9C /* header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 529CE69C15DE2CD200B1FF9C /* header@2x.png */; };
 		529CE6A215DE2E0E00B1FF9C /* BRLNSDB.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 529CE6A115DE2DEE00B1FF9C /* BRLNSDB.TTF */; };
 		529CE6A715DE33D400B1FF9C /* FoodCategoryButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 529CE6A615DE33D400B1FF9C /* FoodCategoryButton.m */; };
+		529D5A5715EF20D50012AEC7 /* fooddb.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52FDA53115EC7B8C002D3D68 /* fooddb.sqlite */; };
+		529D5A5815EF28960012AEC7 /* mydb.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 529D5A5515EF20B80012AEC7 /* mydb.sqlite */; };
 		52BC9A7C15EB5BC600900443 /* graphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A7B15EB5BC600900443 /* graphView.m */; };
 		52BC9A8915EB5DE900900443 /* ECCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A7F15EB5DE900900443 /* ECCommon.m */; };
 		52BC9A8A15EB5DE900900443 /* ECGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A8215EB5DE900900443 /* ECGraph.m */; };
@@ -309,6 +311,7 @@
 		529CE6A115DE2DEE00B1FF9C /* BRLNSDB.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = BRLNSDB.TTF; sourceTree = "<group>"; };
 		529CE6A515DE33D400B1FF9C /* FoodCategoryButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodCategoryButton.h; sourceTree = "<group>"; };
 		529CE6A615DE33D400B1FF9C /* FoodCategoryButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodCategoryButton.m; sourceTree = "<group>"; };
+		529D5A5515EF20B80012AEC7 /* mydb.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = mydb.sqlite; sourceTree = "<group>"; };
 		52BC9A7A15EB5BC600900443 /* graphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphView.h; sourceTree = "<group>"; };
 		52BC9A7B15EB5BC600900443 /* graphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = graphView.m; sourceTree = "<group>"; };
 		52BC9A7E15EB5DE900900443 /* ECCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECCommon.h; sourceTree = "<group>"; };
@@ -403,6 +406,7 @@
 		5293A3F415EB267B0096FB8F /* data */ = {
 			isa = PBXGroup;
 			children = (
+				529D5A5515EF20B80012AEC7 /* mydb.sqlite */,
 				52FDA53115EC7B8C002D3D68 /* fooddb.sqlite */,
 				5293A3F615EB26870096FB8F /* history.sqlite */,
 			);
@@ -731,6 +735,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				529D5A5815EF28960012AEC7 /* mydb.sqlite in Resources */,
+				529D5A5715EF20D50012AEC7 /* fooddb.sqlite in Resources */,
 				5293A3F915EB28080096FB8F /* history.sqlite in Resources */,
 				529CE6A215DE2E0E00B1FF9C /* BRLNSDB.TTF in Resources */,
 				529CE59915DDF08100B1FF9C /* InfoPlist.strings in Resources */,

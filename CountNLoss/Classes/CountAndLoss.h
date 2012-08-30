@@ -29,4 +29,5 @@
 -(CountAndLoss*)initCountAndLoss;
 +(CountAndLoss*)initCountAndLoss;
 -(NSString*)getDate;
+
 @end

@@ -23,6 +23,7 @@ static sqlite3_stmt *deleteStmt = nil;
 	NSString *documentsDir = [paths objectAtIndex:0];
 	return [documentsDir stringByAppendingPathComponent:@"history.sqlite"];
 }
+
 -(void)dealloc{
     [self setHistoryID:nil];
     [self setHistoryDate:nil];

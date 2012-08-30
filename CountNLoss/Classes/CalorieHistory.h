@@ -26,6 +26,7 @@
 +(NSDictionary*) getFoodHistoryToday;
 +(NSDictionary*) getMostFavouriteFood;
 +(NSString *) getDBPath;
+
 +(void) insertCalorie:(int)withFoodId;
 +(void) deleteCalorie:(int)HistoryID;
 
