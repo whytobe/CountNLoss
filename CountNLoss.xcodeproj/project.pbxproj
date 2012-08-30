@@ -130,6 +130,8 @@
 		529CE6A715DE33D400B1FF9C /* FoodCategoryButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 529CE6A615DE33D400B1FF9C /* FoodCategoryButton.m */; };
 		529D5A5715EF20D50012AEC7 /* fooddb.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52FDA53115EC7B8C002D3D68 /* fooddb.sqlite */; };
 		529D5A5815EF28960012AEC7 /* mydb.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 529D5A5515EF20B80012AEC7 /* mydb.sqlite */; };
+		529D5A6E15EF64F30012AEC7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 529D5A6D15EF64F30012AEC7 /* libz.dylib */; };
+		529D5A7115EF65360012AEC7 /* EPUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 529D5A7015EF65360012AEC7 /* EPUploader.m */; };
 		52BC9A7C15EB5BC600900443 /* graphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A7B15EB5BC600900443 /* graphView.m */; };
 		52BC9A8915EB5DE900900443 /* ECCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A7F15EB5DE900900443 /* ECCommon.m */; };
 		52BC9A8A15EB5DE900900443 /* ECGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A8215EB5DE900900443 /* ECGraph.m */; };
@@ -312,6 +314,9 @@
 		529CE6A515DE33D400B1FF9C /* FoodCategoryButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodCategoryButton.h; sourceTree = "<group>"; };
 		529CE6A615DE33D400B1FF9C /* FoodCategoryButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodCategoryButton.m; sourceTree = "<group>"; };
 		529D5A5515EF20B80012AEC7 /* mydb.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = mydb.sqlite; sourceTree = "<group>"; };
+		529D5A6D15EF64F30012AEC7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		529D5A6F15EF65360012AEC7 /* EPUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPUploader.h; sourceTree = "<group>"; };
+		529D5A7015EF65360012AEC7 /* EPUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPUploader.m; sourceTree = "<group>"; };
 		52BC9A7A15EB5BC600900443 /* graphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphView.h; sourceTree = "<group>"; };
 		52BC9A7B15EB5BC600900443 /* graphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = graphView.m; sourceTree = "<group>"; };
 		52BC9A7E15EB5DE900900443 /* ECCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECCommon.h; sourceTree = "<group>"; };
@@ -340,6 +345,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				529D5A6E15EF64F30012AEC7 /* libz.dylib in Frameworks */,
 				521A5FBE15EA61380097C77C /* libTapkuLibrary.a in Frameworks */,
 				529CE64E15DDFB3B00B1FF9C /* libsqlite3.0.dylib in Frameworks */,
 				521A4BD915EA5FBF0097C77C /* MapKit.framework in Frameworks */,
@@ -431,6 +437,7 @@
 		529CE57F15DDF08100B1FF9C = {
 			isa = PBXGroup;
 			children = (
+				529D5A6D15EF64F30012AEC7 /* libz.dylib */,
 				5293A41615EB42B60096FB8F /* logo57.png */,
 				5293A41415EB428B0096FB8F /* logo114.png */,
 				529CE59415DDF08100B1FF9C /* CountNLoss */,
@@ -638,6 +645,8 @@
 		52BC9A7D15EB5DE900900443 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				529D5A6F15EF65360012AEC7 /* EPUploader.h */,
+				529D5A7015EF65360012AEC7 /* EPUploader.m */,
 				52BC9A7E15EB5DE900900443 /* ECCommon.h */,
 				52BC9A7F15EB5DE900900443 /* ECCommon.m */,
 				52BC9A8015EB5DE900900443 /* ECGraph */,
@@ -873,6 +882,7 @@
 				525854EF15EB9D6D0098AB49 /* HistoryDetailController.m in Sources */,
 				52BE1A6A15EDFCD900C751BF /* AddFoodViewController.m in Sources */,
 				52BE1A6F15EE23A600C751BF /* SelectCategoryViewController.m in Sources */,
+				529D5A7115EF65360012AEC7 /* EPUploader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

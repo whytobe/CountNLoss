@@ -73,22 +73,27 @@
     //Intersect Filter
     NSMutableSet *intersection = [NSMutableSet setWithArray:tempFilterArray];
     NSMutableArray *tempFilterCategory = [[NSMutableArray alloc]init];
-    if ([self searchCategory] == @"112"){ 
+    if ([[self searchCategory] isEqualToString:@"112"]){ 
         //NSLog(@"Most : %@",[CalorieHistory getMostFavouriteFood]);
+        
         [tempFilterCategory addObjectsFromArray:[[CalorieHistory getMostFavouriteFood] valueForKey:@"calorieFoodId"]];
+        //[intersection intersectSet:[NSMutableSet setWithArray:tempFilterCategory]];
+        NSPredicate *intersectPredicate = [NSPredicate predicateWithFormat:@"SELF IN %@", tempFilterArray];
+        NSArray *intersect = [tempFilterCategory filteredArrayUsingPredicate:intersectPredicate];
+        self.filteredFoodArray = intersect;
     } else {
         [tempFilterCategory addObjectsFromArray:[[CalorieList getAllFoodDataWithCat:self.searchCategory] valueForKey:@"foodId"]];
+        [intersection intersectSet:[NSMutableSet setWithArray:tempFilterCategory]];
+        NSMutableDictionary *allWhole = [[NSMutableDictionary alloc]init];
+        [[intersection allObjects] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [allWhole setValue:[[self.foodArray valueForKey:@"foodName"] objectAtIndex:[[self.foodArray valueForKey:@"foodId"] indexOfObject:obj]] forKey:obj];
+        }];
+        
+        NSArray* sortedKeys = [allWhole keysSortedByValueUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+        //NSLog(@"sorted : %@",sortedKeys);
+        self.filteredFoodArray = sortedKeys;
     }
-    [intersection intersectSet:[NSMutableSet setWithArray:tempFilterCategory]];
-
-    NSMutableDictionary *allWhole = [[NSMutableDictionary alloc]init];
-    [[intersection allObjects] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [allWhole setValue:[[self.foodArray valueForKey:@"foodName"] objectAtIndex:[[self.foodArray valueForKey:@"foodId"] indexOfObject:obj]] forKey:obj];
-    }];
-
-    NSArray* sortedKeys = [allWhole keysSortedByValueUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    //NSLog(@"sorted : %@",sortedKeys);
-    self.filteredFoodArray = sortedKeys;
+    
     [searchDetail setText:[NSString stringWithFormat:@"พบ %d รายการ",[[self filteredFoodArray]count]]];
     [resultTableView reloadData];
     
