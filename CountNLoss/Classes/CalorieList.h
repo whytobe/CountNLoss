@@ -13,10 +13,14 @@
 
 +(NSDictionary*) getAllFoodData;
 +(NSDictionary*) getAllFoodDataWithCat:(NSString *)catId;
++(NSDictionary*) getCustomFoodData;
 +(void) finalizeStatements;
 +(NSString *) getDBPath;
 +(NSString *) getMyDBPath;
 + (void) addFoodWithName:(NSString*)foodName andFoodType:(NSString*)foodType andFoodCalorie:(NSNumber*)foodCalorie andFoodStoreOrNil:(NSString*)foodStore;
++ (void) removeCustomFoodWithId:(NSNumber*)customFoodId;
 +(BOOL)openDatabse;
 +(void)closeDatabase;
++(BOOL)openMainDatabase;
++(void)closeMainDatabase;
 @end

@@ -15,11 +15,13 @@
 @end
 
 @implementation AddFoodViewController
+@synthesize customFoodTableView;
 @synthesize selectedCategoryLabel;
 @synthesize selectCategoryButton;
 @synthesize textFieldFoodName;
 @synthesize textFieldFoodCalorie;
-@synthesize labels,addFoodName,addFoodType,addFoodCalorie,foodIconArray,foodNameArray,typeIdArray,lockTypeArray;
+@synthesize labels,addFoodName,addFoodType,addFoodCalorie,foodIconArray,foodNameArray,typeIdArray,lockTypeArray,myCustomFoodDictionary,removeCustomFoodId;
+@synthesize confirmInsertAlertView,confirmRemoveAlertView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,8 +41,11 @@
         }
         [[self textFieldFoodCalorie] setKeyboardType:UIKeyboardTypeDecimalPad];
         
+        [customFoodTableView setBackgroundView:[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bgList"]]];
+        [customFoodTableView setBackgroundColor:nil];
+        
         [[self selectedCategoryLabel]setFont:[UIFont fontWithName:@"THSarabunPSK-Bold" size:18]];
-        float yPos = 36+(((14/4)*72) + ((14/4)*10)) + 20;
+        float yPos = 36+(((14/4)*72) + ((14/4)*10)) -200;
         float xPos = 16+((14%4)*72) + 10;
         UIButton *addMenuButton = [[UIButton alloc]initWithFrame:CGRectMake(xPos, yPos, 140, 72)];
         [addMenuButton setTitle:@"เพิ่ม" forState:UIControlStateNormal];
@@ -55,46 +60,65 @@
 -(void)insertButtonTapped{
     [self setAddFoodName:[textFieldFoodName text]];
     [self setAddFoodCalorie:(NSNumber*)[textFieldFoodCalorie text]];
-    if ([self addFoodName] && [self addFoodCalorie] && ![[[self selectedCategoryLabel ]text] isEqualToString:@"เลือกประเภท"] ){
+    if ([[textFieldFoodName text] length] > 0 && [[textFieldFoodCalorie text] length] > 0 && ![[[self selectedCategoryLabel ]text] isEqualToString:@"เลือกประเภท"] ){
         NSLog(@"Insert Food Name : %@, Calorie : %@, Type Id : %@",[self addFoodName],[self addFoodCalorie],[[self typeIdArray] objectAtIndex:[[self addFoodType] intValue]]);
-                UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"แจ้งเตือน" message:@"ยืนยันการเพิ่มข้อมูล" delegate:self cancelButtonTitle:@"ยกเลิก" otherButtonTitles:@"ยืนยัน", nil];
-        [alertView show];
-        alertView =nil;
-        
+        confirmInsertAlertView = [[UIAlertView alloc]initWithTitle:@"แจ้งเตือน" message:@"ยืนยันการเพิ่มข้อมูล" delegate:self cancelButtonTitle:@"ยกเลิก" otherButtonTitles:@"ยืนยัน", nil];
+        [confirmInsertAlertView show];
+
     } else {
         NSLog(@"กรอกข้อมูลไม่ครบอะ");
         NSMutableString *messageAlert = [NSMutableString stringWithFormat:@"คุณยังไม่ได้"];
-        if (![self addFoodName]) [messageAlert appendString:@" กรอกชื่ออาหาร"];
-        if (![self addFoodCalorie]) [messageAlert appendString:@" กรอกแคลอรี่"];
-        if ([[[self selectedCategoryLabel ]text] isEqualToString:@"เลือกประเภท"]) [messageAlert appendString:@" เลือกประเภท"];
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"แจ้งเตือน" message:messageAlert delegate:self cancelButtonTitle:@"ตกลง" otherButtonTitles:nil, nil];
-        [alertView show];
-         alertView =nil;
+        if (![[textFieldFoodName text] length] > 0) [messageAlert appendString:@" กรอกชื่ออาหาร"];
+        if (![[textFieldFoodCalorie text] length] > 0) [messageAlert appendString:@" กรอกปริมาณแคลอรี่"];
+        if ([[selectedCategoryLabel text] isEqualToString:@"เลือกประเภท"]) [messageAlert appendString:@" เลือกประเภท"];
+        confirmInsertAlertView = [[UIAlertView alloc]initWithTitle:@"แจ้งเตือน" message:messageAlert delegate:self cancelButtonTitle:@"ตกลง" otherButtonTitles:nil, nil];
+        [confirmInsertAlertView show];
         messageAlert = nil;
     }
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1){
-        [CalorieList addFoodWithName:[self addFoodName] andFoodType:[[self typeIdArray] objectAtIndex:[[self addFoodType] intValue]] andFoodCalorie:[self addFoodCalorie] andFoodStoreOrNil:nil];
-        ((AppDelegate*)[[UIApplication sharedApplication]delegate]).foodArray = [NSDictionary dictionaryWithDictionary:[CalorieList getAllFoodData]];
-
-        [[self navigationController] popViewControllerAnimated:YES];
+    if (alertView == confirmInsertAlertView){
+        if (buttonIndex == 1){
+            [CalorieList addFoodWithName:[self addFoodName] andFoodType:[[self typeIdArray] objectAtIndex:[[self addFoodType] intValue]] andFoodCalorie:[self addFoodCalorie] andFoodStoreOrNil:nil];
+             ((AppDelegate*)[[UIApplication sharedApplication]delegate]).foodArray = [NSDictionary dictionaryWithDictionary:[CalorieList getAllFoodData]];
+            [[self textFieldFoodCalorie]setText:nil] ;
+            [[self textFieldFoodName]setText:nil];
+            [self.textFieldFoodName resignFirstResponder];
+            [self.textFieldFoodCalorie resignFirstResponder];
+            [self reloadCustomFood];
+            
+            //[[self navigationController] popViewControllerAnimated:YES];
+        }
+    } else if (alertView == confirmRemoveAlertView) {
+        if (buttonIndex == 1){
+            [CalorieList removeCustomFoodWithId:[[myCustomFoodDictionary valueForKey:@"foodId"] objectAtIndex:removeCustomFoodId]];
+            [self setMyCustomFoodDictionary:[CalorieList getCustomFoodData]];
+            [customFoodTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:removeCustomFoodId inSection:0]] withRowAnimation:UITableViewRowAnimationFade];  
+            //[[self navigationController] popViewControllerAnimated:YES];
+        }
     }
+    alertView = nil;
 }
 -(void)viewWillAppear:(BOOL)animated{
     if ([self addFoodType]){
         [[self selectCategoryButton] setTitle:nil forState:UIControlStateNormal];
         [[self selectCategoryButton] setImage:[UIImage imageNamed:[[self foodIconArray]objectAtIndex:[[self addFoodType]intValue]]] forState:UIControlStateNormal];
         [[self selectedCategoryLabel] setText:[[self foodNameArray]objectAtIndex:[[self addFoodType]intValue]]];
-         NSLog(@"%@",[self addFoodType]);
+         //NSLog(@"%@",[self addFoodType]);
+        
     } else {
         [[self selectedCategoryLabel] setText:@"เลือกประเภท"];
         [[self selectCategoryButton]setTitle:@"?" forState:UIControlStateNormal];
     }
+    [self reloadCustomFood];
     [textFieldFoodCalorie resignFirstResponder];
     [textFieldFoodName resignFirstResponder];
    
+}
+- (void)reloadCustomFood{
+    [self setMyCustomFoodDictionary:[CalorieList getCustomFoodData]];
+    [customFoodTableView reloadData];
 }
 
 - (void)viewDidLoad
@@ -119,6 +143,7 @@
     [self setSelectedCategoryLabel:nil];
     [self setTextFieldFoodName:nil];
     [self setTextFieldFoodCalorie:nil];
+    [self setCustomFoodTableView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -132,5 +157,62 @@
 - (IBAction)selectCategory:(id)sender {
     SelectCategoryViewController *selectCategoryPage = [[SelectCategoryViewController alloc]initWithCategorySelectDelegate:self NibName:@"SelectCategoryViewController" bundle:nil];
     [[self navigationController]pushViewController:selectCategoryPage animated:YES];
+}
+
+- (IBAction)editButton:(id)sender {
+    [customFoodTableView setEditing:![customFoodTableView isEditing] animated:YES];
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return [UIView new];
+}
+-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.01f;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [UIView new];
+}
+-(float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01f;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete){
+        //NSLog(@"Delete row %d : %@",indexPath.row,[[[self todayCalorie] valueForKey:@"calorieId"]objectAtIndex:indexPath.row]);
+        [self setRemoveCustomFoodId:indexPath.row];
+        confirmRemoveAlertView = [[UIAlertView alloc]initWithTitle:@"แจ้งเตือน" message:@"การลบอาหารจะมีผลทำให้อาหารที่เคยเพิ่มไว้ในรายการที่ทานแล้วถูกลบไปด้วย \nยืนยันการลบ?" delegate:self cancelButtonTitle:@"ยกเลิก" otherButtonTitles:@"ยืนยัน", nil];
+        [confirmRemoveAlertView show];
+    }
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    //if (cell == nil){
+    cell = [[UITableViewCell alloc]initWithStyle  :UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    
+    [[cell textLabel] setText:[[[self myCustomFoodDictionary] objectForKey:@"foodName"]objectAtIndex:indexPath.row]];
+    [[cell detailTextLabel] setText:[NSString stringWithFormat:@"%@ แคลอรี่",[[[self myCustomFoodDictionary] objectForKey:@"foodCalorie"]objectAtIndex:indexPath.row ]]];
+    
+    [[cell textLabel] setFont:[UIFont fontWithName:@"TH SarabunPSK" size:20]];
+    [[cell detailTextLabel] setFont:[UIFont fontWithName:@"TH SarabunPSK" size:20]];
+    
+    [[cell textLabel] setTextColor:[UIColor grayColor]];
+    [[cell detailTextLabel] setTextColor:[UIColor grayColor]];
+    
+    //}
+    return cell;
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [[[self myCustomFoodDictionary] valueForKey:@"foodId"]count ];
+}
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [textFieldFoodName resignFirstResponder];
+    [textFieldFoodCalorie resignFirstResponder];
+    [customFoodTableView setEditing:NO animated:YES];
 }
 @end
