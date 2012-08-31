@@ -46,7 +46,7 @@
         [self setMyGender:[[myProfile valueForKey:@"gender"]boolValue]];
         historyWeight = [NSMutableDictionary dictionaryWithDictionary:[myProfile valueForKey:@"weight"]];
         if (historyWeight.count > 0){
-            id aKey = [[historyWeight allKeys] lastObject];
+            id aKey = [[[historyWeight allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] lastObject];
             [self setMyWeight:[[[self historyWeight] valueForKey:aKey]floatValue]];
         } else {
             historyWeight = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSNumber numberWithFloat:[self myWeight]],[self getDate], nil];
@@ -54,13 +54,15 @@
     return self;
 }
 -(NSNumber*)getCurrentWeight{
-    id aKey = [[historyWeight allKeys] lastObject];
+    id aKey = [[[historyWeight allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] lastObject];
     return [[self historyWeight] valueForKey:aKey];
 }
 -(BOOL)checkCurrentWeight{
-    NSString *aKey = [[historyWeight allKeys] lastObject];
+    NSString *aKey = [[[historyWeight allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] lastObject];
     BOOL result = ([[self getDate] isEqualToString: aKey]&& [self myWeight] > 0 );
-    //NSLog(@"Last weight date : %@ / %@ | %f = %i",aKey,[self getDate],[self myWeight],result);
+    //NSLog(@"Weigh History : %@",sortedKeys);
+    NSLog(@"Last weight date : %@ / %@ | %f = %i",aKey,[self getDate],[self myWeight],result);
+    
     return result;
 }
 -(BOOL)checkCompleteProfile{

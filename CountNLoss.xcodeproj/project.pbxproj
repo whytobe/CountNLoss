@@ -132,6 +132,10 @@
 		529D5A5815EF28960012AEC7 /* mydb.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 529D5A5515EF20B80012AEC7 /* mydb.sqlite */; };
 		529D5A6E15EF64F30012AEC7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 529D5A6D15EF64F30012AEC7 /* libz.dylib */; };
 		529D5A7115EF65360012AEC7 /* EPUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 529D5A7015EF65360012AEC7 /* EPUploader.m */; };
+		529D5A7515EF78940012AEC7 /* NoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 529D5A7315EF78940012AEC7 /* NoticeViewController.m */; };
+		529D5A7615EF78940012AEC7 /* NoticeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 529D5A7415EF78940012AEC7 /* NoticeViewController.xib */; };
+		529D5A7A15EF7AB40012AEC7 /* NoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 529D5A7815EF7AB40012AEC7 /* NoticeDetailViewController.m */; };
+		529D5A7B15EF7AB40012AEC7 /* NoticeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 529D5A7915EF7AB40012AEC7 /* NoticeDetailViewController.xib */; };
 		52BC9A7C15EB5BC600900443 /* graphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A7B15EB5BC600900443 /* graphView.m */; };
 		52BC9A8915EB5DE900900443 /* ECCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A7F15EB5DE900900443 /* ECCommon.m */; };
 		52BC9A8A15EB5DE900900443 /* ECGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A8215EB5DE900900443 /* ECGraph.m */; };
@@ -317,6 +321,12 @@
 		529D5A6D15EF64F30012AEC7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		529D5A6F15EF65360012AEC7 /* EPUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPUploader.h; sourceTree = "<group>"; };
 		529D5A7015EF65360012AEC7 /* EPUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPUploader.m; sourceTree = "<group>"; };
+		529D5A7215EF78940012AEC7 /* NoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeViewController.h; sourceTree = "<group>"; };
+		529D5A7315EF78940012AEC7 /* NoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeViewController.m; sourceTree = "<group>"; };
+		529D5A7415EF78940012AEC7 /* NoticeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeViewController.xib; sourceTree = "<group>"; };
+		529D5A7715EF7AB40012AEC7 /* NoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeDetailViewController.h; sourceTree = "<group>"; };
+		529D5A7815EF7AB40012AEC7 /* NoticeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeDetailViewController.m; sourceTree = "<group>"; };
+		529D5A7915EF7AB40012AEC7 /* NoticeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeDetailViewController.xib; sourceTree = "<group>"; };
 		52BC9A7A15EB5BC600900443 /* graphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphView.h; sourceTree = "<group>"; };
 		52BC9A7B15EB5BC600900443 /* graphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = graphView.m; sourceTree = "<group>"; };
 		52BC9A7E15EB5DE900900443 /* ECCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECCommon.h; sourceTree = "<group>"; };
@@ -396,6 +406,12 @@
 				520AA76E15E6541000B9D2B3 /* ProfileViewController.h */,
 				520AA76F15E6541000B9D2B3 /* ProfileViewController.m */,
 				520AA77015E6541000B9D2B3 /* ProfileViewController.xib */,
+				529D5A7215EF78940012AEC7 /* NoticeViewController.h */,
+				529D5A7315EF78940012AEC7 /* NoticeViewController.m */,
+				529D5A7415EF78940012AEC7 /* NoticeViewController.xib */,
+				529D5A7715EF7AB40012AEC7 /* NoticeDetailViewController.h */,
+				529D5A7815EF7AB40012AEC7 /* NoticeDetailViewController.m */,
+				529D5A7915EF7AB40012AEC7 /* NoticeDetailViewController.xib */,
 			);
 			name = "More Tab";
 			sourceTree = "<group>";
@@ -845,6 +861,8 @@
 				52BE1A6615EDF00D00C751BF /* button_long@2x.png in Resources */,
 				52BE1A6B15EDFCD900C751BF /* AddFoodViewController.xib in Resources */,
 				52BE1A7015EE23A600C751BF /* SelectCategoryViewController.xib in Resources */,
+				529D5A7615EF78940012AEC7 /* NoticeViewController.xib in Resources */,
+				529D5A7B15EF7AB40012AEC7 /* NoticeDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -883,6 +901,8 @@
 				52BE1A6A15EDFCD900C751BF /* AddFoodViewController.m in Sources */,
 				52BE1A6F15EE23A600C751BF /* SelectCategoryViewController.m in Sources */,
 				529D5A7115EF65360012AEC7 /* EPUploader.m in Sources */,
+				529D5A7515EF78940012AEC7 /* NoticeViewController.m in Sources */,
+				529D5A7A15EF7AB40012AEC7 /* NoticeDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

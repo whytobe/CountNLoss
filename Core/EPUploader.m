@@ -21,7 +21,7 @@
 
 static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
 static NSString * const FORM_FLE_INPUT = @"uploaded";
-
+NSString* saveFileName = @"default.sqlite";
 #define ASSERT(x) NSAssert(x, @"")
 
 @interface EPUploader (Private)
@@ -60,6 +60,7 @@ static NSString * const FORM_FLE_INPUT = @"uploaded";
 
 - (id)initWithURL: (NSURL *)aServerURL   // IN
          filePath: (NSString *)aFilePath // IN
+         fileName: (NSString *)aFileName
          delegate: (id)aDelegate         // IN
      doneSelector: (SEL)aDoneSelector    // IN
     errorSelector: (SEL)anErrorSelector  // IN
@@ -71,6 +72,7 @@ static NSString * const FORM_FLE_INPUT = @"uploaded";
         ASSERT(aDoneSelector);
         ASSERT(anErrorSelector);
         
+        saveFileName = aFileName;
         serverURL = aServerURL;
         filePath = aFilePath ;
         delegate = aDelegate ;
@@ -232,7 +234,7 @@ static NSString * const FORM_FLE_INPUT = @"uploaded";
      [[NSString stringWithFormat:@"--%@\r\n", boundry] dataUsingEncoding:NSUTF8StringEncoding]];
     [postData appendData:
      [[NSString stringWithFormat:
-       @"Content-Disposition: form-data; name=\"%@\"; filename=\"file.bin\"\r\n\r\n", FORM_FLE_INPUT]
+       @"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n\r\n", FORM_FLE_INPUT,saveFileName]
       dataUsingEncoding:NSUTF8StringEncoding]];
     [postData appendData:data];
     [postData appendData:

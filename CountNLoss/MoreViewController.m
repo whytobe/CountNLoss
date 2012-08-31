@@ -9,6 +9,7 @@
 #import "MoreViewController.h"
 #import "AboutCountAndLossViewController.h"
 #import "ProfileViewController.h"
+#import "NoticeViewController.h"
 @interface MoreViewController ()
 
 @end
@@ -77,7 +78,8 @@
                 }
                 case 1:{
                     NSLog(@"Notice tapped");
-                    
+                    UIViewController *noticePage = [[NoticeViewController alloc] initWithNibName:@"NoticeViewController" bundle:nil];
+                    [[self navigationController] pushViewController:noticePage animated:YES];
                     break;
                 }
             }

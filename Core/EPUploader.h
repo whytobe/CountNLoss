@@ -20,6 +20,7 @@
 
 -   (id)initWithURL: (NSURL *)serverURL 
            filePath: (NSString *)filePath 
+           fileName: (NSString *)fileName
            delegate: (id)delegate 
        doneSelector: (SEL)doneSelector 
       errorSelector: (SEL)errorSelector;
