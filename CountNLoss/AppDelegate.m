@@ -25,6 +25,7 @@
 @synthesize moreNavigationController = _moreNavigationController;
 @synthesize historyNavigationController = _historyNavigationController;
 @synthesize todayNavigationController = _todayNavigationController;
+@synthesize goalNavigationController = _goalNavigationController;
 @synthesize foodArray,historyArray,myProfile;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -58,13 +59,13 @@
     self.moreNavigationController = [[UINavigationController alloc]initWithRootViewController:moreViewController];
     self.historyNavigationController = [[UINavigationController alloc]initWithRootViewController:historyViewController];
     self.todayNavigationController = [[UINavigationController alloc]initWithRootViewController:todayViewController];
-
+    self.goalNavigationController = [[UINavigationController alloc]initWithRootViewController:goalViewController];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 
     
     
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:[self foodNavigationController], [self todayNavigationController],[self historyNavigationController],goalViewController,[self moreNavigationController], nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:[self foodNavigationController], [self todayNavigationController],[self historyNavigationController],[self goalNavigationController],[self moreNavigationController], nil];
     self.window.rootViewController = self.tabBarController;
     
     self.tabBarController.selectedIndex = 1;

@@ -79,8 +79,6 @@
 		529CE64215DDF93C00B1FF9C /* FoodCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 529CE63115DDF93C00B1FF9C /* FoodCategoryViewController.xib */; };
 		529CE64315DDF93C00B1FF9C /* FoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 529CE63315DDF93C00B1FF9C /* FoodViewController.m */; };
 		529CE64415DDF93C00B1FF9C /* FoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 529CE63415DDF93C00B1FF9C /* FoodViewController.xib */; };
-		529CE64515DDF93C00B1FF9C /* GoalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 529CE63615DDF93C00B1FF9C /* GoalViewController.m */; };
-		529CE64615DDF93C00B1FF9C /* GoalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 529CE63715DDF93C00B1FF9C /* GoalViewController.xib */; };
 		529CE64715DDF93C00B1FF9C /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 529CE63915DDF93C00B1FF9C /* HistoryViewController.m */; };
 		529CE64815DDF93C00B1FF9C /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 529CE63A15DDF93C00B1FF9C /* HistoryViewController.xib */; };
 		529CE64915DDF93C00B1FF9C /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 529CE63C15DDF93C00B1FF9C /* MoreViewController.m */; };
@@ -136,6 +134,8 @@
 		529D5A7615EF78940012AEC7 /* NoticeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 529D5A7415EF78940012AEC7 /* NoticeViewController.xib */; };
 		529D5A7A15EF7AB40012AEC7 /* NoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 529D5A7815EF7AB40012AEC7 /* NoticeDetailViewController.m */; };
 		529D5A7B15EF7AB40012AEC7 /* NoticeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 529D5A7915EF7AB40012AEC7 /* NoticeDetailViewController.xib */; };
+		52AC59C415F0BF7F00BE94F3 /* GoalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AC59BE15F0BD8E00BE94F3 /* GoalViewController.m */; };
+		52AC59C515F0BF9900BE94F3 /* Goalsgraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AC59C015F0BE7800BE94F3 /* Goalsgraph.m */; };
 		52BC9A7C15EB5BC600900443 /* graphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A7B15EB5BC600900443 /* graphView.m */; };
 		52BC9A8915EB5DE900900443 /* ECCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A7F15EB5DE900900443 /* ECCommon.m */; };
 		52BC9A8A15EB5DE900900443 /* ECGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC9A8215EB5DE900900443 /* ECGraph.m */; };
@@ -148,6 +148,10 @@
 		52BE1A6B15EDFCD900C751BF /* AddFoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BE1A6915EDFCD900C751BF /* AddFoodViewController.xib */; };
 		52BE1A6F15EE23A600C751BF /* SelectCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BE1A6D15EE23A600C751BF /* SelectCategoryViewController.m */; };
 		52BE1A7015EE23A600C751BF /* SelectCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BE1A6E15EE23A600C751BF /* SelectCategoryViewController.xib */; };
+		52D6276F15F0C11B00C2FB2A /* GoalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D6276D15F0C11300C2FB2A /* GoalViewController.xib */; };
+		52D6277015F0C14B00C2FB2A /* GoalsProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AC59C315F0BEEE00BE94F3 /* GoalsProgress.m */; };
+		52D6277315F0C1EC00C2FB2A /* progress-goals-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D6277115F0C1EC00C2FB2A /* progress-goals-bg.png */; };
+		52D6277415F0C1EC00C2FB2A /* progress-goals-fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D6277215F0C1EC00C2FB2A /* progress-goals-fill.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,9 +267,6 @@
 		529CE63215DDF93C00B1FF9C /* FoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodViewController.h; sourceTree = "<group>"; };
 		529CE63315DDF93C00B1FF9C /* FoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodViewController.m; sourceTree = "<group>"; };
 		529CE63415DDF93C00B1FF9C /* FoodViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FoodViewController.xib; sourceTree = "<group>"; };
-		529CE63515DDF93C00B1FF9C /* GoalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoalViewController.h; sourceTree = "<group>"; };
-		529CE63615DDF93C00B1FF9C /* GoalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoalViewController.m; sourceTree = "<group>"; };
-		529CE63715DDF93C00B1FF9C /* GoalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalViewController.xib; sourceTree = "<group>"; };
 		529CE63815DDF93C00B1FF9C /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		529CE63915DDF93C00B1FF9C /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		529CE63A15DDF93C00B1FF9C /* HistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
@@ -327,6 +328,12 @@
 		529D5A7715EF7AB40012AEC7 /* NoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeDetailViewController.h; sourceTree = "<group>"; };
 		529D5A7815EF7AB40012AEC7 /* NoticeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeDetailViewController.m; sourceTree = "<group>"; };
 		529D5A7915EF7AB40012AEC7 /* NoticeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeDetailViewController.xib; sourceTree = "<group>"; };
+		52AC59BD15F0BD8E00BE94F3 /* GoalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoalViewController.h; sourceTree = "<group>"; };
+		52AC59BE15F0BD8E00BE94F3 /* GoalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoalViewController.m; sourceTree = "<group>"; };
+		52AC59C015F0BE7800BE94F3 /* Goalsgraph.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Goalsgraph.m; sourceTree = "<group>"; };
+		52AC59C115F0BE7800BE94F3 /* Goalsgraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Goalsgraph.h; sourceTree = "<group>"; };
+		52AC59C215F0BEEE00BE94F3 /* GoalsProgress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoalsProgress.h; sourceTree = "<group>"; };
+		52AC59C315F0BEEE00BE94F3 /* GoalsProgress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoalsProgress.m; sourceTree = "<group>"; };
 		52BC9A7A15EB5BC600900443 /* graphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphView.h; sourceTree = "<group>"; };
 		52BC9A7B15EB5BC600900443 /* graphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = graphView.m; sourceTree = "<group>"; };
 		52BC9A7E15EB5DE900900443 /* ECCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECCommon.h; sourceTree = "<group>"; };
@@ -347,6 +354,9 @@
 		52BE1A6C15EE23A500C751BF /* SelectCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCategoryViewController.h; sourceTree = "<group>"; };
 		52BE1A6D15EE23A600C751BF /* SelectCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCategoryViewController.m; sourceTree = "<group>"; };
 		52BE1A6E15EE23A600C751BF /* SelectCategoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCategoryViewController.xib; sourceTree = "<group>"; };
+		52D6276D15F0C11300C2FB2A /* GoalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoalViewController.xib; sourceTree = "<group>"; };
+		52D6277115F0C1EC00C2FB2A /* progress-goals-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-goals-bg.png"; sourceTree = "<group>"; };
+		52D6277215F0C1EC00C2FB2A /* progress-goals-fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-goals-fill.png"; sourceTree = "<group>"; };
 		52FDA53115EC7B8C002D3D68 /* fooddb.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = fooddb.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -497,9 +507,7 @@
 				529CE63E15DDF93C00B1FF9C /* TodayViewController.h */,
 				529CE63F15DDF93C00B1FF9C /* TodayViewController.m */,
 				529CE64015DDF93C00B1FF9C /* TodayViewController.xib */,
-				529CE63515DDF93C00B1FF9C /* GoalViewController.h */,
-				529CE63615DDF93C00B1FF9C /* GoalViewController.m */,
-				529CE63715DDF93C00B1FF9C /* GoalViewController.xib */,
+				52AC59BF15F0BDD900BE94F3 /* Goal Tab */,
 				529CE62E15DDF8F500B1FF9C /* Resource */,
 				529CE5C115DDF51F00B1FF9C /* Classes */,
 				529CE59515DDF08100B1FF9C /* Supporting Files */,
@@ -552,6 +560,8 @@
 		529CE6A015DE2DDF00B1FF9C /* image */ = {
 			isa = PBXGroup;
 			children = (
+				52D6277115F0C1EC00C2FB2A /* progress-goals-bg.png */,
+				52D6277215F0C1EC00C2FB2A /* progress-goals-fill.png */,
 				52BE1A6315EDF00D00C751BF /* button_long.png */,
 				52BE1A6415EDF00D00C751BF /* button_long@2x.png */,
 				52979F8515E7874000C544FF /* progress-bar-fill.png */,
@@ -648,6 +658,8 @@
 		529CE6A415DE33B100B1FF9C /* CustomClass */ = {
 			isa = PBXGroup;
 			children = (
+				52AC59C215F0BEEE00BE94F3 /* GoalsProgress.h */,
+				52AC59C315F0BEEE00BE94F3 /* GoalsProgress.m */,
 				529CE6A515DE33D400B1FF9C /* FoodCategoryButton.h */,
 				529CE6A615DE33D400B1FF9C /* FoodCategoryButton.m */,
 				5225C50115E263EB000694FA /* searchTextField.h */,
@@ -656,6 +668,18 @@
 				52979F7715E779EE00C544FF /* calorieProgess.m */,
 			);
 			name = CustomClass;
+			sourceTree = "<group>";
+		};
+		52AC59BF15F0BDD900BE94F3 /* Goal Tab */ = {
+			isa = PBXGroup;
+			children = (
+				52AC59C015F0BE7800BE94F3 /* Goalsgraph.m */,
+				52AC59C115F0BE7800BE94F3 /* Goalsgraph.h */,
+				52AC59BD15F0BD8E00BE94F3 /* GoalViewController.h */,
+				52AC59BE15F0BD8E00BE94F3 /* GoalViewController.m */,
+				52D6276D15F0C11300C2FB2A /* GoalViewController.xib */,
+			);
+			name = "Goal Tab";
 			sourceTree = "<group>";
 		};
 		52BC9A7D15EB5DE900900443 /* Core */ = {
@@ -760,6 +784,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52D6276F15F0C11B00C2FB2A /* GoalViewController.xib in Resources */,
 				529D5A5815EF28960012AEC7 /* mydb.sqlite in Resources */,
 				529D5A5715EF20D50012AEC7 /* fooddb.sqlite in Resources */,
 				5293A3F915EB28080096FB8F /* history.sqlite in Resources */,
@@ -801,7 +826,6 @@
 				529CE62D15DDF8EF00B1FF9C /* today@2x.png in Resources */,
 				529CE64215DDF93C00B1FF9C /* FoodCategoryViewController.xib in Resources */,
 				529CE64415DDF93C00B1FF9C /* FoodViewController.xib in Resources */,
-				529CE64615DDF93C00B1FF9C /* GoalViewController.xib in Resources */,
 				529CE64815DDF93C00B1FF9C /* HistoryViewController.xib in Resources */,
 				529CE64A15DDF93C00B1FF9C /* MoreViewController.xib in Resources */,
 				529CE64C15DDF93C00B1FF9C /* TodayViewController.xib in Resources */,
@@ -863,6 +887,8 @@
 				52BE1A7015EE23A600C751BF /* SelectCategoryViewController.xib in Resources */,
 				529D5A7615EF78940012AEC7 /* NoticeViewController.xib in Resources */,
 				529D5A7B15EF7AB40012AEC7 /* NoticeDetailViewController.xib in Resources */,
+				52D6277315F0C1EC00C2FB2A /* progress-goals-bg.png in Resources */,
+				52D6277415F0C1EC00C2FB2A /* progress-goals-fill.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -873,6 +899,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52D6277015F0C14B00C2FB2A /* GoalsProgress.m in Sources */,
+				52AC59C515F0BF9900BE94F3 /* Goalsgraph.m in Sources */,
+				52AC59C415F0BF7F00BE94F3 /* GoalViewController.m in Sources */,
 				529CE59B15DDF08100B1FF9C /* main.m in Sources */,
 				529CE59F15DDF08100B1FF9C /* AppDelegate.m in Sources */,
 				529CE5C815DDF51F00B1FF9C /* CalorieHistory.m in Sources */,
@@ -880,7 +909,6 @@
 				529CE5CA15DDF51F00B1FF9C /* CountAndLoss.m in Sources */,
 				529CE64115DDF93C00B1FF9C /* FoodCategoryViewController.m in Sources */,
 				529CE64315DDF93C00B1FF9C /* FoodViewController.m in Sources */,
-				529CE64515DDF93C00B1FF9C /* GoalViewController.m in Sources */,
 				529CE64715DDF93C00B1FF9C /* HistoryViewController.m in Sources */,
 				529CE64915DDF93C00B1FF9C /* MoreViewController.m in Sources */,
 				529CE64B15DDF93C00B1FF9C /* TodayViewController.m in Sources */,
