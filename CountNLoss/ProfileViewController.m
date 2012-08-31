@@ -14,6 +14,9 @@
 @end
 
 @implementation ProfileViewController
+@synthesize backupButton;
+@synthesize restoreButton;
+@synthesize uploadAnimator;
 @synthesize heightTextField;
 @synthesize widthTextField;
 @synthesize ageTextField;
@@ -21,7 +24,7 @@
 @synthesize labels,myProfile;
 @synthesize BMILabel;
 @synthesize BMRLabel;
-@synthesize backUpAlertView,restoreAlertView,historyUploader,profileUploader,customUploader,uploadIndicator,uploadUserName;
+@synthesize backUpAlertView,restoreAlertView,historyUploader,profileUploader,customUploader,uploadIndicator;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -109,6 +112,9 @@
     [self setHeightTextField:nil];
     [self setWidthTextField:nil];
     [self setAgeTextField:nil];
+    [self setUploadAnimator:nil];
+    [self setBackupButton:nil];
+    [self setRestoreButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -126,80 +132,83 @@
 -(NSString *) getProfilePath {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
 	NSString *documentsDir = [paths objectAtIndex:0];
-	return [documentsDir stringByAppendingPathComponent:@"myprofie.plist"];
+	return [documentsDir stringByAppendingPathComponent:@"myprofile.plist"];
 }
 -(NSString *) getMyDBPath {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
 	NSString *documentsDir = [paths objectAtIndex:0];
-	return [documentsDir stringByAppendingPathComponent:@"mydb.plist"];
+	return [documentsDir stringByAppendingPathComponent:@"mydb.sqlite"];
 }
--(void)uploadHistoryDB:(id)sender{
-    historyUploader = [[EPUploader alloc] initWithURL:[NSURL URLWithString:@"http://grasp.asia/countnloss/upload.php"]
-                                                filePath:[self getHistoryPath]
-                                                fileName:[NSString stringWithFormat:@"%@_history.sqlite",uploadUserName]
-                                                delegate:self
-                                            doneSelector:@selector(uploadCustomDB:)
-                                           errorSelector:@selector(onUploadError:)];
-    uploadIndicator++;
-}
--(void)uploadCustomDB:(id)sender{
-    sender = nil;
-    customUploader = [[EPUploader alloc] initWithURL:[NSURL URLWithString:@"http://grasp.asia/countnloss/upload.php"]
-                                                filePath:[self getMyDBPath]
-                                                fileName:[NSString stringWithFormat:@"%@_mydb.sqlite",uploadUserName]
-                                                delegate:self
-                                            doneSelector:@selector(uploadProfile:)
-                                           errorSelector:@selector(onUploadError:)];
-    uploadIndicator++;
-}
--(void)uploadProfile:(id)sender{
-    sender = nil;
-    profileUploader = [[EPUploader alloc] initWithURL:[NSURL URLWithString:@"http://grasp.asia/countnloss/upload.php"]
-                                                filePath:[self getProfilePath]
-                                                fileName:[NSString stringWithFormat:@"%@_profile.plist",uploadUserName]
-                                                delegate:self
-                                            doneSelector:@selector(uploadDone:)
-                                           errorSelector:@selector(onUploadError:)];
-    uploadIndicator++;
-}
--(void)uploadDon:(id)sender{
-    uploadIndicator = 0;
-    uploadUserName = nil;
+
+-(void)uploadComplete:(id)sender{
+    
+    if (sender == historyUploader){
+        NSLog(@"Upload history.sqlite Complete");
+        historyUploader = nil;
+    } else if (sender == customUploader){
+        NSLog(@"Upload mydb.sqlite Complete");
+        customUploader = nil;
+    } else if (sender == profileUploader){
+        NSLog(@"Upload profile.plist Complete");
+        profileUploader = nil;
+    }
+    if (++uploadIndicator == 3){
+        NSLog(@"Upload All Complete.");
+        [uploadAnimator stopAnimating];
+        [self enableButton];
+    }
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (alertView == backUpAlertView){
-        if (buttonIndex == 1){
-            uploadUserName = [NSString stringWithFormat:@"%@%@",[[alertView textFieldAtIndex:0] text],[[alertView textFieldAtIndex:1] text]];
+    if (buttonIndex == 1){
+        if (alertView == backUpAlertView){
+            NSString *filename = [NSString stringWithFormat:@"%@%@",[[alertView textFieldAtIndex:0] text],[[alertView textFieldAtIndex:1] text]];
             uploadIndicator = 0;
-            if ([uploadUserName isEqualToString:@""]){
-                [self uploadHistoryDB:nil];
-            }
+            [uploadAnimator startAnimating];
+            historyUploader = [[EPUploader alloc] initWithURL:[NSURL URLWithString:@"http://grasp.asia/countnloss/upload.php"]
+                                                     filePath:[self getHistoryPath]
+                                                     fileName:[NSString stringWithFormat:@"%@_history.sqlite",filename]
+                                                     delegate:self
+                                                 doneSelector:@selector(uploadComplete:)
+                                                errorSelector:@selector(onUploadError:)];
+            customUploader = [[EPUploader alloc] initWithURL:[NSURL URLWithString:@"http://grasp.asia/countnloss/upload.php"]
+                                                    filePath:[self getMyDBPath]
+                                                    fileName:[NSString stringWithFormat:@"%@_mydb.sqlite",filename]
+                                                    delegate:self
+                                                doneSelector:@selector(uploadComplete:)
+                                               errorSelector:@selector(onUploadError:)];
+            profileUploader = [[EPUploader alloc] initWithURL:[NSURL URLWithString:@"http://grasp.asia/countnloss/upload.php"]
+                                                     filePath:[self getProfilePath]
+                                                     fileName:[NSString stringWithFormat:@"%@_myprofile.plist",filename]
+                                                     delegate:self
+                                                 doneSelector:@selector(uploadComplete:)
+                                                errorSelector:@selector(onUploadError:)];
+            filename = nil;
+            
+        } else if (alertView == restoreAlertView){
+            NSString *filename = [NSString stringWithFormat:@"%@%@",[[alertView textFieldAtIndex:0] text],[[alertView textFieldAtIndex:1] text]];
+            NSURL *historyURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://grasp.asia/countnloss/%@_history.sqlite",filename]];
+            NSURL *profileURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://grasp.asia/countnloss/%@_mydb.sqlite",filename]];
+            NSURL *customDBURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://grasp.asia/countnloss/%@_myprofile.plist",filename]];
+            
+            
+            NSData *historyFile = [NSData dataWithContentsOfURL:historyURL];
+            NSData *profileFile = [NSData dataWithContentsOfURL:profileURL];
+            NSData *customFoodFile = [NSData dataWithContentsOfURL:customDBURL];
+            
+            [self restoreFile:[self getProfilePath] withData:profileFile];
+            [self restoreFile:[self getMyDBPath] withData:customFoodFile];
+            [self restoreFile:[self getHistoryPath] withData:historyFile];
+            
+            historyFile = nil;
+            profileFile = nil;
+            customFoodFile = nil;
+            historyURL = nil;
+            profileURL = nil;
+            customDBURL = nil;
         }
-        
-    } else if (alertView == restoreAlertView){
-         if (buttonIndex == 1){
-             NSString *filename = [NSString stringWithFormat:@"%@%@",[[alertView textFieldAtIndex:0] text],[[alertView textFieldAtIndex:1] text]];
-             NSURL *historyURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://grasp.asia/countnloss/%@_history.sqlite",filename]];
-             NSURL *profileURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://grasp.asia/countnloss/%@-mydb.sqlite",filename]];
-             NSURL *customDBURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://grasp.asia/countnloss/%@-myprofile.plist",filename]];
-             
-             
-             NSData *historyFile = [NSData dataWithContentsOfURL:historyURL];
-             //NSData *profileFile = [NSData dataWithContentsOfURL:profileURL];
-             //NSData *customFoodFile = [NSData dataWithContentsOfURL:customDBURL];
-             
-             //[self restoreFile:[self getProfilePath] withData:profileFile];
-             //[self restoreFile:[self getMyDBPath] withData:customFoodFile];
-             [self restoreFile:[self getHistoryPath] withData:historyFile];
-             
-             /*historyFile = nil;
-             profileFile = nil;
-             customFoodFile = nil;
-             historyURL = nil;
-             profileURL = nil;
-             customDBURL = nil;*/
-             
-         }
+
+    } else {
+        [self enableButton];
     }
     alertView = nil;
 }
@@ -211,13 +220,28 @@
         NSLog(@"Error while restore file %@ : %@",filePath,error);
     }
 }
+- (void)disableButton{
+    [backupButton setEnabled:NO];
+    [restoreButton setEnabled:NO];
+    [backupButton setBackgroundColor:[UIColor lightGrayColor]];
+    [restoreButton setBackgroundColor:[UIColor lightGrayColor]];
+}
+
+- (void)enableButton{
+    [backupButton setEnabled:YES];
+    [restoreButton setEnabled:YES];
+    [backupButton setBackgroundColor:nil];
+    [restoreButton setBackgroundColor:nil];
+}
 - (IBAction)backUpData:(id)sender {
+    [self disableButton];
     backUpAlertView = [[UIAlertView alloc]initWithTitle:@"Authentication" message:@"ยืนยันการสำรองฐานข้อมูล \n กรุณากรอกชื่อผู้ใช้และรหัสผ่าน" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Backup", nil];
     [backUpAlertView setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
     [backUpAlertView show];
 }
 
 - (IBAction)restoreData:(id)sender {
+    [self disableButton];
     restoreAlertView = [[UIAlertView alloc]initWithTitle:@"Authentication" message:@"การกู้คืนฐานข้อมูลจะทำการย้อนข้อมูลไปยังวันที่ล่าสุดที่คุณได้สำรองไว้ \nกรุณากรอกข้อมูลชื่อผู้ใช้และรหัสผ่านของท่าน" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Restore", nil];
     [restoreAlertView setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
     [restoreAlertView show];

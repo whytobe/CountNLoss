@@ -20,12 +20,14 @@
 @property (weak, nonatomic) IBOutlet UITextField *ageTextField;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *sexSegmentControl;
 @property (nonatomic) int uploadIndicator;
-@property (nonatomic) NSString *uploadUserName;
 @property (nonatomic) EPUploader *historyUploader;
 @property (nonatomic) EPUploader *profileUploader;
 @property (nonatomic) EPUploader *customUploader;
 @property (nonatomic) UIAlertView *backUpAlertView;
 @property (nonatomic) UIAlertView *restoreAlertView;
+@property (weak, nonatomic) IBOutlet UIButton *backupButton;
+@property (weak, nonatomic) IBOutlet UIButton *restoreButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *uploadAnimator;
 - (IBAction)backUpData:(id)sender;
 - (IBAction)restoreData:(id)sender;
 @end
